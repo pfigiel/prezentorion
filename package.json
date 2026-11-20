@@ -1,0 +1,37 @@
+{
+  "name": "prezentorion",
+  "version": "0.0.1",
+  "private": true,
+  "description": "Secret Santa draws and gift lists",
+  "license": "UNLICENSED",
+  "type": "module",
+  "packageManager": "pnpm@11.17.0",
+  "engines": {
+    "node": "24.21.0"
+  },
+  "scripts": {
+    "dev": "turbo run dev",
+    "build": "turbo run build",
+    "preview": "turbo run preview",
+    "lint": "turbo run lint",
+    "lint:css": "stylelint \"**/*.css\" --allow-empty-input --ignore-path .gitignore --cache --cache-location node_modules/.cache/stylelint/",
+    "knip": "knip",
+    "type:check": "turbo run type:check",
+    "deps:audit": "pnpm audit --audit-level high",
+    "format": "prettier --write --cache .",
+    "format:check": "prettier --check --cache .",
+    "prepare": "husky"
+  },
+  "devDependencies": {
+    "@ianvs/prettier-plugin-sort-imports": "4.7.1",
+    "husky": "9.1.7",
+    "knip": "6.35.1",
+    "lint-staged": "17.5.1",
+    "prettier": "3.9.6",
+    "stylelint": "17.15.0",
+    "stylelint-config-standard": "40.0.0",
+    "stylelint-scss": "7.3.0",
+    "turbo": "2.10.11",
+    "typescript": "catalog:"
+  }
+}

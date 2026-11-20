@@ -1,0 +1,23 @@
+@define-mixin transition {
+  transition-duration: var(--pz-motion-duration);
+  transition-timing-function: var(--pz-motion-easing);
+}
+
+@define-mixin text $size {
+  font-size: var(--pz-text-font-size-$(size));
+  line-height: var(--pz-text-line-height);
+}
+
+@define-mixin heading $size {
+  font-size: var(--pz-heading-font-size-$(size));
+  font-weight: var(--pz-font-weight-bold);
+  line-height: var(--pz-heading-line-height);
+  letter-spacing: var(--pz-heading-letter-spacing);
+}
+
+/* Puts an element on a level of the surface ladder: globals.css picks it by nesting, a popover portalled out of the page names its own. */
+@define-mixin surface $level {
+  --pz-surface-background-color: var(--pz-surface-$(level)-background-color);
+
+  background-color: var(--pz-surface-background-color);
+}

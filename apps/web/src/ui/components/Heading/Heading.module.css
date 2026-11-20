@@ -1,0 +1,14 @@
+.root {
+  color: var(--pz-text-color-default);
+}
+
+@each $size in sm, md, lg {
+  .$(size) {
+    @mixin heading $(size);
+  }
+}
+
+.sm,
+.md {
+  font-weight: var(--pz-font-weight-semibold);
+}

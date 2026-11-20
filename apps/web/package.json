@@ -1,0 +1,43 @@
+{
+  "name": "@prezentorion/web",
+  "version": "0.0.1",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview",
+    "lint": "eslint .",
+    "type:check": "tsc --noEmit"
+  },
+  "dependencies": {
+    "@fontsource-variable/sora": "5.3.0",
+    "@mantine/core": "9.5.1",
+    "@mantine/hooks": "9.5.1",
+    "@supabase/supabase-js": "2.119.0",
+    "@tabler/icons-react": "catalog:",
+    "@tanstack/react-query": "5.103.2",
+    "@tanstack/react-router": "1.170.39",
+    "clsx": "catalog:",
+    "i18next": "26.4.2",
+    "react": "catalog:react",
+    "react-dom": "catalog:react",
+    "react-i18next": "17.0.15"
+  },
+  "devDependencies": {
+    "@prezentorion/eslint-config": "workspace:*",
+    "@prezentorion/postcss-config": "workspace:*",
+    "@prezentorion/tsconfig": "workspace:*",
+    "@tanstack/react-router-devtools": "1.167.2",
+    "@tanstack/router-plugin": "1.168.40",
+    "@types/node": "catalog:",
+    "@types/react": "catalog:react",
+    "@types/react-dom": "catalog:react",
+    "@vitejs/plugin-react": "catalog:",
+    "eslint": "catalog:",
+    "jiti": "catalog:",
+    "typescript": "catalog:",
+    "vite": "catalog:",
+    "vite-plugin-pwa": "2.0.0"
+  }
+}

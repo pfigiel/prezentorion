@@ -1,0 +1,38 @@
+.root {
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+}
+
+.star,
+.cool,
+.warm {
+  position: absolute;
+  border-radius: var(--pz-radius-full);
+  background-color: var(--pz-sky-star-color);
+  animation: twinkle var(--twinkle-duration) ease-in-out var(--twinkle-delay) infinite alternate;
+}
+
+.cool {
+  box-shadow: 0 0 6px var(--pz-sky-star-color);
+}
+
+.warm {
+  background-color: var(--pz-sky-star-warm-color);
+  box-shadow: 0 0 6px var(--pz-sky-star-warm-color);
+}
+
+@keyframes twinkle {
+  to {
+    filter: brightness(0.45);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .star,
+  .cool,
+  .warm {
+    animation: none;
+  }
+}

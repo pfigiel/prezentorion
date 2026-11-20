@@ -1,0 +1,4 @@
+pnpm-lock.yaml
+apps/web/src/routing/routeTree.gen.ts
+apps/backend/supabase/functions/api/app.js
+apps/backend/supabase/.temp

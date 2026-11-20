@@ -1,0 +1,39 @@
+.root {
+  display: inline-flex;
+  align-items: center;
+  color: var(--pz-text-color-default);
+  font-weight: var(--pz-font-weight-bold);
+  letter-spacing: var(--pz-heading-letter-spacing);
+  line-height: 1;
+}
+
+.mark {
+  flex: none;
+}
+
+.accent {
+  color: var(--pz-accent-color-default);
+}
+
+.md {
+  gap: var(--pz-spacing-sm);
+  font-size: var(--pz-heading-font-size-md);
+  font-weight: var(--pz-font-weight-semibold);
+}
+
+.lg {
+  flex-direction: column;
+  gap: var(--pz-spacing-md);
+  font-size: var(--pz-heading-font-size-xl);
+
+  & .mark {
+    filter: drop-shadow(0 10px 30px var(--pz-accent-glow-color));
+  }
+}
+
+@each $size in md, lg {
+  .$(size) .mark {
+    width: var(--pz-logo-size-$(size));
+    height: var(--pz-logo-size-$(size));
+  }
+}

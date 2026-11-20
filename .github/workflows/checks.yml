@@ -1,0 +1,23 @@
+name: checks
+# Called by the workflows that need the checks, so a pull request and main run the same ones.
+on:
+  workflow_call:
+jobs:
+  static:
+    name: static checks
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+      - uses: ./.github/actions/setup
+      - run: pnpm format:check
+      - run: pnpm lint
+      - run: pnpm lint:css
+      - run: pnpm type:check
+      - run: pnpm knip
+  build:
+    name: build
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+      - uses: ./.github/actions/setup
+      - run: pnpm build

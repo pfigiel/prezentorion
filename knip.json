@@ -1,0 +1,17 @@
+{
+  "$schema": "https://unpkg.com/knip@6/schema.json",
+  "includeEntryExports": true,
+  "postcss": {
+    "config": ["postcss.config.ts"]
+  },
+  "workspaces": {
+    "apps/web": {
+      "tanstack-router": {
+        "entry": ["src/routing/routeTree.gen.ts"]
+      }
+    },
+    "apps/backend": {
+      "entry": ["src/main.ts", "src/app.ts", "supabase/functions/*/index.ts"]
+    }
+  }
+}

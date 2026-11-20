@@ -1,0 +1,27 @@
+.root {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  max-width: var(--pz-shell-width);
+  min-height: 100dvh;
+  margin-inline: auto;
+}
+
+.header {
+  display: flex;
+  flex: none;
+  align-items: center;
+  justify-content: space-between;
+  height: var(--pz-shell-header-height);
+  padding-inline: var(--pz-spacing-lg);
+  padding-top: env(safe-area-inset-top);
+  box-sizing: content-box;
+}
+
+.main {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  gap: var(--pz-spacing-md);
+  padding: var(--pz-spacing-sm) var(--pz-spacing-lg) var(--pz-spacing-lg);
+}

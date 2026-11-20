@@ -1,0 +1,79 @@
+.root {
+  @mixin transition;
+
+  border: 1px solid transparent;
+  border-radius: var(--pz-radius-md);
+  font-weight: var(--pz-font-weight-semibold);
+  transition-property: background-color, box-shadow;
+
+  &[data-disabled] {
+    cursor: not-allowed;
+    opacity: 0.5;
+  }
+}
+
+@each $size in sm, md, lg {
+  .$(size) {
+    height: var(--pz-control-height-$(size));
+  }
+}
+
+.sm {
+  padding-inline: var(--pz-spacing-md);
+  border-radius: var(--pz-radius-sm);
+  font-size: var(--pz-text-font-size-sm);
+}
+
+.md,
+.lg {
+  padding-inline: var(--pz-spacing-lg);
+  font-size: var(--pz-text-font-size-md);
+}
+
+.primary {
+  --loader-color: var(--pz-accent-contrast-color);
+
+  background-color: var(--pz-accent-color-default);
+  color: var(--pz-accent-contrast-color);
+
+  &:hover,
+  &[data-disabled] {
+    background-color: var(--pz-accent-color-hover);
+    color: var(--pz-accent-contrast-color);
+  }
+}
+
+.primary.lg {
+  box-shadow: var(--pz-shadow-glow);
+}
+
+.secondary {
+  --loader-color: var(--pz-text-color-default);
+
+  border-color: var(--pz-border-strong-color);
+  background-color: transparent;
+  color: var(--pz-text-color-default);
+
+  &:hover {
+    background-color: var(--pz-control-hover-background-color);
+  }
+
+  &[data-disabled] {
+    background-color: transparent;
+    color: var(--pz-text-color-dimmed);
+  }
+}
+
+/* For a sign-in provider, whose button stands apart from the app's own gold. */
+.light {
+  --loader-color: var(--pz-accent-contrast-color);
+
+  background-color: var(--pz-text-color-default);
+  color: var(--pz-accent-contrast-color);
+
+  &:hover,
+  &[data-disabled] {
+    background-color: var(--pz-text-color-soft);
+    color: var(--pz-accent-contrast-color);
+  }
+}

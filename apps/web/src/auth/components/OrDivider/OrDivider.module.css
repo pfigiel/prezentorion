@@ -1,0 +1,15 @@
+.root {
+  display: flex;
+  gap: var(--pz-spacing-md);
+  align-items: center;
+  color: var(--pz-text-color-dimmed);
+  font-size: var(--pz-text-font-size-sm);
+
+  &::before,
+  &::after {
+    flex: 1;
+    height: 1px;
+    background-color: var(--pz-border-color);
+    content: '';
+  }
+}

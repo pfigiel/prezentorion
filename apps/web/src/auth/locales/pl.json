@@ -1,0 +1,22 @@
+{
+  "login": {
+    "tagline": "Podarunki nie z tej ziemi",
+    "google": "Zaloguj przez Google",
+    "or": "lub",
+    "name": "Imię",
+    "namePlaceholder": "Jan",
+    "email": "E-mail",
+    "emailPlaceholder": "jan@example.com",
+    "password": "Hasło",
+    "signIn": "Zaloguj się",
+    "signUp": "Załóż konto",
+    "noAccount": "Nie masz konta?",
+    "haveAccount": "Masz już konto?",
+    "errors": {
+      "invalid_credentials": "Nieprawidłowy e-mail lub hasło.",
+      "user_already_exists": "Konto z tym e-mailem już istnieje.",
+      "weak_password": "Hasło musi mieć co najmniej 8 znaków.",
+      "unknown": "Coś poszło nie tak. Spróbuj ponownie."
+    }
+  }
+}

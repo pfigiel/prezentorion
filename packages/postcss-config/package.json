@@ -1,0 +1,28 @@
+{
+  "name": "@prezentorion/postcss-config",
+  "version": "0.0.1",
+  "private": true,
+  "type": "module",
+  "exports": {
+    ".": "./index.ts"
+  },
+  "dependencies": {
+    "postcss-each": "1.1.0",
+    "postcss-mixins": "12.1.2",
+    "postcss-nesting": "14.0.2"
+  },
+  "scripts": {
+    "lint": "eslint .",
+    "type:check": "tsc --noEmit"
+  },
+  "devDependencies": {
+    "@prezentorion/eslint-config": "workspace:*",
+    "@prezentorion/tsconfig": "workspace:*",
+    "@types/node": "catalog:",
+    "eslint": "catalog:",
+    "jiti": "catalog:",
+    "postcss": "8.5.28",
+    "postcss-load-config": "6.0.1",
+    "typescript": "catalog:"
+  }
+}

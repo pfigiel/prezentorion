@@ -1,0 +1,13 @@
+diff --git a/index.js b/index.js
+index b0db7cd5f5290db26b55540a5bb895853caed45c..f39f062db31a5074a7ae25da73623c0e63b6cc71 100644
+--- a/index.js
++++ b/index.js
+@@ -49,7 +49,7 @@ function processRules(rule, params) {
+     if (params.indexName) vals[params.indexName] = i;
+ 
+     rule.nodes.forEach(node => {
+-      const proxy = postcss.rule({ nodes: [node] });
++      const proxy = postcss.root({ nodes: [postcss.rule({ selector: '', nodes: [node] })] });
+       const { root } = postcss([vars({ only: vals })]).process(proxy);
+       rule.parent.insertBefore(rule, root.nodes[0].nodes[0]);
+     });

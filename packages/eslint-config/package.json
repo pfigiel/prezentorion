@@ -1,0 +1,36 @@
+{
+  "name": "@prezentorion/eslint-config",
+  "version": "0.0.1",
+  "private": true,
+  "type": "module",
+  "exports": {
+    ".": "./index.ts"
+  },
+  "scripts": {
+    "lint": "eslint .",
+    "type:check": "tsc --noEmit"
+  },
+  "dependencies": {
+    "@eslint-community/eslint-plugin-eslint-comments": "4.8.1",
+    "@eslint/core": "1.2.1",
+    "@eslint/js": "10.0.1",
+    "@typescript-eslint/utils": "8.67.0",
+    "eslint-config-prettier": "10.1.8",
+    "eslint-plugin-jsx-a11y": "6.10.2",
+    "eslint-plugin-n": "18.3.0",
+    "eslint-plugin-react": "7.37.5",
+    "eslint-plugin-react-hooks": "7.1.1",
+    "globals": "17.11.0",
+    "typescript-eslint": "8.67.0"
+  },
+  "devDependencies": {
+    "@prezentorion/tsconfig": "workspace:*",
+    "@types/node": "catalog:",
+    "eslint": "catalog:",
+    "jiti": "catalog:",
+    "typescript": "catalog:"
+  },
+  "peerDependencies": {
+    "eslint": "catalog:"
+  }
+}

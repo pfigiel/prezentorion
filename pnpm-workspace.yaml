@@ -1,0 +1,41 @@
+packages:
+  - 'apps/*'
+  - 'packages/*'
+
+allowBuilds:
+  # The backend's bundler; its install script places the platform binary.
+  esbuild: true
+
+catalog:
+  '@tabler/icons-react': 3.52.0
+  '@types/node': 24.13.6
+  '@vitejs/plugin-react': 6.0.5
+  clsx: 2.1.1
+  eslint: 10.8.1
+  jiti: 2.7.0
+  typescript: 6.0.3
+  vite: 8.3.4
+
+catalogs:
+  react:
+    react: 19.2.8
+    react-dom: 19.2.8
+    '@types/react': 19.2.18
+    '@types/react-dom': 19.2.4
+
+# postcss-each re-parses each generated rule without its file, which Vite warns about; 1.1.0 is the
+# last release, so the patch hands PostCSS the nodes themselves.
+patchedDependencies:
+  postcss-each@1.1.0: patches/postcss-each@1.1.0.patch
+
+# Entry silences warning during package install. Latest release caps peer at ESLint 9, verified that 10 works fine.
+peerDependencyRules:
+  allowedVersions:
+    eslint-plugin-react>eslint: '10'
+    eslint-plugin-jsx-a11y>eslint: '10'
+
+auditConfig:
+  ignoreGhsas:
+    # picomatch ReDoS on a crafted glob pattern; no fixed release is published. It is reached only
+    # through lint and build tooling, which match patterns from our own configuration.
+    - GHSA-fc5q-39xc-vjpf

@@ -1,0 +1,37 @@
+.trigger {
+  display: grid;
+  place-content: center;
+  width: var(--pz-control-height-md);
+  height: var(--pz-control-height-md);
+  border-radius: var(--pz-radius-full);
+}
+
+.avatar {
+  --avatar-size: var(--pz-control-height-sm);
+  --avatar-bg: var(--pz-surface-raised-background-color);
+  --avatar-color: var(--pz-text-color-default);
+
+  border: 1.5px solid var(--pz-accent-color-default);
+  font-size: var(--pz-text-font-size-sm);
+  font-weight: var(--pz-font-weight-semibold);
+  text-transform: uppercase;
+}
+
+.dropdown {
+  @mixin surface raised;
+
+  border-color: var(--pz-border-color);
+  border-radius: var(--pz-radius-md);
+}
+
+.item {
+  @mixin transition;
+
+  color: var(--pz-text-color-default);
+  font-size: var(--pz-text-font-size-md);
+  transition-property: background-color;
+
+  &[data-hovered] {
+    background-color: var(--pz-control-hover-background-color);
+  }
+}
