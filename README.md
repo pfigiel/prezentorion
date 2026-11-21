@@ -9,6 +9,7 @@ One pnpm workspace run through turbo:
 | ---------------------------------------------------- | -------------------------------------------- |
 | [`apps/web`](apps/web)                               | The application — Vite, React, TanStack, PWA |
 | [`apps/backend`](apps/backend)                       | The API — Hono, deployed to Supabase         |
+| [`apps/e2e`](apps/e2e)                               | End-to-end tests — Playwright                |
 | [`packages/eslint-config`](packages/eslint-config)   | Shared ESLint presets and rules of our own   |
 | [`packages/postcss-config`](packages/postcss-config) | Shared PostCSS plugins                       |
 | [`packages/tsconfig`](packages/tsconfig)             | Shared TypeScript presets                    |
@@ -21,6 +22,8 @@ Coding standards are in [AGENTS.md](AGENTS.md), which every coding agent loads a
 - [**Node**](https://nodejs.org) — the version in [`.nvmrc`](.nvmrc), which `nvm use` installs.
 - [**pnpm**](https://pnpm.io/installation) — the version pinned as `packageManager` in
   [`package.json`](package.json).
+- [**Docker**](https://docs.docker.com/get-docker/) — only for `pnpm e2e`, which runs against a
+  local Supabase stack; see [`apps/e2e`](apps/e2e).
 
 ## Getting started
 
@@ -38,6 +41,7 @@ Every task runs through turbo, so it covers each package that defines it.
 | `pnpm dev`        | Runs each package's dev server                 |
 | `pnpm build`      | Builds every package                           |
 | `pnpm preview`    | Builds, then serves the build                  |
+| `pnpm e2e`        | End-to-end tests, against the local stack      |
 | `pnpm lint`       | ESLint                                         |
 | `pnpm lint:css`   | Stylelint over every CSS file                  |
 | `pnpm type:check` | `tsc --noEmit`                                 |

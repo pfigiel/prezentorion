@@ -13,6 +13,7 @@
     "dev": "turbo run dev",
     "build": "turbo run build",
     "preview": "turbo run preview",
+    "e2e": "turbo run e2e",
     "lint": "turbo run lint",
     "lint:css": "stylelint \"**/*.css\" --allow-empty-input --ignore-path .gitignore --cache --cache-location node_modules/.cache/stylelint/",
     "knip": "knip",
