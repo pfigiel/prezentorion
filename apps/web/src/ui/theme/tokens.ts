@@ -73,7 +73,7 @@ export const tokens = {
   select: { dropdown: { height: '17rem' } },
   /** The tile a giver taps to reveal whom they drew, and the card it shrinks into. */
   reveal: { tile: { height: '28rem' }, mark: { size: '6rem' } },
-  logo: { size: { md: '2rem', lg: '9.25rem' } },
+  logo: { size: { md: '1.5rem', lg: '9.25rem' } },
   icon: { size: { sm: '0.9375rem', md: '1.375rem' } },
   shadow: { glow: '0 6px 24px rgb(255 211 107 / 25%)' },
   motion: { duration: '200ms', easing: 'ease' },
