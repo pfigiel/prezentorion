@@ -1,5 +1,68 @@
 {
   "start": {
-    "greeting": "Cześć, {{name}}!"
+    "greeting": "Cześć, {{name}}!",
+    "draws": "Moje losowania",
+    "wishlist": "Moja lista prezentów"
+  },
+  "status": {
+    "waiting": "Czeka na losowanie",
+    "drawn": "Wylosowane",
+    "finished": "Zakończone"
+  },
+  "meta": {
+    "eventDate": "Data imprezy",
+    "budget": "Budżet",
+    "participants": "Uczestnicy"
+  },
+  "card": {
+    "details": "Szczegóły",
+    "reveal": "Odkryj wylosowaną osobę",
+    "buyingFor": "Kupujesz prezent dla",
+    "open": "Otwórz"
+  },
+  "empty": {
+    "title": "Na razie cisza na niebie",
+    "body": "Nie bierzesz jeszcze udziału w żadnym losowaniu. Po dodaniu do losowania pojawi się ono tutaj."
+  },
+  "wishlistSummary": {
+    "count": "Pozycje na liście: {{count}}",
+    "hint": "Widzi ją tylko osoba, która Cię wylosowała",
+    "edit": "Edytuj ›",
+    "emptyTitle": "Twoja lista jest pusta",
+    "emptyBody": "Dodaj pomysły na prezenty – zobaczy je osoba, która Cię wylosuje.",
+    "add": "Dodaj pierwszą pozycję"
+  },
+  "draw": {
+    "status": "Status",
+    "waitingNote": "Gdy administrator uruchomi losowanie, tutaj odkryjesz osobę, której kupujesz prezent.",
+    "participants": "Uczestnicy · {{count}}",
+    "you": "Ty",
+    "notFound": "Nie znaleziono tego losowania albo nie bierzesz w nim udziału.",
+    "backHome": "Wróć do losowań"
+  },
+  "reveal": {
+    "tap": "Dotknij, aby odkryć",
+    "privacy": "Upewnij się, że nikt nie patrzy",
+    "failed": "Nie udało się odkryć. Spróbuj ponownie."
+  },
+  "recipient": {
+    "buyingFor": "Kupujesz prezent dla",
+    "budgetAndDate": "Budżet {{budget}} · impreza {{date}}",
+    "date": "Impreza {{date}}",
+    "list": "Lista prezentów · {{count}}",
+    "emptyList": "Ta osoba nie dodała jeszcze nic do swojej listy. Zajrzyj tu później.",
+    "pending": "Ta osoba jeszcze się nie zalogowała, więc jej lista jest na razie pusta."
+  },
+  "item": {
+    "price": "ok. {{price}}",
+    "openLink": "otwórz link",
+    "purchased": "Kupione",
+    "purchasedByMe": "Kupione przeze mnie",
+    "purchasedByOther": "Kupione przez inną osobę",
+    "priority": {
+      "1": "Priorytet: niski",
+      "2": "Priorytet: średni",
+      "3": "Priorytet: wysoki"
+    }
   }
 }

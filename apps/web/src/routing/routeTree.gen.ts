@@ -13,6 +13,7 @@ import { Route as AuthenticatedRouteImport } from './../routes/_authenticated'
 import { Route as LoginRouteImport } from './../routes/login'
 import { Route as PrivacyPolicyRouteImport } from './../routes/privacy-policy'
 import { Route as AuthenticatedIndexRouteImport } from './../routes/_authenticated/index'
+import { Route as AuthenticatedDrawsDrawIdRouteImport } from './../routes/_authenticated/draws.$drawId'
 import { Route as AuthenticatedWishlistIndexRouteImport } from './../routes/_authenticated/wishlist.index'
 import { Route as AuthenticatedWishlistNewRouteImport } from './../routes/_authenticated/wishlist.new'
 import { Route as AuthenticatedWishlistItemIdEditRouteImport } from './../routes/_authenticated/wishlist.$itemId.edit'
@@ -36,6 +37,12 @@ const AuthenticatedIndexRoute = AuthenticatedIndexRouteImport.update({
   path: '/',
   getParentRoute: () => AuthenticatedRoute,
 } as any)
+const AuthenticatedDrawsDrawIdRoute =
+  AuthenticatedDrawsDrawIdRouteImport.update({
+    id: '/draws/$drawId',
+    path: '/draws/$drawId',
+    getParentRoute: () => AuthenticatedRoute,
+  } as any)
 const AuthenticatedWishlistIndexRoute =
   AuthenticatedWishlistIndexRouteImport.update({
     id: '/wishlist/',
@@ -59,6 +66,7 @@ export interface FileRoutesByFullPath {
   '/': typeof AuthenticatedIndexRoute
   '/login': typeof LoginRoute
   '/privacy-policy': typeof PrivacyPolicyRoute
+  '/draws/$drawId': typeof AuthenticatedDrawsDrawIdRoute
   '/wishlist/new': typeof AuthenticatedWishlistNewRoute
   '/wishlist/': typeof AuthenticatedWishlistIndexRoute
   '/wishlist/$itemId/edit': typeof AuthenticatedWishlistItemIdEditRoute
@@ -67,6 +75,7 @@ export interface FileRoutesByTo {
   '/login': typeof LoginRoute
   '/privacy-policy': typeof PrivacyPolicyRoute
   '/': typeof AuthenticatedIndexRoute
+  '/draws/$drawId': typeof AuthenticatedDrawsDrawIdRoute
   '/wishlist/new': typeof AuthenticatedWishlistNewRoute
   '/wishlist': typeof AuthenticatedWishlistIndexRoute
   '/wishlist/$itemId/edit': typeof AuthenticatedWishlistItemIdEditRoute
@@ -77,6 +86,7 @@ export interface FileRoutesById {
   '/login': typeof LoginRoute
   '/privacy-policy': typeof PrivacyPolicyRoute
   '/_authenticated/': typeof AuthenticatedIndexRoute
+  '/_authenticated/draws/$drawId': typeof AuthenticatedDrawsDrawIdRoute
   '/_authenticated/wishlist/new': typeof AuthenticatedWishlistNewRoute
   '/_authenticated/wishlist/': typeof AuthenticatedWishlistIndexRoute
   '/_authenticated/wishlist/$itemId/edit': typeof AuthenticatedWishlistItemIdEditRoute
@@ -87,6 +97,7 @@ export interface FileRouteTypes {
     | '/'
     | '/login'
     | '/privacy-policy'
+    | '/draws/$drawId'
     | '/wishlist/new'
     | '/wishlist/'
     | '/wishlist/$itemId/edit'
@@ -95,6 +106,7 @@ export interface FileRouteTypes {
     | '/login'
     | '/privacy-policy'
     | '/'
+    | '/draws/$drawId'
     | '/wishlist/new'
     | '/wishlist'
     | '/wishlist/$itemId/edit'
@@ -104,6 +116,7 @@ export interface FileRouteTypes {
     | '/login'
     | '/privacy-policy'
     | '/_authenticated/'
+    | '/_authenticated/draws/$drawId'
     | '/_authenticated/wishlist/new'
     | '/_authenticated/wishlist/'
     | '/_authenticated/wishlist/$itemId/edit'
@@ -145,6 +158,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AuthenticatedIndexRouteImport
       parentRoute: typeof AuthenticatedRoute
     }
+    '/_authenticated/draws/$drawId': {
+      id: '/_authenticated/draws/$drawId'
+      path: '/draws/$drawId'
+      fullPath: '/draws/$drawId'
+      preLoaderRoute: typeof AuthenticatedDrawsDrawIdRouteImport
+      parentRoute: typeof AuthenticatedRoute
+    }
     '/_authenticated/wishlist/': {
       id: '/_authenticated/wishlist/'
       path: '/wishlist'
@@ -171,6 +191,7 @@ declare module '@tanstack/react-router' {
 
 interface AuthenticatedRouteChildren {
   AuthenticatedIndexRoute: typeof AuthenticatedIndexRoute
+  AuthenticatedDrawsDrawIdRoute: typeof AuthenticatedDrawsDrawIdRoute
   AuthenticatedWishlistNewRoute: typeof AuthenticatedWishlistNewRoute
   AuthenticatedWishlistIndexRoute: typeof AuthenticatedWishlistIndexRoute
   AuthenticatedWishlistItemIdEditRoute: typeof AuthenticatedWishlistItemIdEditRoute
@@ -178,6 +199,7 @@ interface AuthenticatedRouteChildren {
 
 const AuthenticatedRouteChildren: AuthenticatedRouteChildren = {
   AuthenticatedIndexRoute: AuthenticatedIndexRoute,
+  AuthenticatedDrawsDrawIdRoute: AuthenticatedDrawsDrawIdRoute,
   AuthenticatedWishlistNewRoute: AuthenticatedWishlistNewRoute,
   AuthenticatedWishlistIndexRoute: AuthenticatedWishlistIndexRoute,
   AuthenticatedWishlistItemIdEditRoute: AuthenticatedWishlistItemIdEditRoute,

@@ -1,0 +1,63 @@
+.summary {
+  flex-direction: row;
+  align-items: center;
+}
+
+.empty {
+  align-items: center;
+  text-align: center;
+}
+
+.mark {
+  display: grid;
+  flex: none;
+  place-content: center;
+  width: var(--pz-control-height-md);
+  height: var(--pz-control-height-md);
+  border-radius: var(--pz-radius-sm);
+  background-color: var(--pz-accent-color-subtle);
+  color: var(--pz-accent-color-default);
+
+  & svg {
+    width: var(--pz-icon-size-md);
+    height: var(--pz-icon-size-md);
+  }
+}
+
+.text {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  gap: var(--pz-spacing-xs);
+  min-width: 0;
+}
+
+.count {
+  font-size: var(--pz-text-font-size-md);
+  font-weight: var(--pz-font-weight-semibold);
+}
+
+.hint,
+.body {
+  margin: 0;
+  color: var(--pz-text-color-dimmed);
+  font-size: var(--pz-text-font-size-sm);
+}
+
+.edit {
+  @mixin transition;
+
+  display: flex;
+  flex: none;
+  align-items: center;
+  min-height: var(--pz-control-height-md);
+  color: var(--pz-accent-color-default);
+  font-size: var(--pz-text-font-size-md);
+  font-weight: var(--pz-font-weight-semibold);
+  text-decoration: none;
+  transition-property: color;
+
+  &:hover {
+    color: var(--pz-accent-color-hover);
+  }
+}

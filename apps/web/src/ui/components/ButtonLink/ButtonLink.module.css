@@ -1,0 +1,34 @@
+.root {
+  @mixin transition;
+
+  height: var(--pz-control-height-lg);
+  padding-inline: var(--pz-spacing-lg);
+  border: 1px solid transparent;
+  border-radius: var(--pz-radius-md);
+  font-size: var(--pz-text-font-size-md);
+  font-weight: var(--pz-font-weight-semibold);
+  text-decoration: none;
+  transition-property: background-color, box-shadow;
+}
+
+.primary {
+  background-color: var(--pz-accent-color-default);
+  box-shadow: var(--pz-shadow-glow);
+  color: var(--pz-accent-contrast-color);
+
+  &:hover {
+    background-color: var(--pz-accent-color-hover);
+    color: var(--pz-accent-contrast-color);
+  }
+}
+
+.secondary {
+  border-color: var(--pz-border-strong-color);
+  background-color: transparent;
+  color: var(--pz-text-color-default);
+
+  &:hover {
+    background-color: var(--pz-control-hover-background-color);
+    color: var(--pz-text-color-default);
+  }
+}

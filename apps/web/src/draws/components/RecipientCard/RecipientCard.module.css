@@ -1,0 +1,56 @@
+.root {
+  flex-direction: row;
+  align-items: center;
+  border-color: var(--pz-accent-border-color);
+}
+
+.avatar {
+  box-shadow: 0 0 24px var(--pz-accent-glow-color);
+}
+
+.text {
+  display: flex;
+  flex-direction: column;
+  gap: var(--pz-spacing-xs);
+  min-width: 0;
+}
+
+.caption {
+  color: var(--pz-text-color-dimmed);
+  font-size: var(--pz-text-font-size-sm);
+}
+
+.name {
+  @mixin heading lg;
+
+  overflow-wrap: anywhere;
+}
+
+/* Starts as tall as the reveal tile it replaces, then shrinks to its own size. */
+.settling {
+  animation: settle calc(var(--pz-motion-duration) * 3) var(--pz-motion-easing) both;
+
+  & .avatar {
+    animation: avatar-settle calc(var(--pz-motion-duration) * 3) var(--pz-motion-easing) both;
+  }
+}
+
+@keyframes settle {
+  from {
+    min-height: var(--pz-reveal-tile-height);
+  }
+
+  to {
+    min-height: 0;
+  }
+}
+
+@keyframes avatar-settle {
+  from {
+    transform: scale(1.6);
+  }
+
+  to {
+    transform: scale(1);
+  }
+}
