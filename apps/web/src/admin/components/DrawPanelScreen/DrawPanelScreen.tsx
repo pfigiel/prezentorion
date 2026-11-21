@@ -4,6 +4,7 @@ import { Link, useNavigate } from '@tanstack/react-router'
 import { useTranslation } from 'react-i18next'
 import { accountQuery } from '@/account/api/account-query'
 import { adminDrawQuery, runDraw } from '@/admin/api/admin'
+import { minimumParticipants } from '@/admin/constants/draws'
 import { displayNameOf } from '@/admin/utils/display-name-of'
 import { dateLabelOf, moneyLabelOf } from '@/formatting/labels'
 import { ScreenHeader } from '@/shell/components/ScreenHeader'
@@ -21,8 +22,6 @@ import classes from './DrawPanelScreen.module.css'
 type Props = {
   drawId: string
 }
-
-const minimumParticipants = 2
 
 export const DrawPanelScreen = ({ drawId }: Props) => {
   const { t } = useTranslation()

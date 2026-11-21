@@ -10,6 +10,7 @@ import {
   type AdminDraw,
   type DrawFields,
 } from '@/admin/api/admin'
+import { minimumParticipants } from '@/admin/constants/draws'
 import { Button } from '@/ui/components/Button'
 import { Modal } from '@/ui/components/Modal'
 import { TextInput } from '@/ui/components/TextInput'
@@ -56,8 +57,10 @@ export const DrawForm = ({ draw }: Props) => {
       ])
       await navigate({ to: '/admin/draws/$drawId', params: { drawId } })
     },
+    onError: redraw.close,
   })
 
+  const isDrawn = draw !== undefined && draw.status !== 'waiting'
   const trimmedBudget = budget.trim()
   const errors = {
     name: name.trim() === '' ? t('admin.form.required') : undefined,
@@ -66,6 +69,8 @@ export const DrawForm = ({ draw }: Props) => {
       trimmedBudget === '' || wholeAmount.test(trimmedBudget)
         ? undefined
         : t('admin.form.invalidBudget'),
+    participants:
+      isDrawn && emails.length < minimumParticipants ? t('admin.form.tooFewToRedraw') : undefined,
   }
   const isValid = Object.values(errors).every((error) => error === undefined)
   const fields: DrawFields = {
@@ -74,8 +79,7 @@ export const DrawForm = ({ draw }: Props) => {
     budget: trimmedBudget === '' ? null : Number(trimmedBudget),
     emails,
   }
-  const needsRedraw =
-    draw !== undefined && draw.status !== 'waiting' && !sameSet(emails, initialEmails)
+  const needsRedraw = isDrawn && !sameSet(emails, initialEmails)
 
   const submit = (event: FormEvent) => {
     event.preventDefault()
@@ -123,6 +127,9 @@ export const DrawForm = ({ draw }: Props) => {
         ownEmail={account.email}
         onChange={setEmails}
       />
+      {showErrors && errors.participants !== undefined ? (
+        <p className={classes.error}>{errors.participants}</p>
+      ) : null}
       {save.isError ? <p className={classes.error}>{t('admin.form.saveFailed')}</p> : null}
       <Button type="submit" loading={save.isPending && !redrawOpened} className={classes.submit}>
         {t('admin.form.save')}

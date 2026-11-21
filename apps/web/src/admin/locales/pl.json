@@ -36,6 +36,7 @@
     "save": "Zapisz",
     "required": "To pole jest wymagane.",
     "invalidBudget": "Wpisz kwotę w pełnych złotych.",
+    "tooFewToRedraw": "Wylosowane losowanie potrzebuje co najmniej dwóch uczestników.",
     "saveFailed": "Nie udało się zapisać losowania. Spróbuj ponownie.",
     "redrawTitle": "Losowanie od nowa",
     "redrawWarning": "Zmiana uczestników wymaga ponownego losowania. Wszyscy odkryją wynik od nowa, a oznaczenia zakupów zostaną wyczyszczone.",
