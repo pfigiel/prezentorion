@@ -12,16 +12,25 @@
   position: absolute;
   border-radius: var(--pz-radius-full);
   background-color: var(--pz-sky-star-color);
+  box-shadow:
+    0 0 var(--pz-sky-star-halo-size-sm) var(--pz-sky-star-color),
+    0 0 calc(var(--pz-sky-star-halo-size-sm) * 2) var(--pz-sky-star-color);
   animation: twinkle var(--twinkle-duration) ease-in-out var(--twinkle-delay) infinite alternate;
 }
 
-.cool {
-  box-shadow: 0 0 6px var(--pz-sky-star-color);
+.cool,
+.warm {
+  --star-color: var(--pz-sky-star-color);
+
+  box-shadow:
+    0 0 var(--pz-sky-star-halo-size-lg) var(--star-color),
+    0 0 calc(var(--pz-sky-star-halo-size-lg) * 2) var(--star-color);
 }
 
 .warm {
-  background-color: var(--pz-sky-star-warm-color);
-  box-shadow: 0 0 6px var(--pz-sky-star-warm-color);
+  --star-color: var(--pz-sky-star-warm-color);
+
+  background-color: var(--star-color);
 }
 
 .glow {
@@ -65,8 +74,13 @@
 }
 
 @keyframes twinkle {
+  from {
+    transform: scale(1.4);
+  }
+
   to {
-    filter: brightness(0.45);
+    transform: scale(0.8);
+    filter: brightness(0.15);
   }
 }
 
