@@ -1,4 +1,5 @@
 import { IconBrandGoogleFilled } from '@tabler/icons-react'
+import { Link } from '@tanstack/react-router'
 import { useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { signInWithGoogle } from '@/auth/api/session'
@@ -41,6 +42,9 @@ export const LoginScreen = () => {
           {isSigningIn ? t('auth.login.signUp') : t('auth.login.signIn')}
         </button>
       </p>
+      <Link to="/privacy-policy" className={classes.privacy}>
+        {t('auth.login.privacyPolicy')}
+      </Link>
     </main>
   )
 }

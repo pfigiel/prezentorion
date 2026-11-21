@@ -1,0 +1,37 @@
+{
+  "policy": {
+    "title": "Polityka prywatności",
+    "updated": "Ostatnia aktualizacja: 20 listopada 2026",
+    "back": "Wróć",
+    "sections": {
+      "controller": {
+        "title": "Kto odpowiada za Twoje dane",
+        "body": "Prezentorion to prywatna aplikacja do losowania prezentów w gronie rodziny i znajomych. Prowadzi ją Paweł Figiel, z którym skontaktujesz się pod adresem pawel.figiel8@gmail.com."
+      },
+      "data": {
+        "title": "Jakie dane zbieramy",
+        "body": "Twoje imię i adres e-mail, a przy logowaniu przez Google także zdjęcie profilowe. Przy logowaniu e-mailem przechowujemy hasło wyłącznie w postaci zaszyfrowanej. Zapisujemy też, w których losowaniach bierzesz udział, kogo wylosowałeś lub wylosowałaś, Twoją listę prezentów (nazwy, linki, ceny, notatki i zdjęcia) oraz oznaczenia zakupionych prezentów."
+      },
+      "google": {
+        "title": "Logowanie przez Google",
+        "body": "Z konta Google pobieramy tylko imię, adres e-mail i zdjęcie profilowe. Nie mamy dostępu do żadnych innych danych z Twojego konta."
+      },
+      "purpose": {
+        "title": "Po co ich używamy",
+        "body": "Wyłącznie do działania aplikacji: logowania, przeprowadzania losowań i pokazywania Twojej listy prezentów osobie, która Cię wylosowała. Nie wysyłamy reklam ani newsletterów."
+      },
+      "visibility": {
+        "title": "Kto widzi Twoje dane",
+        "body": "Uczestnicy Twoich losowań widzą Twoje imię i zdjęcie. Twoją listę prezentów widzi tylko osoba, która Cię wylosowała. Administrator widzi listę użytkowników i może podejrzeć wyniki losowań. Nie sprzedajemy ani nie udostępniamy Twoich danych nikomu innemu."
+      },
+      "storage": {
+        "title": "Gdzie są przechowywane",
+        "body": "Dane przechowują dostawcy infrastruktury aplikacji: Supabase (baza danych, logowanie i zdjęcia) oraz Vercel (udostępnianie aplikacji). Aplikacja nie używa śledzących plików cookie – w przeglądarce zapisuje tylko Twoją sesję logowania."
+      },
+      "deletion": {
+        "title": "Usunięcie danych",
+        "body": "Napisz na pawel.figiel8@gmail.com, a usuniemy Twoje konto razem ze wszystkimi danymi. W tej samej sprawie możesz też poprosić o wgląd w swoje dane lub ich poprawienie."
+      }
+    }
+  }
+}
