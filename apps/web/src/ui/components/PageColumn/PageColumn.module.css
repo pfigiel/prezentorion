@@ -6,7 +6,8 @@
   min-height: 100dvh;
   margin-inline: auto;
 
-  @media (width >= 37.5em) {
+  /* `shell.width` from tokens.ts, which a media query cannot read: framed from the width it stops filling the window. */
+  @media (width > 26.875em) {
     border-inline: 1px solid var(--pz-border-color);
     background-color: var(--pz-shell-column-background-color);
     box-shadow: var(--pz-shell-column-shadow);
