@@ -4,5 +4,8 @@
     "draws": "Losowania",
     "wishlist": "Moja lista",
     "admin": "Admin"
+  },
+  "header": {
+    "back": "Wstecz"
   }
 }

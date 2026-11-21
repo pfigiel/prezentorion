@@ -1,0 +1,18 @@
+.root {
+  display: inline-flex;
+  flex: none;
+  gap: var(--pz-spacing-xs);
+  align-items: center;
+}
+
+.dot {
+  width: var(--pz-priority-dot-size-sm);
+  height: var(--pz-priority-dot-size-sm);
+  border-radius: var(--pz-radius-full);
+  background-color: var(--pz-priority-off-color);
+}
+
+.on {
+  background-color: var(--pz-accent-color-default);
+  box-shadow: 0 0 6px var(--pz-accent-glow-color);
+}

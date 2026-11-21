@@ -1,0 +1,41 @@
+.root {
+  display: flex;
+  gap: var(--pz-spacing-sm);
+  align-items: center;
+  min-height: var(--pz-control-height-md);
+}
+
+.back {
+  @mixin transition;
+
+  display: grid;
+  flex: none;
+  place-content: center;
+  width: var(--pz-control-height-md);
+  height: var(--pz-control-height-md);
+  margin-inline-start: calc(var(--pz-spacing-md) * -1);
+  border-radius: var(--pz-radius-sm);
+  color: var(--pz-text-color-default);
+  transition-property: background-color;
+
+  &:hover {
+    background-color: var(--pz-control-hover-background-color);
+  }
+
+  & svg {
+    width: var(--pz-icon-size-md);
+    height: var(--pz-icon-size-md);
+  }
+}
+
+.title {
+  @mixin heading md;
+
+  flex: 1;
+  min-width: 0;
+  margin: 0;
+  overflow: hidden;
+  font-weight: var(--pz-font-weight-semibold);
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}

@@ -1,0 +1,21 @@
+.root {
+  @mixin transition;
+
+  width: var(--pz-control-height-md);
+  height: var(--pz-control-height-md);
+  border: 0;
+  border-radius: var(--pz-radius-sm);
+  background-color: transparent;
+  color: var(--pz-text-color-dimmed);
+  transition-property: background-color, color;
+
+  &:hover {
+    background-color: var(--pz-control-hover-background-color);
+    color: var(--pz-text-color-default);
+  }
+
+  & svg {
+    width: var(--pz-icon-size-md);
+    height: var(--pz-icon-size-md);
+  }
+}

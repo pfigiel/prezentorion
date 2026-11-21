@@ -1,11 +1,11 @@
 import { getSession } from './session'
 
 type Options = {
-  method: 'POST' | 'PATCH' | 'DELETE'
+  method: 'POST' | 'PUT' | 'DELETE'
   body?: unknown
 }
 
-export const fetchApi = async <Body>(path: string, options?: Options): Promise<Body> => {
+export const fetchApi = async <Body = void>(path: string, options?: Options): Promise<Body> => {
   const session = await getSession()
 
   if (session === null) throw new Error(`${path} needs a signed-in user`)
@@ -21,5 +21,6 @@ export const fetchApi = async <Body>(path: string, options?: Options): Promise<B
 
   if (!response.ok) throw new Error(`${path} failed with ${response.status}`)
 
-  return (await response.json()) as Body
+  // The API answers a change with 204 and nothing to parse.
+  return (response.status === 204 ? undefined : await response.json()) as Body
 }

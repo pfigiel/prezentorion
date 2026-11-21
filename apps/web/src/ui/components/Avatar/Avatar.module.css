@@ -1,0 +1,30 @@
+.root {
+  --avatar-bg: var(--pz-surface-raised-background-color);
+  --avatar-color: var(--pz-text-color-default);
+
+  flex: none;
+  border: 1px solid var(--pz-border-strong-color);
+  font-weight: var(--pz-font-weight-semibold);
+  text-transform: uppercase;
+}
+
+@each $size in md, lg {
+  .$(size) {
+    --avatar-size: var(--pz-avatar-size-$(size));
+  }
+}
+
+.md {
+  font-size: var(--pz-text-font-size-sm);
+}
+
+.lg {
+  font-size: var(--pz-heading-font-size-lg);
+}
+
+.pending {
+  --avatar-bg: transparent;
+  --avatar-color: var(--pz-text-color-dimmed);
+
+  border-style: dashed;
+}

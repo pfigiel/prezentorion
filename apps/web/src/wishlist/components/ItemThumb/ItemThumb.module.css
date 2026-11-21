@@ -1,0 +1,22 @@
+.root {
+  display: grid;
+  flex: none;
+  place-content: center;
+  width: var(--pz-thumb-size);
+  height: var(--pz-thumb-size);
+  overflow: hidden;
+  border-radius: var(--pz-radius-sm);
+  background: linear-gradient(135deg, var(--pz-thumb-color-from), var(--pz-thumb-color-to));
+}
+
+.icon {
+  width: var(--pz-icon-size-md);
+  height: var(--pz-icon-size-md);
+  color: var(--pz-text-color-dimmed);
+}
+
+.photo {
+  width: var(--pz-thumb-size);
+  height: var(--pz-thumb-size);
+  object-fit: cover;
+}

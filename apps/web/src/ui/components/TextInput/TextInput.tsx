@@ -4,7 +4,7 @@ import classes from './TextInput.module.css'
 export type Props = {
   label: string
   value: string
-  type?: 'text' | 'email' | 'password' | 'url'
+  type?: 'text' | 'email' | 'password' | 'url' | 'date'
   inputMode?: 'text' | 'numeric' | 'decimal'
   placeholder?: string
   autoComplete?: string

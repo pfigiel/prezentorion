@@ -1,0 +1,14 @@
+.root {
+  display: flex;
+  flex-direction: column;
+  gap: var(--pz-spacing-md);
+  padding: var(--pz-spacing-lg);
+  border: 1px solid var(--pz-border-color);
+  border-radius: var(--pz-radius-lg);
+}
+
+.quiet {
+  @mixin surface 2;
+
+  border-color: var(--pz-border-quiet-color);
+}

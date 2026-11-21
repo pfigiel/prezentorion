@@ -1,0 +1,25 @@
+.body {
+  align-items: center;
+  min-height: var(--pz-control-height-sm);
+}
+
+.label {
+  color: var(--pz-text-color-soft);
+  font-size: var(--pz-text-font-size-sm);
+  font-weight: var(--pz-font-weight-semibold);
+  cursor: pointer;
+}
+
+.track {
+  @mixin transition;
+
+  border-color: var(--pz-border-strong-color);
+  background-color: var(--pz-control-background-color);
+  cursor: pointer;
+  transition-property: background-color, border-color;
+
+  input:checked + & {
+    border-color: var(--pz-accent-color-default);
+    background-color: var(--pz-accent-color-default);
+  }
+}

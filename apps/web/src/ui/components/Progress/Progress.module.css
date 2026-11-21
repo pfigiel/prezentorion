@@ -1,0 +1,13 @@
+.track {
+  height: var(--pz-spacing-sm);
+  border-radius: var(--pz-radius-full);
+  background-color: var(--pz-control-hover-background-color);
+}
+
+.bar {
+  @mixin transition;
+
+  border-radius: var(--pz-radius-full);
+  background-color: var(--pz-accent-color-default);
+  transition-property: width;
+}

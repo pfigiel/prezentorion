@@ -1,0 +1,8 @@
+.root {
+  margin: var(--pz-spacing-xs) 0 0;
+  color: var(--pz-text-color-label);
+  font-size: var(--pz-text-font-size-xs);
+  font-weight: var(--pz-font-weight-semibold);
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+}

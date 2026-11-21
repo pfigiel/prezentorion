@@ -1,0 +1,50 @@
+.trigger {
+  @mixin transition;
+
+  width: var(--pz-control-height-md);
+  height: var(--pz-control-height-md);
+  border: 0;
+  border-radius: var(--pz-radius-sm);
+  background-color: transparent;
+  color: var(--pz-text-color-dimmed);
+  transition-property: background-color;
+
+  &:hover {
+    background-color: var(--pz-control-hover-background-color);
+  }
+
+  & svg {
+    width: var(--pz-icon-size-md);
+    height: var(--pz-icon-size-md);
+  }
+}
+
+.dropdown {
+  @mixin surface raised;
+
+  min-width: 14rem;
+  border-color: var(--pz-border-color);
+  border-radius: var(--pz-radius-md);
+}
+
+.item {
+  @mixin transition;
+
+  min-height: var(--pz-control-height-md);
+  color: var(--pz-text-color-default);
+  font-size: var(--pz-text-font-size-md);
+  transition-property: background-color;
+
+  &[data-hovered] {
+    background-color: var(--pz-control-hover-background-color);
+  }
+
+  & svg {
+    width: var(--pz-icon-size-md);
+    height: var(--pz-icon-size-md);
+  }
+}
+
+.danger {
+  color: var(--pz-danger-color);
+}

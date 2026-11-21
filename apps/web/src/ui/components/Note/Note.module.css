@@ -1,0 +1,19 @@
+.root {
+  display: flex;
+  gap: var(--pz-spacing-sm);
+  align-items: flex-start;
+  margin: 0;
+  padding: var(--pz-spacing-md);
+  border-radius: var(--pz-radius-md);
+  background-color: var(--pz-note-background-color);
+  color: var(--pz-text-color-soft);
+  font-size: var(--pz-text-font-size-sm);
+  line-height: var(--pz-text-line-height);
+}
+
+.icon {
+  flex: none;
+  width: var(--pz-icon-size-md);
+  height: var(--pz-icon-size-md);
+  color: var(--pz-text-color-dimmed);
+}

@@ -1,0 +1,24 @@
+.root {
+  flex: none;
+  padding: var(--pz-spacing-xs) var(--pz-spacing-sm);
+  border: 1px solid transparent;
+  border-radius: var(--pz-radius-full);
+  font-size: var(--pz-text-font-size-xs);
+  font-weight: var(--pz-font-weight-semibold);
+  white-space: nowrap;
+}
+
+.accent {
+  background-color: var(--pz-accent-color-subtle);
+  color: var(--pz-accent-color-default);
+}
+
+.pending {
+  border: 1px dashed var(--pz-text-color-dimmed);
+  color: var(--pz-text-color-dimmed);
+}
+
+.neutral {
+  background-color: var(--pz-control-hover-background-color);
+  color: var(--pz-text-color-soft);
+}

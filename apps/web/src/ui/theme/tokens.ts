@@ -4,7 +4,13 @@ export const tokens = {
     weight: { regular: '400', semibold: '600', bold: '700' },
   },
   text: {
-    color: { default: '#f2f5fa', soft: '#cdd8e6', dimmed: '#9fb4cc', placeholder: '#7f95b0' },
+    color: {
+      default: '#f2f5fa',
+      soft: '#cdd8e6',
+      dimmed: '#9fb4cc',
+      label: '#8fa6c2',
+      placeholder: '#7f95b0',
+    },
     font: { size: { xs: '0.6875rem', sm: '0.8125rem', md: '0.9375rem' } },
     line: { height: '1.5' },
   },
@@ -32,7 +38,11 @@ export const tokens = {
     background: { color: 'rgb(255 255 255 / 6%)' },
   },
   /** Translucent, so an edge or a divider stays as distinct on every surface it lies on. */
-  border: { color: 'rgb(255 255 255 / 12%)', strong: { color: 'rgb(255 255 255 / 22%)' } },
+  border: {
+    color: 'rgb(255 255 255 / 12%)',
+    quiet: { color: 'rgb(255 255 255 / 10%)' },
+    strong: { color: 'rgb(255 255 255 / 22%)' },
+  },
   /** The sky, then each level of nesting a step further from it; see `data-surface` in globals.css. */
   surface: {
     canvas: { background: { color: 'transparent' } },
@@ -49,6 +59,13 @@ export const tokens = {
     header: { height: '4rem' },
     nav: { height: '4.5rem', background: { color: 'rgb(5 12 24 / 75%)' } },
   },
+  avatar: { size: { md: '2.25rem', lg: '4rem' } },
+  priority: {
+    dot: { size: { sm: '0.4375rem', lg: '1.375rem' } },
+    off: { color: 'rgb(255 255 255 / 18%)' },
+  },
+  note: { background: { color: 'rgb(159 180 204 / 10%)' } },
+  thumb: { size: '3.25rem', color: { from: '#1d3f66', to: '#2c5f82' } },
   logo: { size: { md: '2rem', lg: '9.25rem' } },
   icon: { size: { sm: '0.9375rem', md: '1.375rem' } },
   shadow: { glow: '0 6px 24px rgb(255 211 107 / 25%)' },
