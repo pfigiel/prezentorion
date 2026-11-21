@@ -1,9 +1,12 @@
 /* This file stays unlayered to outrank the theme Mantine injects at runtime, which is unlayered. */
 @layer mantine, ui;
 
-/* Every rem scales off this; a percentage keeps the browser's font-size setting in play. */
 html {
+  /* Every rem scales off this; a percentage keeps the browser's font-size setting in play. */
   font-size: 100%;
+
+  /* iOS Safari ignores `user-scalable=no` in the viewport meta; this is what stops a pinch there. */
+  touch-action: pan-x pan-y;
 }
 
 /* Fixed, so the sky stays put while a long list scrolls over it. */
