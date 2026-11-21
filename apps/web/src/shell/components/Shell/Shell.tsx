@@ -1,6 +1,7 @@
 import type { ReactNode } from 'react'
 import { AccountMenu } from '@/account/components/AccountMenu'
 import { Logo } from '@/ui/components/Logo'
+import { PageColumn } from '@/ui/components/PageColumn'
 import { useScrolled } from '../../hooks/use-scrolled'
 import { BottomNav } from '../BottomNav'
 import classes from './Shell.module.css'
@@ -13,13 +14,13 @@ export const Shell = ({ children }: Props) => {
   const scrolled = useScrolled()
 
   return (
-    <div className={classes.root}>
+    <PageColumn>
       <header className={classes.header} data-scrolled={scrolled || undefined}>
         <Logo />
         <AccountMenu />
       </header>
       <main className={classes.main}>{children}</main>
       <BottomNav />
-    </div>
+    </PageColumn>
   )
 }

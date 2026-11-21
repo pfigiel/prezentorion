@@ -1,0 +1,14 @@
+.root {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  max-width: var(--pz-shell-width);
+  min-height: 100dvh;
+  margin-inline: auto;
+
+  @media (width >= 37.5em) {
+    border-inline: 1px solid var(--pz-border-color);
+    background-color: var(--pz-shell-column-background-color);
+    box-shadow: var(--pz-shell-column-shadow);
+  }
+}
