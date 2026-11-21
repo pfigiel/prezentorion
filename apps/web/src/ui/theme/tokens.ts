@@ -66,6 +66,8 @@ export const tokens = {
   },
   note: { background: { color: 'rgb(159 180 204 / 10%)' } },
   thumb: { size: '3.25rem', color: { from: '#1d3f66', to: '#2c5f82' } },
+  photo: { preview: { height: '11rem' } },
+  file: { picker: { height: '4.75rem' } },
   logo: { size: { md: '2rem', lg: '9.25rem' } },
   icon: { size: { sm: '0.9375rem', md: '1.375rem' } },
   shadow: { glow: '0 6px 24px rgb(255 211 107 / 25%)' },
