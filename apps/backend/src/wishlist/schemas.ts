@@ -10,7 +10,8 @@ const optionalText = (max: number) =>
 
 export const itemSchema = z.object({
   name: z.string().trim().min(1).max(120),
-  url: optionalText(2000).pipe(z.url().nullable()),
+  // Givers open the link, so a scheme that runs code instead, such as javascript:, never gets stored.
+  url: optionalText(2000).pipe(z.url({ protocol: /^https?$/ }).nullable()),
   price: z.number().int().min(0).nullable(),
   note: optionalText(1000),
   priority: z.number().int().min(1).max(3),

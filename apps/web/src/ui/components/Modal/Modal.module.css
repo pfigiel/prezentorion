@@ -34,7 +34,13 @@
 }
 
 .actions {
-  display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
+  display: flex;
+  flex-wrap: wrap;
   gap: var(--pz-spacing-md);
+
+  /* Equal halves while both labels fit; a label that does not pushes its button onto a row of its own. */
+  & > * {
+    flex: 1 1 0;
+    min-width: max-content;
+  }
 }

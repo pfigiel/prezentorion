@@ -56,6 +56,7 @@ export const ItemForm = ({ item }: Props) => {
         placeholder={t('wishlist.form.namePlaceholder')}
         required
         value={draft.name}
+        error={errors.name === undefined ? undefined : t('wishlist.form.errors.name')}
         onChange={change('name')}
       />
       <TextInput

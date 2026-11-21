@@ -1,6 +1,7 @@
 import type { QueryClient } from '@tanstack/react-query'
 import { createRootRouteWithContext, Outlet } from '@tanstack/react-router'
 import { TanStackRouterDevtools } from '@tanstack/react-router-devtools'
+import { NotFoundScreen } from '@/shell/components/NotFoundScreen'
 import { StarrySky } from '@/ui/components/StarrySky'
 
 type RouterContext = { queryClient: QueryClient }
@@ -15,4 +16,5 @@ const RootRoute = () => (
 
 export const Route = createRootRouteWithContext<RouterContext>()({
   component: RootRoute,
+  notFoundComponent: NotFoundScreen,
 })

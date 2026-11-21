@@ -14,6 +14,7 @@ export type Draft = {
 }
 
 export type DraftErrors = {
+  name?: 'name'
   url?: 'url'
   price?: 'price'
 }
@@ -40,11 +41,13 @@ const urlOf = (text: string) => {
 
   const candidate = /^[a-z][a-z\d+.-]*:/i.test(trimmed) ? trimmed : `https://${trimmed}`
 
-  if (!URL.canParse(candidate)) return undefined
+  // The URL parser takes "not a link" as a host, percent-encoding the spaces, so it alone lets prose through.
+  if (/\s/.test(candidate) || !URL.canParse(candidate)) return undefined
 
-  const { protocol } = new URL(candidate)
+  const { protocol, hostname } = new URL(candidate)
+  const isWeb = protocol === 'http:' || protocol === 'https:'
 
-  return protocol === 'http:' || protocol === 'https:' ? candidate : undefined
+  return isWeb && hostname.includes('.') ? candidate : undefined
 }
 
 const priceOf = (text: string) => {
@@ -58,6 +61,7 @@ const priceOf = (text: string) => {
 const textOf = (text: string) => (text.trim() === '' ? null : text.trim())
 
 export const errorsOf = (draft: Draft): DraftErrors => ({
+  ...(textOf(draft.name) === null ? { name: 'name' } : {}),
   ...(urlOf(draft.url) === undefined ? { url: 'url' } : {}),
   ...(priceOf(draft.price) === undefined ? { price: 'price' } : {}),
 })

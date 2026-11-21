@@ -1,0 +1,20 @@
+.root {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  gap: var(--pz-spacing-xl);
+  align-items: center;
+  justify-content: center;
+  padding: var(--pz-spacing-xl);
+}
+
+.card {
+  align-self: stretch;
+}
+
+.message {
+  margin: 0;
+  color: var(--pz-text-color-soft);
+  font-size: var(--pz-text-font-size-md);
+  line-height: var(--pz-text-line-height);
+}

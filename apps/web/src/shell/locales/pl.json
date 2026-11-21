@@ -7,5 +7,9 @@
   },
   "header": {
     "back": "Wstecz"
+  },
+  "notFound": {
+    "message": "Nie ma takiej strony.",
+    "backHome": "Wróć na start"
   }
 }
