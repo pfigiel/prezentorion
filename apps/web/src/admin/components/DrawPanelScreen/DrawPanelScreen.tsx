@@ -96,28 +96,30 @@ export const DrawPanelScreen = ({ drawId }: Props) => {
       <SectionLabel>
         {t('admin.panel.participants', { count: draw.participants.length })}
       </SectionLabel>
-      <Card quiet className={classes.list}>
-        <ul className={classes.rows}>
-          {draw.participants.map((participant) => (
-            <li key={participant.id} className={classes.row}>
-              <Avatar name={participant.name} pictureUrl={participant.pictureUrl} />
-              <span className={classes.name}>
-                {participant.email === account.email
-                  ? t('admin.form.you', { name: displayNameOf(participant) })
-                  : displayNameOf(participant)}
-              </span>
-              {!isDrawn ? null : participant.hasRevealed ? (
-                <span className={classes.revealed}>
-                  <IconCircleCheck stroke={1.8} aria-hidden />
-                  {t('admin.panel.revealed')}
+      {draw.participants.length === 0 ? null : (
+        <Card quiet className={classes.list}>
+          <ul className={classes.rows}>
+            {draw.participants.map((participant) => (
+              <li key={participant.id} className={classes.row}>
+                <Avatar name={participant.name} pictureUrl={participant.pictureUrl} />
+                <span className={classes.name}>
+                  {participant.email === account.email
+                    ? t('admin.form.you', { name: displayNameOf(participant) })
+                    : displayNameOf(participant)}
                 </span>
-              ) : (
-                <span className={classes.notRevealed}>{t('admin.panel.notRevealed')}</span>
-              )}
-            </li>
-          ))}
-        </ul>
-      </Card>
+                {!isDrawn ? null : participant.hasRevealed ? (
+                  <span className={classes.revealed}>
+                    <IconCircleCheck stroke={1.8} aria-hidden />
+                    {t('admin.panel.revealed')}
+                  </span>
+                ) : (
+                  <span className={classes.notRevealed}>{t('admin.panel.notRevealed')}</span>
+                )}
+              </li>
+            ))}
+          </ul>
+        </Card>
+      )}
       {run.isError ? <p className={classes.error}>{t('admin.panel.failed')}</p> : null}
       {isDrawn ? (
         <div className={classes.actions}>
