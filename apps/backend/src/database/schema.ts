@@ -111,6 +111,7 @@ export type Database = {
         Returns: string
       }
       run_draw: { Args: { draw_id: string }; Returns: undefined }
+      delete_draw: { Args: { draw_id: string }; Returns: undefined }
       reveal_recipient: { Args: { draw_id: string }; Returns: undefined }
       my_wishlist: {
         Args: never

@@ -39,6 +39,8 @@ checking its caller first:
 
 - `save_draw` and `run_draw` — the admin's edits; changing who takes part in a drawn draw draws it
   again, and every draw wipes the reveals and purchases the last one left.
+- `delete_draw` — the admin removes a draw in any state, with its participants, assignments and
+  purchases; wish lists stay, since they belong to people rather than draws.
 - `reveal_recipient` — a giver sees their assignment only after revealing it, and the reveal is kept
   so the admin can see who has looked.
 - `recipient_wishlist`, `set_purchased`, `my_wishlist`, `mark_available` — purchases are never read

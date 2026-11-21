@@ -75,6 +75,9 @@ export const createDraw = (fields: DrawFields) =>
 export const updateDraw = (drawId: string, fields: DrawFields) =>
   fetchApi(`/admin/draws/${drawId}`, { method: 'PUT', body: fields })
 
+export const deleteDraw = (drawId: string) =>
+  fetchApi(`/admin/draws/${drawId}`, { method: 'DELETE' })
+
 export const runDraw = (drawId: string) =>
   fetchApi(`/admin/draws/${drawId}/run`, { method: 'POST' })
 
