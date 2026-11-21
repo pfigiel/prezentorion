@@ -1,1 +1,58 @@
-{}
+{
+  "list": {
+    "title": "Moja lista",
+    "add": "Dodaj",
+    "note": "Twoją listę widzi tylko osoba, która Cię wylosowała. Nie zobaczysz, co jest kupione, aż do dnia imprezy.",
+    "price": "ok. {{price}}",
+    "purchased": "Kupione",
+    "more": "Więcej opcji",
+    "markAvailable": "Oznacz jako wciąż dostępne",
+    "edit": "Edytuj",
+    "delete": "Usuń",
+    "priority": {
+      "1": "Priorytet: niski",
+      "2": "Priorytet: średni",
+      "3": "Priorytet: wysoki"
+    },
+    "empty": {
+      "title": "Twoja lista jest pusta",
+      "body": "Dodaj pomysły na prezenty – zobaczy je osoba, która Cię wylosuje.",
+      "add": "Dodaj pierwszą pozycję"
+    },
+    "deleteDialog": {
+      "title": "Usunąć pozycję?",
+      "body": "„{{name}}” zniknie z Twojej listy.",
+      "cancel": "Anuluj",
+      "confirm": "Usuń"
+    }
+  },
+  "form": {
+    "newTitle": "Nowa pozycja",
+    "editTitle": "Edytuj pozycję",
+    "name": "Nazwa",
+    "namePlaceholder": "np. Słuchawki bezprzewodowe",
+    "url": "Link",
+    "urlPlaceholder": "https://…",
+    "price": "Orientacyjna cena (zł)",
+    "pricePlaceholder": "np. 120",
+    "note": "Notatka",
+    "notePlaceholder": "Rozmiar, kolor, wariant…",
+    "priority": "Priorytet",
+    "priorityLevel": "Priorytet {{level}} z 3",
+    "photo": "Zdjęcie (opcjonalnie)",
+    "addPhoto": "Dodaj zdjęcie",
+    "replacePhoto": "Zmień zdjęcie",
+    "removePhoto": "Usuń zdjęcie",
+    "cancel": "Anuluj",
+    "save": "Zapisz",
+    "notFound": "Tej pozycji nie ma już na Twojej liście.",
+    "backToList": "Wróć do listy",
+    "errors": {
+      "url": "To nie wygląda na link.",
+      "price": "Podaj kwotę w pełnych złotych.",
+      "photoType": "Zdjęcie musi być w formacie JPG, PNG lub WebP.",
+      "photoSize": "Zdjęcie może mieć najwyżej 5 MB.",
+      "save": "Nie udało się zapisać. Spróbuj ponownie."
+    }
+  }
+}

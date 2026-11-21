@@ -1,0 +1,5 @@
+.message {
+  margin: 0;
+  color: var(--pz-text-color-soft);
+  font-size: var(--pz-text-font-size-md);
+}

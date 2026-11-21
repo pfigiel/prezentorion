@@ -13,6 +13,9 @@ import { Route as AuthenticatedRouteImport } from './../routes/_authenticated'
 import { Route as LoginRouteImport } from './../routes/login'
 import { Route as PrivacyPolicyRouteImport } from './../routes/privacy-policy'
 import { Route as AuthenticatedIndexRouteImport } from './../routes/_authenticated/index'
+import { Route as AuthenticatedWishlistIndexRouteImport } from './../routes/_authenticated/wishlist.index'
+import { Route as AuthenticatedWishlistNewRouteImport } from './../routes/_authenticated/wishlist.new'
+import { Route as AuthenticatedWishlistItemIdEditRouteImport } from './../routes/_authenticated/wishlist.$itemId.edit'
 
 const AuthenticatedRoute = AuthenticatedRouteImport.update({
   id: '/_authenticated',
@@ -33,16 +36,40 @@ const AuthenticatedIndexRoute = AuthenticatedIndexRouteImport.update({
   path: '/',
   getParentRoute: () => AuthenticatedRoute,
 } as any)
+const AuthenticatedWishlistIndexRoute =
+  AuthenticatedWishlistIndexRouteImport.update({
+    id: '/wishlist/',
+    path: '/wishlist/',
+    getParentRoute: () => AuthenticatedRoute,
+  } as any)
+const AuthenticatedWishlistNewRoute =
+  AuthenticatedWishlistNewRouteImport.update({
+    id: '/wishlist/new',
+    path: '/wishlist/new',
+    getParentRoute: () => AuthenticatedRoute,
+  } as any)
+const AuthenticatedWishlistItemIdEditRoute =
+  AuthenticatedWishlistItemIdEditRouteImport.update({
+    id: '/wishlist/$itemId/edit',
+    path: '/wishlist/$itemId/edit',
+    getParentRoute: () => AuthenticatedRoute,
+  } as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof AuthenticatedIndexRoute
   '/login': typeof LoginRoute
   '/privacy-policy': typeof PrivacyPolicyRoute
+  '/wishlist/new': typeof AuthenticatedWishlistNewRoute
+  '/wishlist/': typeof AuthenticatedWishlistIndexRoute
+  '/wishlist/$itemId/edit': typeof AuthenticatedWishlistItemIdEditRoute
 }
 export interface FileRoutesByTo {
   '/login': typeof LoginRoute
   '/privacy-policy': typeof PrivacyPolicyRoute
   '/': typeof AuthenticatedIndexRoute
+  '/wishlist/new': typeof AuthenticatedWishlistNewRoute
+  '/wishlist': typeof AuthenticatedWishlistIndexRoute
+  '/wishlist/$itemId/edit': typeof AuthenticatedWishlistItemIdEditRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -50,18 +77,36 @@ export interface FileRoutesById {
   '/login': typeof LoginRoute
   '/privacy-policy': typeof PrivacyPolicyRoute
   '/_authenticated/': typeof AuthenticatedIndexRoute
+  '/_authenticated/wishlist/new': typeof AuthenticatedWishlistNewRoute
+  '/_authenticated/wishlist/': typeof AuthenticatedWishlistIndexRoute
+  '/_authenticated/wishlist/$itemId/edit': typeof AuthenticatedWishlistItemIdEditRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/login' | '/privacy-policy'
+  fullPaths:
+    | '/'
+    | '/login'
+    | '/privacy-policy'
+    | '/wishlist/new'
+    | '/wishlist/'
+    | '/wishlist/$itemId/edit'
   fileRoutesByTo: FileRoutesByTo
-  to: '/login' | '/privacy-policy' | '/'
+  to:
+    | '/login'
+    | '/privacy-policy'
+    | '/'
+    | '/wishlist/new'
+    | '/wishlist'
+    | '/wishlist/$itemId/edit'
   id:
     | '__root__'
     | '/_authenticated'
     | '/login'
     | '/privacy-policy'
     | '/_authenticated/'
+    | '/_authenticated/wishlist/new'
+    | '/_authenticated/wishlist/'
+    | '/_authenticated/wishlist/$itemId/edit'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -100,15 +145,42 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AuthenticatedIndexRouteImport
       parentRoute: typeof AuthenticatedRoute
     }
+    '/_authenticated/wishlist/': {
+      id: '/_authenticated/wishlist/'
+      path: '/wishlist'
+      fullPath: '/wishlist/'
+      preLoaderRoute: typeof AuthenticatedWishlistIndexRouteImport
+      parentRoute: typeof AuthenticatedRoute
+    }
+    '/_authenticated/wishlist/new': {
+      id: '/_authenticated/wishlist/new'
+      path: '/wishlist/new'
+      fullPath: '/wishlist/new'
+      preLoaderRoute: typeof AuthenticatedWishlistNewRouteImport
+      parentRoute: typeof AuthenticatedRoute
+    }
+    '/_authenticated/wishlist/$itemId/edit': {
+      id: '/_authenticated/wishlist/$itemId/edit'
+      path: '/wishlist/$itemId/edit'
+      fullPath: '/wishlist/$itemId/edit'
+      preLoaderRoute: typeof AuthenticatedWishlistItemIdEditRouteImport
+      parentRoute: typeof AuthenticatedRoute
+    }
   }
 }
 
 interface AuthenticatedRouteChildren {
   AuthenticatedIndexRoute: typeof AuthenticatedIndexRoute
+  AuthenticatedWishlistNewRoute: typeof AuthenticatedWishlistNewRoute
+  AuthenticatedWishlistIndexRoute: typeof AuthenticatedWishlistIndexRoute
+  AuthenticatedWishlistItemIdEditRoute: typeof AuthenticatedWishlistItemIdEditRoute
 }
 
 const AuthenticatedRouteChildren: AuthenticatedRouteChildren = {
   AuthenticatedIndexRoute: AuthenticatedIndexRoute,
+  AuthenticatedWishlistNewRoute: AuthenticatedWishlistNewRoute,
+  AuthenticatedWishlistIndexRoute: AuthenticatedWishlistIndexRoute,
+  AuthenticatedWishlistItemIdEditRoute: AuthenticatedWishlistItemIdEditRoute,
 }
 
 const AuthenticatedRouteWithChildren = AuthenticatedRoute._addFileChildren(

@@ -1,0 +1,28 @@
+.root {
+  @mixin transition;
+
+  display: flex;
+  gap: var(--pz-spacing-sm);
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  min-height: var(--pz-file-picker-height);
+  border: 1px dashed var(--pz-border-strong-color);
+  border-radius: var(--pz-radius-md);
+  background-color: var(--pz-control-background-color);
+  color: var(--pz-text-color-soft);
+  font: inherit;
+  font-size: var(--pz-text-font-size-md);
+  cursor: pointer;
+  transition-property: background-color, border-color;
+
+  &:hover {
+    border-color: var(--pz-accent-color-default);
+    background-color: var(--pz-control-hover-background-color);
+  }
+
+  & svg {
+    width: var(--pz-icon-size-md);
+    height: var(--pz-icon-size-md);
+  }
+}
