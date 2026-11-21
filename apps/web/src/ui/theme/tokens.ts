@@ -30,7 +30,11 @@ export const tokens = {
   /** Night sky behind every screen, from the top of the page down. */
   sky: {
     color: { top: '#07111f', middle: '#0b1a33', bottom: '#133458' },
-    star: { color: '#ffffff', warm: { color: '#ffe7a8' } },
+    star: {
+      color: '#ffffff',
+      warm: { color: '#ffe7a8' },
+      halo: { size: { sm: '4px', lg: '10px' } },
+    },
     /** Rising off the bottom edge on a window wide enough to show sky beside the column. */
     glow: { color: 'rgb(255 211 107 / 16%)' },
     constellation: { size: '32.5rem' },
