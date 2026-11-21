@@ -1,0 +1,22 @@
+.root {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  gap: var(--pz-spacing-lg);
+}
+
+.pair {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: var(--pz-spacing-md);
+}
+
+.error {
+  margin: 0;
+  color: var(--pz-danger-color);
+  font-size: var(--pz-text-font-size-sm);
+}
+
+.submit {
+  margin-top: auto;
+}

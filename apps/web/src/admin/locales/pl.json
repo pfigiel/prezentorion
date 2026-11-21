@@ -1,1 +1,92 @@
-{}
+{
+  "title": "Panel admina",
+  "nav": {
+    "label": "Sekcje admina",
+    "draws": "Losowania",
+    "users": "Użytkownicy"
+  },
+  "status": {
+    "waiting": "Szkic",
+    "drawn": "Wylosowane",
+    "drawnOn": "Wylosowane {{date}}",
+    "finished": "Zakończone"
+  },
+  "draws": {
+    "new": "Nowe losowanie",
+    "empty": "Nie ma jeszcze żadnego losowania.",
+    "participants": "uczestnicy: {{count}}",
+    "revealed": "odkryte: {{revealed}}/{{total}}"
+  },
+  "form": {
+    "newTitle": "Nowe losowanie",
+    "editTitle": "Edytuj losowanie",
+    "name": "Nazwa",
+    "namePlaceholder": "np. Rodzina 2026",
+    "eventDate": "Data imprezy",
+    "budget": "Budżet (zł)",
+    "participants": "Uczestnicy · {{count}}",
+    "addParticipant": "Dodaj uczestnika",
+    "searchPlaceholder": "Szukaj lub wpisz e-mail",
+    "add": "Dodaj",
+    "invalidEmail": "Wybierz osobę z listy albo wpisz poprawny e-mail.",
+    "alreadyAdded": "Ta osoba jest już na liście.",
+    "remove": "Usuń {{name}}",
+    "you": "{{name}} (Ty)",
+    "pending": "Oczekuje na pierwsze logowanie",
+    "save": "Zapisz",
+    "required": "To pole jest wymagane.",
+    "invalidBudget": "Wpisz kwotę w pełnych złotych.",
+    "saveFailed": "Nie udało się zapisać losowania. Spróbuj ponownie.",
+    "redrawTitle": "Losowanie od nowa",
+    "redrawWarning": "Zmiana uczestników wymaga ponownego losowania. Wszyscy odkryją wynik od nowa, a oznaczenia zakupów zostaną wyczyszczone.",
+    "cancel": "Anuluj",
+    "saveAndRedraw": "Zapisz i losuj ponownie"
+  },
+  "panel": {
+    "edit": "Edytuj",
+    "status": "Status",
+    "dateAndBudget": "Data imprezy · budżet",
+    "revealedResults": "Odkryte wyniki",
+    "participants": "Uczestnicy · {{count}}",
+    "revealed": "Odkryte",
+    "notRevealed": "Nieodkryte",
+    "run": "Uruchom losowanie",
+    "tooFew": "Do losowania potrzeba co najmniej dwóch uczestników.",
+    "redraw": "Losuj ponownie",
+    "redrawTitle": "Losować ponownie?",
+    "redrawWarning": "Każdy dostanie nową osobę i odkryje ją od nowa, a oznaczenia zakupów zostaną wyczyszczone.",
+    "showAssignments": "Pokaż przydziały…",
+    "spoilerTitle": "Pokazać przydziały?",
+    "spoilerWarning": "Na pewno? To zepsuje niespodziankę.",
+    "show": "Pokaż",
+    "cancel": "Anuluj",
+    "failed": "Coś poszło nie tak. Spróbuj ponownie."
+  },
+  "assignments": {
+    "title": "Przydziały",
+    "note": "Widok tylko dla admina. Jeśli bierzesz udział w losowaniu, zobaczysz tu też, kto wylosował Ciebie.",
+    "buysFor": "kupuje dla",
+    "hide": "Ukryj przydziały"
+  },
+  "users": {
+    "searchLabel": "Szukaj",
+    "searchPlaceholder": "Szukaj po imieniu lub e-mailu",
+    "count": "Użytkownicy: {{count}}",
+    "admin": "Admin",
+    "google": "Google",
+    "password": "e-mail i hasło",
+    "googleAndPassword": "Google i e-mail",
+    "draws": "losowania: {{count}}",
+    "pending": "Oczekuje na pierwsze logowanie",
+    "newPassword": "Nowe hasło",
+    "passwordTitle": "Nowe hasło dla {{name}}",
+    "passwordLabel": "Hasło tymczasowe",
+    "passwordHint": "Co najmniej 8 znaków. Przekażesz je tej osobie poza aplikacją.",
+    "tooShort": "Hasło musi mieć co najmniej 8 znaków.",
+    "passwordFailed": "Nie udało się zmienić hasła. Spróbuj ponownie.",
+    "passwordSaved": "Hasło zmienione. Przekaż je tej osobie – zaloguje się nim od razu.",
+    "cancel": "Anuluj",
+    "save": "Zapisz",
+    "done": "Gotowe"
+  }
+}

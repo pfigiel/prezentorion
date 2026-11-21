@@ -1,0 +1,122 @@
+.edit {
+  @mixin transition;
+
+  display: flex;
+  flex: none;
+  align-items: center;
+  min-height: var(--pz-control-height-md);
+  color: var(--pz-accent-color-default);
+  font-size: var(--pz-text-font-size-md);
+  font-weight: var(--pz-font-weight-semibold);
+  text-decoration: none;
+  transition-property: color;
+
+  &:hover {
+    color: var(--pz-accent-color-hover);
+  }
+}
+
+.fact {
+  display: flex;
+  gap: var(--pz-spacing-md);
+  align-items: center;
+  justify-content: space-between;
+  font-size: var(--pz-text-font-size-md);
+}
+
+.factLabel {
+  color: var(--pz-text-color-dimmed);
+  font-size: var(--pz-text-font-size-sm);
+}
+
+.list {
+  padding-block: var(--pz-spacing-xs);
+}
+
+.rows {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.row {
+  display: flex;
+  gap: var(--pz-spacing-md);
+  align-items: center;
+  padding-block: var(--pz-spacing-sm);
+  border-bottom: 1px solid var(--pz-border-quiet-color);
+
+  &:last-child {
+    border-bottom: 0;
+  }
+}
+
+.name {
+  flex: 1;
+  min-width: 0;
+  overflow: hidden;
+  font-size: var(--pz-text-font-size-md);
+  font-weight: var(--pz-font-weight-semibold);
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.revealed {
+  display: inline-flex;
+  gap: var(--pz-spacing-xs);
+  align-items: center;
+  color: var(--pz-accent-color-default);
+  font-size: var(--pz-text-font-size-sm);
+  font-weight: var(--pz-font-weight-semibold);
+
+  & svg {
+    width: var(--pz-icon-size-sm);
+    height: var(--pz-icon-size-sm);
+  }
+}
+
+.notRevealed {
+  color: var(--pz-text-color-dimmed);
+  font-size: var(--pz-text-font-size-sm);
+}
+
+.error {
+  margin: 0;
+  color: var(--pz-danger-color);
+  font-size: var(--pz-text-font-size-sm);
+}
+
+.actions {
+  display: flex;
+  flex-direction: column;
+  gap: var(--pz-spacing-sm);
+  margin-top: auto;
+}
+
+.textButton {
+  @mixin transition;
+
+  display: inline-flex;
+  gap: var(--pz-spacing-sm);
+  align-items: center;
+  align-self: center;
+  min-height: var(--pz-control-height-md);
+  padding: 0 var(--pz-spacing-md);
+  border: 0;
+  background: none;
+  color: var(--pz-text-color-dimmed);
+  font: inherit;
+  font-size: var(--pz-text-font-size-md);
+  font-weight: var(--pz-font-weight-semibold);
+  cursor: pointer;
+  transition-property: color;
+
+  &:hover {
+    color: var(--pz-text-color-default);
+  }
+
+  & svg {
+    width: var(--pz-icon-size-md);
+    height: var(--pz-icon-size-md);
+  }
+}
