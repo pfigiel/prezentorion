@@ -1,0 +1,17 @@
+.empty {
+  align-items: center;
+  text-align: center;
+}
+
+.emptyIcon {
+  width: var(--pz-control-height-md);
+  height: var(--pz-control-height-md);
+  color: var(--pz-accent-color-default);
+}
+
+.emptyBody {
+  margin: 0;
+  color: var(--pz-text-color-dimmed);
+  font-size: var(--pz-text-font-size-sm);
+  line-height: var(--pz-text-line-height);
+}

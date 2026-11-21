@@ -1,0 +1,1 @@
+export { RecipientWishlist } from './RecipientWishlist'

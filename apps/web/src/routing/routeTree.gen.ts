@@ -13,6 +13,7 @@ import { Route as AuthenticatedRouteImport } from './../routes/_authenticated'
 import { Route as LoginRouteImport } from './../routes/login'
 import { Route as PrivacyPolicyRouteImport } from './../routes/privacy-policy'
 import { Route as AuthenticatedIndexRouteImport } from './../routes/_authenticated/index'
+import { Route as AuthenticatedDrawsDrawIdRouteImport } from './../routes/_authenticated/draws.$drawId'
 
 const AuthenticatedRoute = AuthenticatedRouteImport.update({
   id: '/_authenticated',
@@ -33,16 +34,24 @@ const AuthenticatedIndexRoute = AuthenticatedIndexRouteImport.update({
   path: '/',
   getParentRoute: () => AuthenticatedRoute,
 } as any)
+const AuthenticatedDrawsDrawIdRoute =
+  AuthenticatedDrawsDrawIdRouteImport.update({
+    id: '/draws/$drawId',
+    path: '/draws/$drawId',
+    getParentRoute: () => AuthenticatedRoute,
+  } as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof AuthenticatedIndexRoute
   '/login': typeof LoginRoute
   '/privacy-policy': typeof PrivacyPolicyRoute
+  '/draws/$drawId': typeof AuthenticatedDrawsDrawIdRoute
 }
 export interface FileRoutesByTo {
   '/login': typeof LoginRoute
   '/privacy-policy': typeof PrivacyPolicyRoute
   '/': typeof AuthenticatedIndexRoute
+  '/draws/$drawId': typeof AuthenticatedDrawsDrawIdRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -50,18 +59,20 @@ export interface FileRoutesById {
   '/login': typeof LoginRoute
   '/privacy-policy': typeof PrivacyPolicyRoute
   '/_authenticated/': typeof AuthenticatedIndexRoute
+  '/_authenticated/draws/$drawId': typeof AuthenticatedDrawsDrawIdRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/login' | '/privacy-policy'
+  fullPaths: '/' | '/login' | '/privacy-policy' | '/draws/$drawId'
   fileRoutesByTo: FileRoutesByTo
-  to: '/login' | '/privacy-policy' | '/'
+  to: '/login' | '/privacy-policy' | '/' | '/draws/$drawId'
   id:
     | '__root__'
     | '/_authenticated'
     | '/login'
     | '/privacy-policy'
     | '/_authenticated/'
+    | '/_authenticated/draws/$drawId'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -100,15 +111,24 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AuthenticatedIndexRouteImport
       parentRoute: typeof AuthenticatedRoute
     }
+    '/_authenticated/draws/$drawId': {
+      id: '/_authenticated/draws/$drawId'
+      path: '/draws/$drawId'
+      fullPath: '/draws/$drawId'
+      preLoaderRoute: typeof AuthenticatedDrawsDrawIdRouteImport
+      parentRoute: typeof AuthenticatedRoute
+    }
   }
 }
 
 interface AuthenticatedRouteChildren {
   AuthenticatedIndexRoute: typeof AuthenticatedIndexRoute
+  AuthenticatedDrawsDrawIdRoute: typeof AuthenticatedDrawsDrawIdRoute
 }
 
 const AuthenticatedRouteChildren: AuthenticatedRouteChildren = {
   AuthenticatedIndexRoute: AuthenticatedIndexRoute,
+  AuthenticatedDrawsDrawIdRoute: AuthenticatedDrawsDrawIdRoute,
 }
 
 const AuthenticatedRouteWithChildren = AuthenticatedRoute._addFileChildren(

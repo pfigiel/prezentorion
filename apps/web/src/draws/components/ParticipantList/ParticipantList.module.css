@@ -1,0 +1,30 @@
+.root {
+  padding-block: var(--pz-spacing-xs);
+}
+
+.list {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.row {
+  display: flex;
+  gap: var(--pz-spacing-md);
+  align-items: center;
+  padding-block: var(--pz-spacing-sm);
+  border-bottom: 1px solid var(--pz-border-color);
+
+  &:last-child {
+    border-bottom: 0;
+  }
+}
+
+.name {
+  flex: 1;
+  min-width: 0;
+  overflow: hidden;
+  font-size: var(--pz-text-font-size-md);
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}

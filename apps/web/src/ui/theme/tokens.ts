@@ -24,6 +24,7 @@ export const tokens = {
     color: { default: '#ffd36b', hover: '#ffe29a', subtle: 'rgb(255 211 107 / 16%)' },
     contrast: { color: '#0b1a33' },
     glow: { color: 'rgb(255 211 107 / 25%)' },
+    border: { color: 'rgb(255 211 107 / 35%)' },
   },
   danger: { color: '#ff9b8a' },
   /** Night sky behind every screen, from the top of the page down. */
@@ -66,6 +67,8 @@ export const tokens = {
   },
   note: { background: { color: 'rgb(159 180 204 / 10%)' } },
   thumb: { size: '3.25rem', color: { from: '#1d3f66', to: '#2c5f82' } },
+  /** The tile a giver taps to reveal whom they drew, and the card it shrinks into. */
+  reveal: { tile: { height: '28rem' }, mark: { size: '6rem' } },
   logo: { size: { md: '2rem', lg: '9.25rem' } },
   icon: { size: { sm: '0.9375rem', md: '1.375rem' } },
   shadow: { glow: '0 6px 24px rgb(255 211 107 / 25%)' },

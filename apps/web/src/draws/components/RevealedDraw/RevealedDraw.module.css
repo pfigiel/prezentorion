@@ -1,0 +1,22 @@
+.list {
+  display: flex;
+  flex-direction: column;
+  gap: var(--pz-spacing-md);
+}
+
+.slideIn {
+  animation: slide-in calc(var(--pz-motion-duration) * 3) ease-out
+    calc(var(--pz-motion-duration) * 2) both;
+}
+
+@keyframes slide-in {
+  from {
+    opacity: 0;
+    translate: 0 2rem;
+  }
+
+  to {
+    opacity: 1;
+    translate: 0 0;
+  }
+}

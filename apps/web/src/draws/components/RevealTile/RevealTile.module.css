@@ -1,0 +1,133 @@
+.meta {
+  display: flex;
+  gap: var(--pz-spacing-sm);
+  align-items: center;
+  justify-content: space-between;
+}
+
+.tile {
+  @mixin transition;
+
+  position: relative;
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  gap: var(--pz-spacing-md);
+  align-items: center;
+  justify-content: center;
+  min-height: var(--pz-reveal-tile-height);
+  overflow: hidden;
+  padding: var(--pz-spacing-xl);
+  border: 1px solid var(--pz-accent-border-color);
+  border-radius: var(--pz-radius-lg);
+  background:
+    radial-gradient(circle at 50% 40%, var(--pz-accent-color-subtle), transparent 70%),
+    var(--pz-surface-1-background-color);
+  color: var(--pz-text-color-default);
+  font: inherit;
+  text-align: center;
+  transition-property: border-color, transform;
+
+  &:is(button) {
+    cursor: pointer;
+  }
+
+  &:is(button):hover {
+    border-color: var(--pz-accent-color-default);
+  }
+
+  &:is(button):active {
+    transform: scale(0.98);
+  }
+
+  &[aria-busy='true'] {
+    cursor: progress;
+  }
+}
+
+.mark {
+  display: grid;
+  place-content: center;
+  width: var(--pz-reveal-mark-size);
+  height: var(--pz-reveal-mark-size);
+  border: 1px solid var(--pz-accent-border-color);
+  border-radius: var(--pz-radius-full);
+  box-shadow: 0 0 40px var(--pz-accent-glow-color);
+  color: var(--pz-accent-color-default);
+  font-size: var(--pz-heading-font-size-xl);
+  font-weight: var(--pz-font-weight-bold);
+
+  [aria-busy='true'] > & {
+    animation: pulse calc(var(--pz-motion-duration) * 4) ease-in-out infinite alternate;
+  }
+}
+
+.tap {
+  @mixin heading md;
+}
+
+.privacy {
+  color: var(--pz-text-color-dimmed);
+  font-size: var(--pz-text-font-size-sm);
+}
+
+.error {
+  color: var(--pz-danger-color);
+  font-size: var(--pz-text-font-size-sm);
+}
+
+/* The reveal: a flash of starlight from the centre, then the person rising out of it. */
+.burst {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at 50% 45%, var(--pz-accent-color-default), transparent 60%);
+  animation: burst calc(var(--pz-motion-duration) * 5) ease-out both;
+  pointer-events: none;
+}
+
+.avatar {
+  box-shadow: 0 0 40px var(--pz-accent-glow-color);
+  transform: scale(1.6);
+  animation: rise calc(var(--pz-motion-duration) * 4) var(--pz-motion-easing)
+    var(--pz-motion-duration) both;
+}
+
+.name {
+  @mixin heading xl;
+
+  margin-top: var(--pz-spacing-xl);
+  animation: rise calc(var(--pz-motion-duration) * 4) var(--pz-motion-easing)
+    calc(var(--pz-motion-duration) * 2) both;
+}
+
+@keyframes burst {
+  from {
+    opacity: 0.9;
+    transform: scale(0.2);
+  }
+
+  to {
+    opacity: 0;
+    transform: scale(2);
+  }
+}
+
+@keyframes rise {
+  from {
+    filter: blur(8px);
+    opacity: 0;
+    translate: 0 1rem;
+  }
+
+  to {
+    filter: blur(0);
+    opacity: 1;
+    translate: 0 0;
+  }
+}
+
+@keyframes pulse {
+  to {
+    box-shadow: 0 0 60px var(--pz-accent-color-default);
+  }
+}

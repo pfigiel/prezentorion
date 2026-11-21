@@ -1,0 +1,26 @@
+.root {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--pz-spacing-md);
+  align-items: center;
+  margin: 0;
+  color: var(--pz-text-color-soft);
+  font-size: var(--pz-text-font-size-sm);
+}
+
+.entry {
+  display: flex;
+  gap: var(--pz-spacing-xs);
+  align-items: center;
+
+  & dt,
+  & dd {
+    display: flex;
+    margin: 0;
+  }
+
+  & svg {
+    width: var(--pz-icon-size-sm);
+    height: var(--pz-icon-size-sm);
+  }
+}
