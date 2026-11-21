@@ -9,9 +9,10 @@ Rules go here only when a linter cannot enforce them. Anything mechanically chec
 `@prezentorion/eslint-config`, `.prettierrc.json`, `.stylelintrc.json` or `packages/tsconfig`. How
 the workspace is run — commands, git hooks — is in [README.md](README.md).
 
-This project has no automated tests, and none are written. Do not add a test, a test runner, a test
-script or a test-only dependency. A change is verified through types, lint, the build and the
-running app.
+The only automated tests are the Playwright suite in [`apps/e2e`](apps/e2e), which drives the app
+end to end against the local Supabase stack. Do not add unit tests or another test runner. A change
+to what someone can do in the app updates the spec that covers it, or adds one. A change is verified
+through types, lint, the build, `pnpm e2e` and the running app.
 
 ## Writing code
 
@@ -76,7 +77,7 @@ which.
 
 Looking at the running app is the human's job. An agent does not open a browser to see whether a
 change renders, unless it was asked to, and reports what it could verify — types, lint, the build,
-the compiled CSS — then says what to look at and what might be wrong with it.
+the e2e suite, the compiled CSS — then says what to look at and what might be wrong with it.
 
 ### Language
 

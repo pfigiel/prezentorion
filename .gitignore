@@ -7,3 +7,5 @@ dist
 /secrets
 .vercel
 .claude/worktrees
+test-results
+playwright-report
