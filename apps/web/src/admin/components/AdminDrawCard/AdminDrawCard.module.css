@@ -1,0 +1,37 @@
+.root {
+  color: var(--pz-text-color-default);
+  text-decoration: none;
+}
+
+.card {
+  @mixin transition;
+
+  gap: var(--pz-spacing-sm);
+  transition-property: border-color;
+
+  .root:hover & {
+    border-color: var(--pz-border-strong-color);
+  }
+}
+
+.heading {
+  display: flex;
+  gap: var(--pz-spacing-sm);
+  align-items: center;
+  justify-content: space-between;
+}
+
+.name {
+  @mixin heading sm;
+
+  min-width: 0;
+  overflow: hidden;
+  font-weight: var(--pz-font-weight-semibold);
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.details {
+  color: var(--pz-text-color-dimmed);
+  font-size: var(--pz-text-font-size-sm);
+}

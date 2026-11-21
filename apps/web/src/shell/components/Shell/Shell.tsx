@@ -1,6 +1,7 @@
 import type { ReactNode } from 'react'
 import { AccountMenu } from '@/account/components/AccountMenu'
 import { Logo } from '@/ui/components/Logo'
+import { BottomNav } from '../BottomNav'
 import classes from './Shell.module.css'
 
 type Props = {
@@ -14,5 +15,6 @@ export const Shell = ({ children }: Props) => (
       <AccountMenu />
     </header>
     <main className={classes.main}>{children}</main>
+    <BottomNav />
   </div>
 )

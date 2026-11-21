@@ -13,10 +13,17 @@ import { Route as AuthenticatedRouteImport } from './../routes/_authenticated'
 import { Route as LoginRouteImport } from './../routes/login'
 import { Route as PrivacyPolicyRouteImport } from './../routes/privacy-policy'
 import { Route as AuthenticatedIndexRouteImport } from './../routes/_authenticated/index'
+import { Route as AuthenticatedAdminRouteImport } from './../routes/_authenticated/admin'
+import { Route as AuthenticatedAdminIndexRouteImport } from './../routes/_authenticated/admin/index'
+import { Route as AuthenticatedAdminUsersRouteImport } from './../routes/_authenticated/admin/users'
 import { Route as AuthenticatedDrawsDrawIdRouteImport } from './../routes/_authenticated/draws.$drawId'
 import { Route as AuthenticatedWishlistIndexRouteImport } from './../routes/_authenticated/wishlist.index'
 import { Route as AuthenticatedWishlistNewRouteImport } from './../routes/_authenticated/wishlist.new'
+import { Route as AuthenticatedAdminDrawsNewRouteImport } from './../routes/_authenticated/admin/draws.new'
 import { Route as AuthenticatedWishlistItemIdEditRouteImport } from './../routes/_authenticated/wishlist.$itemId.edit'
+import { Route as AuthenticatedAdminDrawsDrawIdIndexRouteImport } from './../routes/_authenticated/admin/draws.$drawId.index'
+import { Route as AuthenticatedAdminDrawsDrawIdAssignmentsRouteImport } from './../routes/_authenticated/admin/draws.$drawId.assignments'
+import { Route as AuthenticatedAdminDrawsDrawIdEditRouteImport } from './../routes/_authenticated/admin/draws.$drawId.edit'
 
 const AuthenticatedRoute = AuthenticatedRouteImport.update({
   id: '/_authenticated',
@@ -37,6 +44,21 @@ const AuthenticatedIndexRoute = AuthenticatedIndexRouteImport.update({
   path: '/',
   getParentRoute: () => AuthenticatedRoute,
 } as any)
+const AuthenticatedAdminRoute = AuthenticatedAdminRouteImport.update({
+  id: '/admin',
+  path: '/admin',
+  getParentRoute: () => AuthenticatedRoute,
+} as any)
+const AuthenticatedAdminIndexRoute = AuthenticatedAdminIndexRouteImport.update({
+  id: '/',
+  path: '/',
+  getParentRoute: () => AuthenticatedAdminRoute,
+} as any)
+const AuthenticatedAdminUsersRoute = AuthenticatedAdminUsersRouteImport.update({
+  id: '/users',
+  path: '/users',
+  getParentRoute: () => AuthenticatedAdminRoute,
+} as any)
 const AuthenticatedDrawsDrawIdRoute =
   AuthenticatedDrawsDrawIdRouteImport.update({
     id: '/draws/$drawId',
@@ -55,41 +77,85 @@ const AuthenticatedWishlistNewRoute =
     path: '/wishlist/new',
     getParentRoute: () => AuthenticatedRoute,
   } as any)
+const AuthenticatedAdminDrawsNewRoute =
+  AuthenticatedAdminDrawsNewRouteImport.update({
+    id: '/draws/new',
+    path: '/draws/new',
+    getParentRoute: () => AuthenticatedAdminRoute,
+  } as any)
 const AuthenticatedWishlistItemIdEditRoute =
   AuthenticatedWishlistItemIdEditRouteImport.update({
     id: '/wishlist/$itemId/edit',
     path: '/wishlist/$itemId/edit',
     getParentRoute: () => AuthenticatedRoute,
   } as any)
+const AuthenticatedAdminDrawsDrawIdIndexRoute =
+  AuthenticatedAdminDrawsDrawIdIndexRouteImport.update({
+    id: '/draws/$drawId/',
+    path: '/draws/$drawId/',
+    getParentRoute: () => AuthenticatedAdminRoute,
+  } as any)
+const AuthenticatedAdminDrawsDrawIdAssignmentsRoute =
+  AuthenticatedAdminDrawsDrawIdAssignmentsRouteImport.update({
+    id: '/draws/$drawId/assignments',
+    path: '/draws/$drawId/assignments',
+    getParentRoute: () => AuthenticatedAdminRoute,
+  } as any)
+const AuthenticatedAdminDrawsDrawIdEditRoute =
+  AuthenticatedAdminDrawsDrawIdEditRouteImport.update({
+    id: '/draws/$drawId/edit',
+    path: '/draws/$drawId/edit',
+    getParentRoute: () => AuthenticatedAdminRoute,
+  } as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof AuthenticatedIndexRoute
   '/login': typeof LoginRoute
   '/privacy-policy': typeof PrivacyPolicyRoute
+  '/admin': typeof AuthenticatedAdminRouteWithChildren
+  '/admin/users': typeof AuthenticatedAdminUsersRoute
   '/draws/$drawId': typeof AuthenticatedDrawsDrawIdRoute
   '/wishlist/new': typeof AuthenticatedWishlistNewRoute
+  '/admin/': typeof AuthenticatedAdminIndexRoute
   '/wishlist/': typeof AuthenticatedWishlistIndexRoute
+  '/admin/draws/new': typeof AuthenticatedAdminDrawsNewRoute
   '/wishlist/$itemId/edit': typeof AuthenticatedWishlistItemIdEditRoute
+  '/admin/draws/$drawId/assignments': typeof AuthenticatedAdminDrawsDrawIdAssignmentsRoute
+  '/admin/draws/$drawId/edit': typeof AuthenticatedAdminDrawsDrawIdEditRoute
+  '/admin/draws/$drawId/': typeof AuthenticatedAdminDrawsDrawIdIndexRoute
 }
 export interface FileRoutesByTo {
   '/login': typeof LoginRoute
   '/privacy-policy': typeof PrivacyPolicyRoute
   '/': typeof AuthenticatedIndexRoute
+  '/admin/users': typeof AuthenticatedAdminUsersRoute
   '/draws/$drawId': typeof AuthenticatedDrawsDrawIdRoute
   '/wishlist/new': typeof AuthenticatedWishlistNewRoute
+  '/admin': typeof AuthenticatedAdminIndexRoute
   '/wishlist': typeof AuthenticatedWishlistIndexRoute
+  '/admin/draws/new': typeof AuthenticatedAdminDrawsNewRoute
   '/wishlist/$itemId/edit': typeof AuthenticatedWishlistItemIdEditRoute
+  '/admin/draws/$drawId/assignments': typeof AuthenticatedAdminDrawsDrawIdAssignmentsRoute
+  '/admin/draws/$drawId/edit': typeof AuthenticatedAdminDrawsDrawIdEditRoute
+  '/admin/draws/$drawId': typeof AuthenticatedAdminDrawsDrawIdIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/_authenticated': typeof AuthenticatedRouteWithChildren
   '/login': typeof LoginRoute
   '/privacy-policy': typeof PrivacyPolicyRoute
+  '/_authenticated/admin': typeof AuthenticatedAdminRouteWithChildren
   '/_authenticated/': typeof AuthenticatedIndexRoute
+  '/_authenticated/admin/users': typeof AuthenticatedAdminUsersRoute
   '/_authenticated/draws/$drawId': typeof AuthenticatedDrawsDrawIdRoute
   '/_authenticated/wishlist/new': typeof AuthenticatedWishlistNewRoute
+  '/_authenticated/admin/': typeof AuthenticatedAdminIndexRoute
   '/_authenticated/wishlist/': typeof AuthenticatedWishlistIndexRoute
+  '/_authenticated/admin/draws/new': typeof AuthenticatedAdminDrawsNewRoute
   '/_authenticated/wishlist/$itemId/edit': typeof AuthenticatedWishlistItemIdEditRoute
+  '/_authenticated/admin/draws/$drawId/assignments': typeof AuthenticatedAdminDrawsDrawIdAssignmentsRoute
+  '/_authenticated/admin/draws/$drawId/edit': typeof AuthenticatedAdminDrawsDrawIdEditRoute
+  '/_authenticated/admin/draws/$drawId/': typeof AuthenticatedAdminDrawsDrawIdIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
@@ -97,29 +163,49 @@ export interface FileRouteTypes {
     | '/'
     | '/login'
     | '/privacy-policy'
+    | '/admin'
+    | '/admin/users'
     | '/draws/$drawId'
     | '/wishlist/new'
+    | '/admin/'
     | '/wishlist/'
+    | '/admin/draws/new'
     | '/wishlist/$itemId/edit'
+    | '/admin/draws/$drawId/assignments'
+    | '/admin/draws/$drawId/edit'
+    | '/admin/draws/$drawId/'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/login'
     | '/privacy-policy'
     | '/'
+    | '/admin/users'
     | '/draws/$drawId'
     | '/wishlist/new'
+    | '/admin'
     | '/wishlist'
+    | '/admin/draws/new'
     | '/wishlist/$itemId/edit'
+    | '/admin/draws/$drawId/assignments'
+    | '/admin/draws/$drawId/edit'
+    | '/admin/draws/$drawId'
   id:
     | '__root__'
     | '/_authenticated'
     | '/login'
     | '/privacy-policy'
+    | '/_authenticated/admin'
     | '/_authenticated/'
+    | '/_authenticated/admin/users'
     | '/_authenticated/draws/$drawId'
     | '/_authenticated/wishlist/new'
+    | '/_authenticated/admin/'
     | '/_authenticated/wishlist/'
+    | '/_authenticated/admin/draws/new'
     | '/_authenticated/wishlist/$itemId/edit'
+    | '/_authenticated/admin/draws/$drawId/assignments'
+    | '/_authenticated/admin/draws/$drawId/edit'
+    | '/_authenticated/admin/draws/$drawId/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -158,6 +244,27 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AuthenticatedIndexRouteImport
       parentRoute: typeof AuthenticatedRoute
     }
+    '/_authenticated/admin': {
+      id: '/_authenticated/admin'
+      path: '/admin'
+      fullPath: '/admin'
+      preLoaderRoute: typeof AuthenticatedAdminRouteImport
+      parentRoute: typeof AuthenticatedRoute
+    }
+    '/_authenticated/admin/': {
+      id: '/_authenticated/admin/'
+      path: '/'
+      fullPath: '/admin/'
+      preLoaderRoute: typeof AuthenticatedAdminIndexRouteImport
+      parentRoute: typeof AuthenticatedAdminRoute
+    }
+    '/_authenticated/admin/users': {
+      id: '/_authenticated/admin/users'
+      path: '/users'
+      fullPath: '/admin/users'
+      preLoaderRoute: typeof AuthenticatedAdminUsersRouteImport
+      parentRoute: typeof AuthenticatedAdminRoute
+    }
     '/_authenticated/draws/$drawId': {
       id: '/_authenticated/draws/$drawId'
       path: '/draws/$drawId'
@@ -179,6 +286,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AuthenticatedWishlistNewRouteImport
       parentRoute: typeof AuthenticatedRoute
     }
+    '/_authenticated/admin/draws/new': {
+      id: '/_authenticated/admin/draws/new'
+      path: '/draws/new'
+      fullPath: '/admin/draws/new'
+      preLoaderRoute: typeof AuthenticatedAdminDrawsNewRouteImport
+      parentRoute: typeof AuthenticatedAdminRoute
+    }
     '/_authenticated/wishlist/$itemId/edit': {
       id: '/_authenticated/wishlist/$itemId/edit'
       path: '/wishlist/$itemId/edit'
@@ -186,10 +300,56 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AuthenticatedWishlistItemIdEditRouteImport
       parentRoute: typeof AuthenticatedRoute
     }
+    '/_authenticated/admin/draws/$drawId/': {
+      id: '/_authenticated/admin/draws/$drawId/'
+      path: '/draws/$drawId'
+      fullPath: '/admin/draws/$drawId/'
+      preLoaderRoute: typeof AuthenticatedAdminDrawsDrawIdIndexRouteImport
+      parentRoute: typeof AuthenticatedAdminRoute
+    }
+    '/_authenticated/admin/draws/$drawId/assignments': {
+      id: '/_authenticated/admin/draws/$drawId/assignments'
+      path: '/draws/$drawId/assignments'
+      fullPath: '/admin/draws/$drawId/assignments'
+      preLoaderRoute: typeof AuthenticatedAdminDrawsDrawIdAssignmentsRouteImport
+      parentRoute: typeof AuthenticatedAdminRoute
+    }
+    '/_authenticated/admin/draws/$drawId/edit': {
+      id: '/_authenticated/admin/draws/$drawId/edit'
+      path: '/draws/$drawId/edit'
+      fullPath: '/admin/draws/$drawId/edit'
+      preLoaderRoute: typeof AuthenticatedAdminDrawsDrawIdEditRouteImport
+      parentRoute: typeof AuthenticatedAdminRoute
+    }
   }
 }
 
+interface AuthenticatedAdminRouteChildren {
+  AuthenticatedAdminUsersRoute: typeof AuthenticatedAdminUsersRoute
+  AuthenticatedAdminIndexRoute: typeof AuthenticatedAdminIndexRoute
+  AuthenticatedAdminDrawsNewRoute: typeof AuthenticatedAdminDrawsNewRoute
+  AuthenticatedAdminDrawsDrawIdAssignmentsRoute: typeof AuthenticatedAdminDrawsDrawIdAssignmentsRoute
+  AuthenticatedAdminDrawsDrawIdEditRoute: typeof AuthenticatedAdminDrawsDrawIdEditRoute
+  AuthenticatedAdminDrawsDrawIdIndexRoute: typeof AuthenticatedAdminDrawsDrawIdIndexRoute
+}
+
+const AuthenticatedAdminRouteChildren: AuthenticatedAdminRouteChildren = {
+  AuthenticatedAdminUsersRoute: AuthenticatedAdminUsersRoute,
+  AuthenticatedAdminIndexRoute: AuthenticatedAdminIndexRoute,
+  AuthenticatedAdminDrawsNewRoute: AuthenticatedAdminDrawsNewRoute,
+  AuthenticatedAdminDrawsDrawIdAssignmentsRoute:
+    AuthenticatedAdminDrawsDrawIdAssignmentsRoute,
+  AuthenticatedAdminDrawsDrawIdEditRoute:
+    AuthenticatedAdminDrawsDrawIdEditRoute,
+  AuthenticatedAdminDrawsDrawIdIndexRoute:
+    AuthenticatedAdminDrawsDrawIdIndexRoute,
+}
+
+const AuthenticatedAdminRouteWithChildren =
+  AuthenticatedAdminRoute._addFileChildren(AuthenticatedAdminRouteChildren)
+
 interface AuthenticatedRouteChildren {
+  AuthenticatedAdminRoute: typeof AuthenticatedAdminRouteWithChildren
   AuthenticatedIndexRoute: typeof AuthenticatedIndexRoute
   AuthenticatedDrawsDrawIdRoute: typeof AuthenticatedDrawsDrawIdRoute
   AuthenticatedWishlistNewRoute: typeof AuthenticatedWishlistNewRoute
@@ -198,6 +358,7 @@ interface AuthenticatedRouteChildren {
 }
 
 const AuthenticatedRouteChildren: AuthenticatedRouteChildren = {
+  AuthenticatedAdminRoute: AuthenticatedAdminRouteWithChildren,
   AuthenticatedIndexRoute: AuthenticatedIndexRoute,
   AuthenticatedDrawsDrawIdRoute: AuthenticatedDrawsDrawIdRoute,
   AuthenticatedWishlistNewRoute: AuthenticatedWishlistNewRoute,

@@ -1,0 +1,64 @@
+.add {
+  display: flex;
+  gap: var(--pz-spacing-sm);
+  align-items: flex-start;
+}
+
+.search {
+  flex: 1;
+  min-width: 0;
+}
+
+/* Lines up with the input, below its label. */
+.addButton {
+  margin-top: calc(var(--pz-text-font-size-sm) * var(--pz-text-line-height) + var(--pz-spacing-sm));
+}
+
+.list {
+  padding-block: var(--pz-spacing-xs);
+}
+
+.rows {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.row {
+  display: flex;
+  gap: var(--pz-spacing-md);
+  align-items: center;
+  padding-block: var(--pz-spacing-sm);
+  border-bottom: 1px solid var(--pz-border-quiet-color);
+
+  &:last-child {
+    border-bottom: 0;
+  }
+}
+
+.who {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  gap: var(--pz-spacing-xs);
+  align-items: flex-start;
+  min-width: 0;
+}
+
+.name {
+  max-width: 100%;
+  overflow: hidden;
+  font-size: var(--pz-text-font-size-md);
+  font-weight: var(--pz-font-weight-semibold);
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.email {
+  max-width: 100%;
+  overflow: hidden;
+  color: var(--pz-text-color-dimmed);
+  font-size: var(--pz-text-font-size-sm);
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}

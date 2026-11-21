@@ -24,7 +24,7 @@ export const WishlistSummary = () => {
         <p className={classes.body}>{t('draws.wishlistSummary.emptyBody')}</p>
         <ButtonLink
           icon={<IconPlus stroke={2} />}
-          renderLink={(props) => <Link {...props} to="/" />}
+          renderLink={(props) => <Link {...props} to="/wishlist/new" />}
         >
           {t('draws.wishlistSummary.add')}
         </ButtonLink>
@@ -43,7 +43,7 @@ export const WishlistSummary = () => {
         </span>
         <span className={classes.hint}>{t('draws.wishlistSummary.hint')}</span>
       </span>
-      <Link to="/" className={classes.edit}>
+      <Link to="/wishlist" className={classes.edit}>
         {t('draws.wishlistSummary.edit')}
       </Link>
     </Card>

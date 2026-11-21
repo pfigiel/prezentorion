@@ -1,0 +1,32 @@
+.root {
+  display: grid;
+  flex: none;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  padding: var(--pz-spacing-xs);
+  border: 1px solid var(--pz-border-quiet-color);
+  border-radius: var(--pz-radius-md);
+  background-color: var(--pz-control-background-color);
+}
+
+.link {
+  @mixin transition;
+
+  display: grid;
+  place-content: center;
+  height: var(--pz-control-height-sm);
+  border-radius: var(--pz-radius-sm);
+  color: var(--pz-text-color-dimmed);
+  font-size: var(--pz-text-font-size-sm);
+  font-weight: var(--pz-font-weight-semibold);
+  text-decoration: none;
+  transition-property: background-color, color;
+
+  &:hover {
+    color: var(--pz-text-color-default);
+  }
+
+  &[aria-current='page'] {
+    background-color: var(--pz-accent-color-subtle);
+    color: var(--pz-accent-color-default);
+  }
+}
