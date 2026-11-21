@@ -69,6 +69,7 @@ export const tokens = {
   thumb: { size: '3.25rem', color: { from: '#1d3f66', to: '#2c5f82' } },
   photo: { preview: { height: '11rem' } },
   file: { picker: { height: '4.75rem' } },
+  select: { dropdown: { height: '17rem' } },
   /** The tile a giver taps to reveal whom they drew, and the card it shrinks into. */
   reveal: { tile: { height: '28rem' }, mark: { size: '6rem' } },
   logo: { size: { md: '2rem', lg: '9.25rem' } },

@@ -26,17 +26,22 @@
   }
 }
 
-.error {
-  margin-top: var(--pz-spacing-xs);
-  color: var(--pz-danger-color);
-  font-size: var(--pz-text-font-size-sm);
-}
-
 .dropdown {
   @mixin surface raised;
 
   border-color: var(--pz-border-color);
   border-radius: var(--pz-radius-md);
+}
+
+.options {
+  max-height: var(--pz-select-dropdown-height);
+  overflow-y: auto;
+}
+
+.empty {
+  padding: var(--pz-spacing-sm) var(--pz-spacing-md);
+  color: var(--pz-text-color-dimmed);
+  font-size: var(--pz-text-font-size-sm);
 }
 
 .option {
