@@ -31,6 +31,9 @@ export const tokens = {
   sky: {
     color: { top: '#07111f', middle: '#0b1a33', bottom: '#133458' },
     star: { color: '#ffffff', warm: { color: '#ffe7a8' } },
+    /** Rising off the bottom edge on a window wide enough to show sky beside the column. */
+    glow: { color: 'rgb(255 211 107 / 16%)' },
+    constellation: { size: '32.5rem' },
   },
   control: {
     height: { sm: '2.25rem', md: '2.75rem', lg: '3.25rem' },
