@@ -1,0 +1,15 @@
+name: keep-alive
+# A free Supabase project is paused after a week without activity; the health check queries the
+# database, so calling it twice a week keeps the project awake between seasons.
+on:
+  schedule:
+    - cron: '0 6 * * 1,4'
+  workflow_dispatch:
+permissions: {}
+jobs:
+  ping:
+    runs-on: ubuntu-latest
+    steps:
+      - run:
+          curl --fail --silent --show-error --retry 5 --retry-all-errors
+          https://ejyqxgjffygywgmrodev.supabase.co/functions/v1/api/health

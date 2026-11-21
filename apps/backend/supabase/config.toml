@@ -1,0 +1,25 @@
+#:schema https://supabase.com/schemas/config/v1.json
+# Only what differs from the defaults is declared: `supabase config push` writes every declared
+# property to the hosted project on each deploy and leaves the rest of the project alone.
+project_id = "prezentorion"
+
+[auth]
+site_url = "https://prezentorion.vercel.app"
+additional_redirect_urls = ["http://localhost:5173"]
+minimum_password_length = 8
+
+# Accounts are made with an e-mail and a password, never confirmed: there is no e-mail sending, and
+# a forgotten password is reset by the admin.
+[auth.email]
+enable_signup = true
+enable_confirmations = false
+
+[auth.external.google]
+enabled = true
+client_id = "887723574944-0fgjqg502gb2aualqg3nsn8gk4ie0rbm.apps.googleusercontent.com"
+secret = "env(SUPABASE_AUTH_EXTERNAL_GOOGLE_SECRET)"
+
+# The Hono app answers `/health` to anyone and verifies a user's token itself, so the gateway's own
+# check, which would turn away every request without a key, stays off.
+[functions.api]
+verify_jwt = false

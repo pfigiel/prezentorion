@@ -1,0 +1,58 @@
+name: deploy
+on:
+  push:
+    branches: [main]
+permissions:
+  contents: read
+# Runs queue, so deploys finish in the order they were merged and none is cut off with the project
+# half-updated.
+concurrency:
+  group: deploy
+  cancel-in-progress: false
+jobs:
+  checks:
+    uses: ./.github/workflows/checks.yml
+  deploy-backend:
+    name: deploy backend
+    needs: checks
+    runs-on: ubuntu-latest
+    env:
+      SUPABASE_PROJECT_ID: ejyqxgjffygywgmrodev
+    steps:
+      - uses: actions/checkout@v7
+      - uses: ./.github/actions/setup
+      - run: pnpm build --filter=@prezentorion/backend
+      # The CLI asks before it changes a hosted project, and a runner has no terminal to answer on.
+      - run: pnpm --filter @prezentorion/backend config:push --yes
+        env:
+          SUPABASE_ACCESS_TOKEN: ${{ secrets.SUPABASE_ACCESS_TOKEN }}
+          SUPABASE_AUTH_EXTERNAL_GOOGLE_SECRET: ${{ secrets.SUPABASE_AUTH_EXTERNAL_GOOGLE_SECRET }}
+      # Before the function, so the code it deploys never runs against a schema it does not know.
+      - run: pnpm --filter @prezentorion/backend db:push --remote="$SUPABASE_PROJECT_ID" --yes
+        env:
+          SUPABASE_ACCESS_TOKEN: ${{ secrets.SUPABASE_ACCESS_TOKEN }}
+      - run: pnpm --filter @prezentorion/backend functions:deploy --yes
+        env:
+          SUPABASE_ACCESS_TOKEN: ${{ secrets.SUPABASE_ACCESS_TOKEN }}
+      - run:
+          curl --fail --silent --show-error --retry 5 --retry-all-errors
+          "https://$SUPABASE_PROJECT_ID.supabase.co/functions/v1/api/health"
+  deploy-web:
+    name: deploy web
+    needs: checks
+    runs-on: ubuntu-latest
+    env:
+      VERCEL_ORG_ID: team_QmMXbVuHx3ZEy3zdCvElCW2a
+      VERCEL_PROJECT_ID: prj_QJpsKGMfPzctdSXYCmZWbbIMvnBt
+      VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }}
+    defaults:
+      run:
+        working-directory: apps/web
+    steps:
+      - uses: actions/checkout@v7
+      - uses: ./.github/actions/setup
+      # Run from the registry at a pinned version: as a dependency the CLI brings advisories into
+      # the audit that nothing we ship contains.
+      - run: pnpm dlx vercel@65.16.0 pull --yes --environment=production
+      - run: pnpm dlx vercel@65.16.0 build --prod
+      - run: pnpm dlx vercel@65.16.0 deploy --prebuilt --prod
