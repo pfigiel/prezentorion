@@ -15,7 +15,7 @@
   gap: var(--pz-spacing-md);
   align-items: center;
   justify-content: center;
-  min-height: var(--pz-reveal-tile-height);
+  max-height: var(--pz-reveal-tile-height);
   overflow: hidden;
   padding: var(--pz-spacing-xl);
   border: 1px solid var(--pz-accent-border-color);
