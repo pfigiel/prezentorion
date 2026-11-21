@@ -48,6 +48,7 @@
     "notFound": "Tej pozycji nie ma już na Twojej liście.",
     "backToList": "Wróć do listy",
     "errors": {
+      "name": "Podaj nazwę.",
       "url": "To nie wygląda na link.",
       "price": "Podaj kwotę w pełnych złotych.",
       "photoType": "Zdjęcie musi być w formacie JPG, PNG lub WebP.",
