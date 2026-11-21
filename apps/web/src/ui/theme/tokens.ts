@@ -58,7 +58,8 @@ export const tokens = {
   shell: {
     width: '30rem',
     header: { height: '4rem' },
-    nav: { height: '4.5rem', background: { color: 'rgb(5 12 24 / 75%)' } },
+    nav: { height: '4.5rem' },
+    bar: { background: { color: 'rgb(5 12 24 / 75%)' } },
   },
   avatar: { size: { md: '2.25rem', lg: '4rem' } },
   priority: {
@@ -69,9 +70,10 @@ export const tokens = {
   thumb: { size: '3.25rem', color: { from: '#1d3f66', to: '#2c5f82' } },
   photo: { preview: { height: '11rem' } },
   file: { picker: { height: '4.75rem' } },
+  select: { dropdown: { height: '17rem' } },
   /** The tile a giver taps to reveal whom they drew, and the card it shrinks into. */
   reveal: { tile: { height: '28rem' }, mark: { size: '6rem' } },
-  logo: { size: { md: '2rem', lg: '9.25rem' } },
+  logo: { size: { md: '1.5rem', lg: '9.25rem' } },
   icon: { size: { sm: '0.9375rem', md: '1.375rem' } },
   shadow: { glow: '0 6px 24px rgb(255 211 107 / 25%)' },
   motion: { duration: '200ms', easing: 'ease' },

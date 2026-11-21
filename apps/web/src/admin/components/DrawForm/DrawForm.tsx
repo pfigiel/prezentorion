@@ -18,7 +18,7 @@ import { ParticipantsEditor } from '../ParticipantsEditor'
 import classes from './DrawForm.module.css'
 
 type Props = {
-  /** The draw being edited; a new one starts empty, with the admin taking part. */
+  /** The draw being edited; a new one starts with nobody taking part. */
   draw?: AdminDraw
 }
 
@@ -33,7 +33,7 @@ export const DrawForm = ({ draw }: Props) => {
   const queryClient = useQueryClient()
   const { data: account } = useSuspenseQuery(accountQuery)
   const { data: users } = useSuspenseQuery(usersQuery)
-  const initialEmails = draw?.participants.map(({ email }) => email) ?? [account.email]
+  const initialEmails = draw?.participants.map(({ email }) => email) ?? []
   const [name, setName] = useState(draw?.name ?? '')
   const [eventDate, setEventDate] = useState(draw?.eventDate ?? '')
   const [budget, setBudget] = useState(draw?.budget?.toString() ?? '')
