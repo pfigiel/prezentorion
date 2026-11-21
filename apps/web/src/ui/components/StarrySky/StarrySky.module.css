@@ -2,6 +2,7 @@
   position: fixed;
   inset: 0;
   z-index: -1;
+  overflow: hidden;
   pointer-events: none;
 }
 
@@ -21,6 +22,46 @@
 .warm {
   background-color: var(--pz-sky-star-warm-color);
   box-shadow: 0 0 6px var(--pz-sky-star-warm-color);
+}
+
+.glow {
+  position: absolute;
+  bottom: -40%;
+  left: 50%;
+  width: 110%;
+  height: 75%;
+  border-radius: 50%;
+  background: radial-gradient(closest-side, var(--pz-sky-glow-color), transparent 70%);
+  transform: translateX(-50%);
+
+  @media (width < 37.5em) {
+    display: none;
+  }
+}
+
+.constellation {
+  position: absolute;
+  top: 50%;
+  right: var(--pz-spacing-lg);
+  width: var(--pz-sky-constellation-size);
+  height: var(--pz-sky-constellation-size);
+  opacity: 0.5;
+  transform: translateY(-50%) rotate(-8deg);
+
+  @media (width < 68.75em) {
+    display: none;
+  }
+}
+
+.lines {
+  stroke-width: 1;
+  opacity: 0.45;
+}
+
+.wide {
+  @media (width < 37.5em) {
+    display: none;
+  }
 }
 
 @keyframes twinkle {

@@ -31,6 +31,9 @@ export const tokens = {
   sky: {
     color: { top: '#07111f', middle: '#0b1a33', bottom: '#133458' },
     star: { color: '#ffffff', warm: { color: '#ffe7a8' } },
+    /** Rising off the bottom edge on a window wide enough to show sky beside the column. */
+    glow: { color: 'rgb(255 211 107 / 16%)' },
+    constellation: { size: '32.5rem' },
   },
   control: {
     height: { sm: '2.25rem', md: '2.75rem', lg: '3.25rem' },
@@ -56,7 +59,12 @@ export const tokens = {
   spacing: { xs: '0.25rem', sm: '0.5rem', md: '0.875rem', lg: '1.25rem', xl: '1.75rem' },
   radius: { sm: '0.625rem', md: '0.875rem', lg: '1.25rem', full: '9999px' },
   shell: {
-    width: '30rem',
+    width: '26.875rem',
+    /** The column standing on the sky once the window is wider than it. */
+    column: {
+      background: { color: 'rgb(7 17 31 / 55%)' },
+      shadow: '0 0 80px rgb(0 0 0 / 50%), 0 0 140px rgb(255 211 107 / 6%)',
+    },
     header: { height: '4rem' },
     nav: { height: '4.5rem' },
     bar: { background: { color: 'rgb(5 12 24 / 75%)' } },
