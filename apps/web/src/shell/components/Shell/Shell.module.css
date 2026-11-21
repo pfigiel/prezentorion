@@ -8,6 +8,11 @@
 }
 
 .header {
+  @mixin transition;
+
+  position: sticky;
+  z-index: 1;
+  top: 0;
   display: flex;
   flex: none;
   align-items: center;
@@ -16,6 +21,14 @@
   padding-inline: var(--pz-spacing-lg);
   padding-top: env(safe-area-inset-top);
   box-sizing: content-box;
+  border-bottom: 1px solid transparent;
+  transition-property: background-color, border-color;
+
+  &[data-scrolled] {
+    border-bottom-color: var(--pz-border-color);
+    background-color: var(--pz-shell-bar-background-color);
+    backdrop-filter: blur(12px);
+  }
 }
 
 .main {

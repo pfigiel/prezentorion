@@ -7,7 +7,7 @@
   height: calc(var(--pz-shell-nav-height) + env(safe-area-inset-bottom));
   padding-bottom: env(safe-area-inset-bottom);
   border-top: 1px solid var(--pz-border-color);
-  background-color: var(--pz-shell-nav-background-color);
+  background-color: var(--pz-shell-bar-background-color);
   backdrop-filter: blur(12px);
 }
 

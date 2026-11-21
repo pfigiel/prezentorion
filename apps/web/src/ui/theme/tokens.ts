@@ -58,7 +58,8 @@ export const tokens = {
   shell: {
     width: '30rem',
     header: { height: '4rem' },
-    nav: { height: '4.5rem', background: { color: 'rgb(5 12 24 / 75%)' } },
+    nav: { height: '4.5rem' },
+    bar: { background: { color: 'rgb(5 12 24 / 75%)' } },
   },
   avatar: { size: { md: '2.25rem', lg: '4rem' } },
   priority: {
