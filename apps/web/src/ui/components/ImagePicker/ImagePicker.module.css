@@ -1,0 +1,88 @@
+.empty,
+.frame {
+  width: 100%;
+  aspect-ratio: 1;
+  border-radius: var(--pz-radius-md);
+}
+
+.empty {
+  @mixin transition;
+
+  display: flex;
+  flex-direction: column;
+  gap: var(--pz-spacing-sm);
+  align-items: center;
+  justify-content: center;
+  border: 1px dashed var(--pz-border-strong-color);
+  background-color: var(--pz-control-background-color);
+  color: var(--pz-text-color-soft);
+  font: inherit;
+  font-size: var(--pz-text-font-size-md);
+  cursor: pointer;
+  transition-property: background-color, border-color;
+
+  &:hover {
+    border-color: var(--pz-accent-color-default);
+    background-color: var(--pz-control-hover-background-color);
+  }
+
+  & svg {
+    width: var(--pz-icon-size-md);
+    height: var(--pz-icon-size-md);
+  }
+}
+
+.frame {
+  position: relative;
+  overflow: hidden;
+  background: linear-gradient(135deg, var(--pz-thumb-color-from), var(--pz-thumb-color-to));
+}
+
+.backdrop,
+.image {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.backdrop {
+  object-fit: cover;
+  filter: blur(var(--pz-image-picker-backdrop-blur));
+  transform: scale(1.2);
+}
+
+.image {
+  object-fit: contain;
+}
+
+.controls {
+  position: absolute;
+  top: var(--pz-spacing-sm);
+  right: var(--pz-spacing-sm);
+  display: flex;
+  gap: var(--pz-spacing-xs);
+}
+
+.control {
+  @mixin transition;
+
+  width: var(--pz-control-height-md);
+  height: var(--pz-control-height-md);
+  border: 0;
+  border-radius: var(--pz-radius-sm);
+  background-color: var(--pz-image-picker-control-background-color);
+  color: var(--pz-text-color-default);
+  backdrop-filter: blur(var(--pz-image-picker-backdrop-blur));
+  transition-property: background-color, color;
+
+  &:hover {
+    background-color: var(--pz-surface-raised-background-color);
+    color: var(--pz-accent-color-default);
+  }
+
+  & svg {
+    width: var(--pz-icon-size-md);
+    height: var(--pz-icon-size-md);
+  }
+}

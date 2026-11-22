@@ -83,9 +83,17 @@ export const tokens = {
     off: { color: 'rgb(255 255 255 / 18%)' },
   },
   note: { background: { color: 'rgb(159 180 204 / 10%)' } },
-  thumb: { size: '3.25rem', color: { from: '#1d3f66', to: '#2c5f82' } },
-  photo: { preview: { height: '11rem' } },
-  file: { picker: { height: '4.75rem' } },
+  thumb: {
+    size: '3.25rem',
+    color: { from: '#1d3f66', to: '#2c5f82' },
+    backdrop: { blur: '8px' },
+  },
+  image: {
+    picker: {
+      backdrop: { blur: '24px' },
+      control: { background: { color: 'rgb(5 12 24 / 60%)' } },
+    },
+  },
   select: { dropdown: { height: '17rem' } },
   /** The tile a giver taps to reveal whom they drew, and the card it shrinks into. */
   reveal: { tile: { height: '28rem' }, mark: { size: '6rem' } },

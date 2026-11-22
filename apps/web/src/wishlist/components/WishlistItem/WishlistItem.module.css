@@ -2,9 +2,16 @@
   display: flex;
   gap: var(--pz-spacing-md);
   align-items: center;
-  padding: var(--pz-spacing-md);
+  padding-inline-end: var(--pz-spacing-md);
+  overflow: hidden;
   border: 1px solid var(--pz-border-color);
   border-radius: var(--pz-radius-md);
+}
+
+.thumb {
+  width: calc(var(--pz-thumb-size) + 2 * var(--pz-spacing-md));
+  height: calc(var(--pz-thumb-size) + 2 * var(--pz-spacing-md));
+  border-radius: 0;
 }
 
 .details {

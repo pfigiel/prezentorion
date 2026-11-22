@@ -51,7 +51,7 @@ export const WishlistItem = ({ item }: Props) => {
 
   return (
     <article data-surface className={classes.root}>
-      <ItemThumb photoPath={item.photoPath} />
+      <ItemThumb photoPath={item.photoPath} className={classes.thumb} />
       <div className={classes.details}>
         <span className={classes.name}>{item.name}</span>
         <span className={classes.meta}>
