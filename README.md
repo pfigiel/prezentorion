@@ -52,7 +52,7 @@ Every task runs through turbo, so it covers each package that defines it.
 ## What runs without you asking
 
 - **On commit** — Prettier, Stylelint, ESLint, `type:check` and `knip` over what you staged, then
-  `pnpm e2e`, which needs the local stack running.
+  `pnpm e2e`, which needs Docker running.
 - **On push** — `deps:audit`.
 - **On a pull request** — Prettier, ESLint, Stylelint, `type:check`, `knip` and the build, in
   [CI](.github/workflows/ci.yml).

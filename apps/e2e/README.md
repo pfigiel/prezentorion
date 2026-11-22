@@ -5,10 +5,9 @@ against a local Supabase stack, never the hosted project.
 
 ## Running
 
-1. Start the stack once, from `apps/backend`: `pnpm exec supabase start`. It applies the migrations;
-   after adding one, `pnpm exec supabase migration up` applies it to the running stack.
-2. Install the browser once: `pnpm --filter @prezentorion/e2e exec playwright install chromium`.
-3. `pnpm e2e` from the repository root.
+With Docker running, `pnpm e2e` from the repository root. It installs Chromium if it is missing, and
+the global setup starts the stack if it is not running and applies any pending migrations to it. The
+stack is left running for the next run; `pnpm exec supabase stop` in `apps/backend` stops it.
 
 Playwright starts the API on port 3100 and the app on 5273 itself, pointed at the stack, so the
 suite runs beside `pnpm dev` on 3000 and 5173. It never reuses a server already on its ports. To

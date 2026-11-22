@@ -27,14 +27,6 @@ jobs:
     steps:
       - uses: actions/checkout@v7
       - uses: ./.github/actions/setup
-      # Only what the app reaches: the database, Auth, PostgREST, Storage and the gateway.
-      - run:
-          pnpm exec supabase start --exclude
-          realtime,studio,edge-runtime,logflare,vector,imgproxy,supavisor,postgres-meta
-        working-directory: apps/backend
-        env:
-          # config.toml names it for the hosted project; nothing here signs in with Google.
-          SUPABASE_AUTH_EXTERNAL_GOOGLE_SECRET: unused
       - run: pnpm --filter @prezentorion/e2e exec playwright install --with-deps chromium
       - run: pnpm e2e
       - if: failure()
