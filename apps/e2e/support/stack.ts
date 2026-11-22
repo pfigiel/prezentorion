@@ -7,7 +7,9 @@ export const stack = {
   publishableKey: 'sb_publishable_ACJWlzQHlZjBrEguHvfOxg_3BJgxAaH',
 }
 
-export const apiUrl = 'http://localhost:3000/api'
+// Ports of their own, so the suite runs beside `pnpm dev` on 3000 and 5173.
+export const apiPort = 3100
+export const appPort = 5273
 
-// The API answers CORS for this origin only, so the app must be served exactly here.
-export const appUrl = 'http://localhost:5173'
+export const apiUrl = `http://localhost:${apiPort}/api`
+export const appUrl = `http://localhost:${appPort}`
