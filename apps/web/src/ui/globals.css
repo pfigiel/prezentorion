@@ -11,6 +11,8 @@ html {
 
 /* Fixed, so the sky stays put while a long list scrolls over it. */
 body {
+  /* The sky sits at z-index -1; without this it falls behind the body once index.html paints `html`. */
+  isolation: isolate;
   min-height: 100dvh;
   background: linear-gradient(
       180deg,
