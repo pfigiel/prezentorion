@@ -24,6 +24,7 @@ test('someone who is not the admin is turned away from every admin action', asyn
   expect((await callAs(anna, 'GET', '/admin/users')).status).toBe(403)
   expect((await callAs(anna, 'POST', '/admin/draws', fields)).status).toBe(403)
   expect((await callAs(anna, 'POST', `/admin/draws/${draw.id}/run`)).status).toBe(403)
+  expect((await callAs(anna, 'POST', `/admin/draws/${draw.id}/finish`)).status).toBe(403)
   expect((await callAs(anna, 'DELETE', `/admin/draws/${draw.id}`)).status).toBe(403)
   expect(
     (await callAs(anna, 'PUT', `/admin/users/${anna.id}/password`, { password: 'password456' }))

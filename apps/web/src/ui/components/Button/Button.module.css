@@ -64,6 +64,22 @@
   }
 }
 
+.danger {
+  --loader-color: var(--pz-danger-color);
+
+  border-color: var(--pz-danger-border-color);
+  background-color: transparent;
+  color: var(--pz-danger-color);
+
+  &:hover {
+    background-color: var(--pz-danger-hover-background-color);
+  }
+
+  &[data-disabled] {
+    background-color: transparent;
+  }
+}
+
 /* For a sign-in provider, whose button stands apart from the app's own gold. */
 .light {
   --loader-color: var(--pz-accent-contrast-color);

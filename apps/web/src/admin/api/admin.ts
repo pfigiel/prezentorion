@@ -81,5 +81,8 @@ export const deleteDraw = (drawId: string) =>
 export const runDraw = (drawId: string) =>
   fetchApi(`/admin/draws/${drawId}/run`, { method: 'POST' })
 
+export const finishDraw = (drawId: string) =>
+  fetchApi(`/admin/draws/${drawId}/finish`, { method: 'POST' })
+
 export const setUserPassword = (userId: string, password: string) =>
   fetchApi(`/admin/users/${userId}/password`, { method: 'PUT', body: { password } })

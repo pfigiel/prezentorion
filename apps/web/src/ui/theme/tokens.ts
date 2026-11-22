@@ -26,7 +26,11 @@ export const tokens = {
     glow: { color: 'rgb(255 211 107 / 25%)' },
     border: { color: 'rgb(255 211 107 / 35%)' },
   },
-  danger: { color: '#ff9b8a' },
+  danger: {
+    color: '#ff9b8a',
+    border: { color: 'rgb(255 155 138 / 40%)' },
+    hover: { background: { color: 'rgb(255 155 138 / 10%)' } },
+  },
   /** Night sky behind every screen, from the top of the page down. */
   sky: {
     color: { top: '#07111f', middle: '#0b1a33', bottom: '#133458' },

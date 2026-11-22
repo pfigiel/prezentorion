@@ -92,31 +92,3 @@
   gap: var(--pz-spacing-sm);
   margin-top: auto;
 }
-
-.textButton {
-  @mixin transition;
-
-  display: inline-flex;
-  gap: var(--pz-spacing-sm);
-  align-items: center;
-  align-self: center;
-  min-height: var(--pz-control-height-md);
-  padding: 0 var(--pz-spacing-md);
-  border: 0;
-  background: none;
-  color: var(--pz-text-color-dimmed);
-  font: inherit;
-  font-size: var(--pz-text-font-size-md);
-  font-weight: var(--pz-font-weight-semibold);
-  cursor: pointer;
-  transition-property: color;
-
-  &:hover {
-    color: var(--pz-text-color-default);
-  }
-
-  & svg {
-    width: var(--pz-icon-size-md);
-    height: var(--pz-icon-size-md);
-  }
-}

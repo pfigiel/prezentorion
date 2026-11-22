@@ -1,7 +1,7 @@
 import type { Page } from '@playwright/test'
 import { callAs } from '../support/api'
-import { assignmentsOf, createDraw, reveal } from '../support/scenes'
-import { addressOf, createPerson, drawNameOf } from '../support/service'
+import { addItem, assignmentsOf, buy, createDraw, reveal } from '../support/scenes'
+import { addressOf, createPerson, drawNameOf, warsawDateOf } from '../support/service'
 import { expect, test } from '../support/test'
 
 const panelOf = async (page: Page, drawId: string) => {
@@ -130,6 +130,39 @@ test('a drawn draw cannot be left with fewer than two participants', async ({ se
     page.getByText('Wylosowane losowanie potrzebuje co najmniej dwóch uczestników.'),
   ).toBeVisible()
   await expect(page.getByRole('dialog')).toBeHidden()
+})
+
+test('the admin finishes a draw early, and owners see what was bought', async ({ sessionOf }) => {
+  const admin = await createPerson('Admin', { admin: true })
+  const owner = await createPerson('Ola')
+  const bartek = await createPerson('Bartek')
+  const itemId = await addItem(owner, 'Rower')
+  const draw = await createDraw(admin, [owner, bartek], { drawn: true })
+  await reveal(bartek, draw)
+  await buy(bartek, draw, itemId)
+
+  const page = await sessionOf(admin)
+  await panelOf(page, draw.id)
+  await page.getByRole('button', { name: 'Zakończ losowanie' }).click()
+  await page
+    .getByRole('dialog', { name: 'Zakończyć losowanie teraz?' })
+    .getByRole('button', { name: 'Zakończ' })
+    .click()
+
+  const [year, month, day] = warsawDateOf().split('-')
+  await expect(page.getByText('Zakończone')).toBeVisible()
+  await expect(page.getByText(`${day}.${month}.${year}`)).toBeVisible()
+  await expect(page.getByRole('button', { name: 'Zakończ losowanie' })).toBeHidden()
+
+  const ownerPage = await sessionOf(owner)
+  await ownerPage.goto('/wishlist')
+  await expect(
+    ownerPage.getByRole('article').filter({ hasText: 'Rower' }).getByText('Kupione'),
+  ).toBeVisible()
+
+  const bartekPage = await sessionOf(bartek)
+  const card = bartekPage.locator('[data-surface]').filter({ hasText: draw.name })
+  await expect(card.getByText('Zakończone')).toBeVisible()
 })
 
 test('the admin can look at who buys for whom, after a warning', async ({ sessionOf }) => {
