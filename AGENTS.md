@@ -11,8 +11,17 @@ the workspace is run — commands, git hooks — is in [README.md](README.md).
 
 The only automated tests are the Playwright suite in [`apps/e2e`](apps/e2e), which drives the app
 end to end against the local Supabase stack. Do not add unit tests or another test runner. A change
-to what someone can do in the app updates the spec that covers it, or adds one. A change is verified
-through types, lint, the build, `pnpm e2e` and the running app.
+is verified through types, lint, the build, `pnpm e2e` and the running app.
+
+## End-to-end tests
+
+Every new or changed piece of functionality is covered by an e2e test in the same change that
+introduces it. A new feature adds a spec; a change to how one behaves updates the spec that covers
+it, so the suite describes the app as it is rather than as it was. A bug fix adds the test that
+would have caught it. A change with no effect on what someone can do in the app — a refactor, a
+restyle, tooling — needs none, and the existing suite passing is what shows that.
+
+`pnpm e2e` runs on every commit, so a commit that breaks a spec does not land.
 
 ## Writing code
 
