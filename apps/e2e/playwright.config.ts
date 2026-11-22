@@ -1,10 +1,10 @@
 import { defineConfig } from '@playwright/test'
-import { apiUrl, appUrl, stack } from './support/stack'
+import { apiPort, apiUrl, appPort, appUrl, stack } from './support/stack'
 import { phone } from './support/test'
 
 const repoRoot = new URL('../..', import.meta.url).pathname
 
-// Never reused: a server already on these ports may be `pnpm dev` talking to the hosted project.
+// Never reused: a server already on these ports may be talking to the hosted project.
 const reuseExistingServer = false
 
 export default defineConfig({
@@ -22,12 +22,14 @@ export default defineConfig({
       url: `${apiUrl}/health`,
       reuseExistingServer,
       env: {
+        PORT: String(apiPort),
+        E2E_WEB_ORIGIN: appUrl,
         SUPABASE_URL: stack.supabaseUrl,
         SUPABASE_PUBLISHABLE_KEYS: JSON.stringify({ default: stack.publishableKey }),
       },
     },
     {
-      command: 'pnpm --filter @prezentorion/web dev',
+      command: `pnpm --filter @prezentorion/web dev --port ${appPort}`,
       cwd: repoRoot,
       url: appUrl,
       reuseExistingServer,

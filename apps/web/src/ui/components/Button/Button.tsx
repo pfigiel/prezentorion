@@ -3,7 +3,7 @@ import clsx from 'clsx'
 import type { ReactNode } from 'react'
 import classes from './Button.module.css'
 
-type Variant = 'primary' | 'secondary' | 'light'
+type Variant = 'primary' | 'secondary' | 'danger' | 'light'
 type Size = 'sm' | 'md' | 'lg'
 
 export type Props = {

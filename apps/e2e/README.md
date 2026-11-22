@@ -10,9 +10,9 @@ against a local Supabase stack, never the hosted project.
 2. Install the browser once: `pnpm --filter @prezentorion/e2e exec playwright install chromium`.
 3. `pnpm e2e` from the repository root.
 
-Playwright starts the API on port 3000 and the app on 5173 itself, pointed at the stack. It never
-reuses a server already there, since one may be `pnpm dev` talking to the hosted project, so stop
-`pnpm dev` first. To watch tests run, `pnpm --filter @prezentorion/e2e exec playwright test --ui`.
+Playwright starts the API on port 3100 and the app on 5273 itself, pointed at the stack, so the
+suite runs beside `pnpm dev` on 3000 and 5173. It never reuses a server already on its ports. To
+watch tests run, `pnpm --filter @prezentorion/e2e exec playwright test --ui`.
 
 ## How a test is set up
 

@@ -1,9 +1,16 @@
-import { IconCircleCheck, IconEye, IconRefresh, IconTrash } from '@tabler/icons-react'
+import {
+  IconCircleCheck,
+  IconEye,
+  IconFlag,
+  IconPlayerPlay,
+  IconRefresh,
+  IconTrash,
+} from '@tabler/icons-react'
 import { useMutation, useQueryClient, useSuspenseQuery } from '@tanstack/react-query'
 import { Link, useNavigate } from '@tanstack/react-router'
 import { useTranslation } from 'react-i18next'
 import { accountQuery } from '@/account/api/account-query'
-import { adminDrawQuery, deleteDraw, runDraw } from '@/admin/api/admin'
+import { adminDrawQuery, deleteDraw, finishDraw, runDraw } from '@/admin/api/admin'
 import { minimumParticipants } from '@/admin/constants/draws'
 import { displayNameOf } from '@/admin/utils/display-name-of'
 import { dateLabelOf, moneyLabelOf } from '@/formatting/labels'
@@ -32,6 +39,7 @@ export const DrawPanelScreen = ({ drawId }: Props) => {
   const [redrawOpened, redraw] = useDisclosure(false)
   const [spoilerOpened, spoiler] = useDisclosure(false)
   const [deleteOpened, deleteDialog] = useDisclosure(false)
+  const [finishOpened, finishDialog] = useDisclosure(false)
 
   const run = useMutation({
     mutationFn: () => runDraw(drawId),
@@ -41,6 +49,18 @@ export const DrawPanelScreen = ({ drawId }: Props) => {
         queryClient.invalidateQueries({ queryKey: ['draws'] }),
       ])
       redraw.close()
+    },
+  })
+
+  const finish = useMutation({
+    mutationFn: () => finishDraw(drawId),
+    onSuccess: async () => {
+      await Promise.all([
+        queryClient.invalidateQueries({ queryKey: ['admin'] }),
+        queryClient.invalidateQueries({ queryKey: ['draws'] }),
+        queryClient.invalidateQueries({ queryKey: ['wishlist'] }),
+      ])
+      finishDialog.close()
     },
   })
 
@@ -70,13 +90,6 @@ export const DrawPanelScreen = ({ drawId }: Props) => {
     spoiler.close()
     void navigate({ to: '/admin/draws/$drawId/assignments', params: { drawId } })
   }
-
-  const deleteButton = (
-    <button type="button" className={classes.textButton} onClick={deleteDialog.open}>
-      <IconTrash stroke={1.8} aria-hidden />
-      {t('admin.panel.delete')}
-    </button>
-  )
 
   return (
     <>
@@ -142,37 +155,62 @@ export const DrawPanelScreen = ({ drawId }: Props) => {
         </Card>
       )}
       {run.isError ? <p className={classes.error}>{t('admin.panel.failed')}</p> : null}
-      {isDrawn ? (
-        <div className={classes.actions}>
-          <Button
-            variant="secondary"
-            size="md"
-            icon={<IconRefresh stroke={1.8} aria-hidden />}
-            onClick={redraw.open}
-          >
-            {t('admin.panel.redraw')}
-          </Button>
-          <button type="button" className={classes.textButton} onClick={spoiler.open}>
-            <IconEye stroke={1.8} aria-hidden />
-            {t('admin.panel.showAssignments')}
-          </button>
-          {deleteButton}
-        </div>
-      ) : (
-        <>
-          {draw.participants.length < minimumParticipants ? (
-            <Note>{t('admin.panel.tooFew')}</Note>
-          ) : null}
-          <Button
-            disabled={draw.participants.length < minimumParticipants}
-            loading={run.isPending}
-            onClick={() => run.mutate()}
-          >
-            {t('admin.panel.run')}
-          </Button>
-          {deleteButton}
-        </>
-      )}
+      <div className={classes.actions}>
+        {isDrawn ? (
+          <>
+            {draw.status === 'drawn' ? (
+              <Button
+                variant="secondary"
+                size="md"
+                icon={<IconFlag stroke={1.8} aria-hidden />}
+                onClick={finishDialog.open}
+              >
+                {t('admin.panel.finish')}
+              </Button>
+            ) : null}
+            <Button
+              variant="secondary"
+              size="md"
+              icon={<IconRefresh stroke={1.8} aria-hidden />}
+              onClick={redraw.open}
+            >
+              {t('admin.panel.redraw')}
+            </Button>
+            <Button
+              variant="secondary"
+              size="md"
+              icon={<IconEye stroke={1.8} aria-hidden />}
+              onClick={spoiler.open}
+            >
+              {t('admin.panel.showAssignments')}
+            </Button>
+          </>
+        ) : (
+          <>
+            {draw.participants.length < minimumParticipants ? (
+              <Note>{t('admin.panel.tooFew')}</Note>
+            ) : null}
+            <Button
+              variant="secondary"
+              size="md"
+              icon={<IconPlayerPlay stroke={1.8} aria-hidden />}
+              disabled={draw.participants.length < minimumParticipants}
+              loading={run.isPending}
+              onClick={() => run.mutate()}
+            >
+              {t('admin.panel.run')}
+            </Button>
+          </>
+        )}
+        <Button
+          variant="danger"
+          size="md"
+          icon={<IconTrash stroke={1.8} aria-hidden />}
+          onClick={deleteDialog.open}
+        >
+          {t('admin.panel.delete')}
+        </Button>
+      </div>
       <Modal opened={redrawOpened} title={t('admin.panel.redrawTitle')} onClose={redraw.close}>
         {t('admin.panel.redrawWarning')}
         <Modal.Actions>
@@ -181,6 +219,22 @@ export const DrawPanelScreen = ({ drawId }: Props) => {
           </Button>
           <Button size="md" loading={run.isPending} onClick={() => run.mutate()}>
             {t('admin.panel.redraw')}
+          </Button>
+        </Modal.Actions>
+      </Modal>
+      <Modal
+        opened={finishOpened}
+        title={t('admin.panel.finishTitle')}
+        onClose={finishDialog.close}
+      >
+        {t('admin.panel.finishWarning')}
+        {finish.isError ? <p className={classes.error}>{t('admin.panel.failed')}</p> : null}
+        <Modal.Actions>
+          <Button variant="secondary" size="md" onClick={finishDialog.close}>
+            {t('admin.panel.cancel')}
+          </Button>
+          <Button size="md" loading={finish.isPending} onClick={() => finish.mutate()}>
+            {t('admin.panel.finishConfirm')}
           </Button>
         </Modal.Actions>
       </Modal>

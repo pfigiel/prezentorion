@@ -106,6 +106,15 @@ export const admin = new Hono<UserEnv>()
 
     return context.body(null, 204)
   })
+  .post('/draws/:drawId/finish', drawParams, async (context) => {
+    const { error } = await databaseOf(context).rpc('finish_draw', {
+      draw_id: context.req.valid('param').drawId,
+    })
+
+    if (error) throw httpErrorOf(error)
+
+    return context.body(null, 204)
+  })
   .get('/draws/:drawId/assignments', drawParams, async (context) => {
     const { data, error } = await databaseOf(context)
       .from('assignments')
