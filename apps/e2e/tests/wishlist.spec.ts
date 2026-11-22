@@ -81,7 +81,7 @@ test('a link to an item no longer on the list says so', async ({ sessionOf }) =>
   await expect(page).toHaveURL(/\/wishlist$/)
 })
 
-test('the owner sees a gift as bought only from the event day, and can offer it again', async ({
+test('the owner sees a gift as bought only the day after the event, and can offer it again', async ({
   sessionOf,
 }) => {
   const admin = await createPerson('Admin', { admin: true })
@@ -99,6 +99,11 @@ test('the owner sees a gift as bought only from the event day, and can offer it 
   await expect(watch.getByText('Kupione')).toBeHidden()
 
   await setEventDate(draw.id, warsawDateOf())
+  await page.reload()
+  await expect(watch).toBeVisible()
+  await expect(watch.getByText('Kupione')).toBeHidden()
+
+  await setEventDate(draw.id, warsawDateOf(-1))
   await page.reload()
   await expect(watch.getByText('Kupione')).toBeVisible()
 

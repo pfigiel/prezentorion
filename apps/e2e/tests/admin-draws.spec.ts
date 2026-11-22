@@ -149,7 +149,7 @@ test('the admin finishes a draw early, and owners see what was bought', async ({
     .getByRole('button', { name: 'Zakończ' })
     .click()
 
-  const [year, month, day] = warsawDateOf().split('-')
+  const [year, month, day] = warsawDateOf(-1).split('-')
   await expect(page.getByText('Zakończone')).toBeVisible()
   await expect(page.getByText(`${day}.${month}.${year}`)).toBeVisible()
   await expect(page.getByRole('button', { name: 'Zakończ losowanie' })).toBeHidden()
