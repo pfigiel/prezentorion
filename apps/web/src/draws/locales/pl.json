@@ -54,15 +54,8 @@
     "pending": "Ta osoba jeszcze się nie zalogowała, więc jej lista jest na razie pusta."
   },
   "item": {
-    "price": "ok. {{price}}",
-    "openLink": "otwórz link",
     "purchased": "Kupione",
     "purchasedByMe": "Kupione przeze mnie",
-    "purchasedByOther": "Kupione przez inną osobę",
-    "priority": {
-      "1": "Priorytet: niski",
-      "2": "Priorytet: średni",
-      "3": "Priorytet: wysoki"
-    }
+    "purchasedByOther": "Kupione przez inną osobę"
   }
 }

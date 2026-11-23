@@ -11,6 +11,8 @@ import { TextInput } from '@/ui/components/TextInput'
 import type { Item } from '@/wishlist/api/wishlist'
 import { useSaveItem } from '@/wishlist/hooks/use-save-item'
 import { draftOf, errorsOf, type Draft } from '@/wishlist/utils/draft'
+import { DeleteItemButton } from '../DeleteItemButton'
+import { MarkAvailableButton } from '../MarkAvailableButton'
 import { PhotoField } from '../PhotoField'
 import classes from './ItemForm.module.css'
 
@@ -100,6 +102,8 @@ export const ItemForm = ({ item }: Props) => {
           {t('wishlist.form.errors.save')}
         </p>
       ) : null}
+      {item?.isPurchased ? <MarkAvailableButton item={item} /> : null}
+      {item === undefined ? null : <DeleteItemButton item={item} />}
     </form>
   )
 }

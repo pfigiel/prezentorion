@@ -39,6 +39,7 @@ test('an item is added with a photo, edited and deleted', async ({ sessionOf }) 
   await page.getByLabel('Nazwa').fill('Słuchawki')
   await page.getByLabel('Link').fill('allegro.pl/sluchawki')
   await page.getByLabel('Orientacyjna cena (zł)').fill('120')
+  await page.getByLabel('Notatka').fill('Najlepiej czarne')
   await page.getByRole('radio', { name: 'Priorytet 3 z 3' }).click()
   await page.locator('input[type=file]').setInputFiles(photo)
   await page.getByRole('button', { name: 'Usuń zdjęcie' }).click()
@@ -51,18 +52,22 @@ test('an item is added with a photo, edited and deleted', async ({ sessionOf }) 
 
   const row = page.getByRole('article').filter({ hasText: 'Słuchawki' })
   await expect(row).toContainText('ok. 120 zł')
+  await expect(row).toContainText('Najlepiej czarne')
+  await expect(row.getByRole('link', { name: 'otwórz link' })).toHaveAttribute(
+    'href',
+    'https://allegro.pl/sluchawki',
+  )
   await expect(row.locator('img:not([aria-hidden])')).toBeVisible()
 
-  await row.getByRole('button', { name: 'Więcej opcji' }).click()
-  await page.getByRole('menuitem', { name: 'Edytuj' }).click()
+  await row.getByRole('link', { name: 'Słuchawki' }).click()
   await expect(page.getByLabel('Link')).toHaveValue('https://allegro.pl/sluchawki')
   await page.getByLabel('Nazwa').fill('Słuchawki nauszne')
   await page.getByRole('button', { name: 'Zapisz' }).click()
 
   const renamed = page.getByRole('article').filter({ hasText: 'Słuchawki nauszne' })
   await expect(renamed).toBeVisible()
-  await renamed.getByRole('button', { name: 'Więcej opcji' }).click()
-  await page.getByRole('menuitem', { name: 'Usuń' }).click()
+  await renamed.getByRole('link', { name: 'Słuchawki nauszne' }).click()
+  await page.getByRole('button', { name: 'Usuń pozycję' }).click()
   const dialog = page.getByRole('dialog', { name: 'Usunąć pozycję?' })
   await dialog.getByRole('button', { name: 'Usuń' }).click()
 
@@ -107,7 +112,9 @@ test('the owner sees a gift as bought only the day after the event, and can offe
   await page.reload()
   await expect(watch.getByText('Kupione')).toBeVisible()
 
-  await watch.getByRole('button', { name: 'Więcej opcji' }).click()
-  await page.getByRole('menuitem', { name: 'Oznacz jako wciąż dostępne' }).click()
+  await watch.getByRole('link', { name: 'Zegarek' }).click()
+  await page.getByRole('button', { name: 'Oznacz jako wciąż dostępne' }).click()
+  await expect(page.getByRole('button', { name: 'Oznacz jako wciąż dostępne' })).toBeHidden()
+  await page.goto('/wishlist')
   await expect(watch.getByText('Kupione')).toBeHidden()
 })

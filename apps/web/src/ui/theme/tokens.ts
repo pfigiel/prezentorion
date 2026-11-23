@@ -88,12 +88,14 @@ export const tokens = {
     color: { from: '#1d3f66', to: '#2c5f82' },
     backdrop: { blur: '8px' },
   },
+  item: { photo: { size: '6.5rem' } },
   image: {
     picker: {
       backdrop: { blur: '24px' },
-      control: { background: { color: 'rgb(5 12 24 / 60%)' } },
     },
   },
+  /** Under what sits on top of a photo, so it reads whatever the photo shows. */
+  overlay: { background: { color: 'rgb(5 12 24 / 60%)' } },
   select: { dropdown: { height: '17rem' } },
   stepper: { icon: { size: '2rem' } },
   /** The tile a giver taps to reveal whom they drew, and the card it shrinks into. */

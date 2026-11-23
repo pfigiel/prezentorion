@@ -71,7 +71,7 @@
   height: var(--pz-control-height-md);
   border: 0;
   border-radius: var(--pz-radius-sm);
-  background-color: var(--pz-image-picker-control-background-color);
+  background-color: var(--pz-overlay-background-color);
   color: var(--pz-text-color-default);
   backdrop-filter: blur(var(--pz-image-picker-backdrop-blur));
   transition-property: background-color, color;

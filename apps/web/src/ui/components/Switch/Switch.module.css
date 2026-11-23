@@ -1,6 +1,5 @@
 .body {
   align-items: center;
-  min-height: var(--pz-control-height-sm);
 }
 
 .label {
