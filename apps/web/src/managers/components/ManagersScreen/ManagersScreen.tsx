@@ -1,6 +1,6 @@
 import { IconX } from '@tabler/icons-react'
 import { useMutation, useQueryClient, useSuspenseQuery } from '@tanstack/react-query'
-import { useState, type FormEvent } from 'react'
+import { useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { accountQuery } from '@/account/api/account-query'
 import { Hint } from '@/hints/components/Hint'
@@ -9,6 +9,7 @@ import { ScreenHeader } from '@/shell/components/ScreenHeader'
 import { Avatar } from '@/ui/components/Avatar'
 import { Button } from '@/ui/components/Button'
 import { Card } from '@/ui/components/Card'
+import { Form } from '@/ui/components/Form'
 import { IconButton } from '@/ui/components/IconButton'
 import { SectionLabel } from '@/ui/components/SectionLabel'
 import { TextInput } from '@/ui/components/TextInput'
@@ -44,8 +45,7 @@ export const ManagersScreen = () => {
     return null
   }
 
-  const submit = (event: FormEvent) => {
-    event.preventDefault()
+  const submit = () => {
     const address = email.trim().toLowerCase()
     const found = problemOf(address)
     setProblem(found)
@@ -70,7 +70,7 @@ export const ManagersScreen = () => {
     <>
       <ScreenHeader title={t('managers.settings.title')} back={{ to: '/wishlist' }} />
       <Hint name="managers">{t('managers.settings.note')}</Hint>
-      <form noValidate className={classes.form} onSubmit={submit}>
+      <Form noValidate className={classes.form} onSubmit={submit}>
         <TextInput
           label={t('managers.settings.email')}
           type="email"
@@ -84,7 +84,7 @@ export const ManagersScreen = () => {
         <Button type="submit" size="md" loading={add.isPending}>
           {t('managers.settings.add')}
         </Button>
-      </form>
+      </Form>
       <SectionLabel>{t('managers.settings.list', { count: managers.length })}</SectionLabel>
       {managers.length === 0 ? (
         <p className={classes.empty}>{t('managers.settings.empty')}</p>

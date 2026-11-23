@@ -24,6 +24,10 @@
   &:focus {
     border-color: var(--pz-accent-color-default);
   }
+
+  &[data-error] {
+    border-color: var(--pz-danger-color);
+  }
 }
 
 .error {

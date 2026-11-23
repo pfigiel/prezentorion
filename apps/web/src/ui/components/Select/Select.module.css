@@ -21,7 +21,7 @@
   }
 
   &[data-error] {
-    border-color: var(--pz-danger-border-color);
+    border-color: var(--pz-danger-color);
   }
 }
 

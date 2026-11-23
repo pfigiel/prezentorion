@@ -1,10 +1,11 @@
 import { useMutation } from '@tanstack/react-query'
 import { useNavigate } from '@tanstack/react-router'
-import { useState, type FormEvent } from 'react'
+import { useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { signUp } from '@/auth/api/session'
 import { errorKeyOf } from '@/auth/utils/error-key-of'
 import { Button } from '@/ui/components/Button'
+import { Form } from '@/ui/components/Form'
 import { TextInput } from '@/ui/components/TextInput'
 import classes from './SignUpForm.module.css'
 
@@ -19,13 +20,12 @@ export const SignUpForm = () => {
     onSuccess: () => navigate({ to: '/' }),
   })
 
-  const submit = (event: FormEvent) => {
-    event.preventDefault()
+  const submit = () => {
     register.mutate()
   }
 
   return (
-    <form className={classes.root} onSubmit={submit}>
+    <Form className={classes.root} onSubmit={submit}>
       <TextInput
         label={t('auth.login.name')}
         placeholder={t('auth.login.namePlaceholder')}
@@ -56,6 +56,6 @@ export const SignUpForm = () => {
       <Button type="submit" loading={register.isPending}>
         {t('auth.login.signUp')}
       </Button>
-    </form>
+    </Form>
   )
 }

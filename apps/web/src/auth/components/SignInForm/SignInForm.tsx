@@ -1,10 +1,11 @@
 import { useMutation } from '@tanstack/react-query'
 import { useNavigate } from '@tanstack/react-router'
-import { useState, type FormEvent } from 'react'
+import { useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { signInWithPassword } from '@/auth/api/session'
 import { errorKeyOf } from '@/auth/utils/error-key-of'
 import { Button } from '@/ui/components/Button'
+import { Form } from '@/ui/components/Form'
 import { TextInput } from '@/ui/components/TextInput'
 import classes from './SignInForm.module.css'
 
@@ -18,13 +19,12 @@ export const SignInForm = () => {
     onSuccess: () => navigate({ to: '/' }),
   })
 
-  const submit = (event: FormEvent) => {
-    event.preventDefault()
+  const submit = () => {
     signIn.mutate()
   }
 
   return (
-    <form className={classes.root} onSubmit={submit}>
+    <Form className={classes.root} onSubmit={submit}>
       <TextInput
         label={t('auth.login.email')}
         type="email"
@@ -47,6 +47,6 @@ export const SignInForm = () => {
       <Button type="submit" loading={signIn.isPending}>
         {t('auth.login.signIn')}
       </Button>
-    </form>
+    </Form>
   )
 }

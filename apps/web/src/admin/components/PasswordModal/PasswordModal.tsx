@@ -1,9 +1,10 @@
 import { useMutation } from '@tanstack/react-query'
-import { useState, type FormEvent } from 'react'
+import { useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { setUserPassword, type User } from '@/admin/api/admin'
 import { displayNameOf } from '@/admin/utils/display-name-of'
 import { Button } from '@/ui/components/Button'
+import { Form } from '@/ui/components/Form'
 import { Modal } from '@/ui/components/Modal'
 import { TextInput } from '@/ui/components/TextInput'
 import classes from './PasswordModal.module.css'
@@ -33,8 +34,7 @@ export const PasswordModal = ({ opened, user, onClose }: Props) => {
     onClose()
   }
 
-  const save = (event: FormEvent) => {
-    event.preventDefault()
+  const save = () => {
     setShowError(true)
 
     if (user?.id && password.length >= minimumLength) {
@@ -63,7 +63,7 @@ export const PasswordModal = ({ opened, user, onClose }: Props) => {
           </Button>
         </>
       ) : (
-        <form className={classes.form} onSubmit={save}>
+        <Form className={classes.form} onSubmit={save}>
           {t('admin.users.passwordHint')}
           <TextInput
             label={t('admin.users.passwordLabel')}
@@ -80,7 +80,7 @@ export const PasswordModal = ({ opened, user, onClose }: Props) => {
               {t('admin.users.save')}
             </Button>
           </Modal.Actions>
-        </form>
+        </Form>
       )}
     </Modal>
   )

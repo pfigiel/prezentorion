@@ -30,6 +30,25 @@ test('the form explains what is wrong before anything is saved', async ({ sessio
   await expect(page).toHaveURL(/\/wishlist\/new$/)
 })
 
+test('a field left invalid is outlined and scrolled into view', async ({ sessionOf }) => {
+  const anna = await createPerson('Anna')
+
+  const page = await sessionOf(anna)
+  await page.setViewportSize({ width: 390, height: 480 })
+  await page.goto('/wishlist/new')
+  await page.getByLabel('Nazwa').fill('Kubek')
+  const price = page.getByLabel('Orientacyjna cena (zł)')
+  await price.fill('12,50')
+  const save = page.getByRole('button', { name: 'Zapisz' })
+  await save.scrollIntoViewIfNeeded()
+  await expect(price).not.toBeInViewport()
+  await save.click()
+
+  await expect(price).toBeInViewport()
+  await expect(price).toHaveAttribute('aria-invalid', 'true')
+  await expect(price).toHaveCSS('border-color', 'rgb(255, 155, 138)')
+})
+
 test('an item is added with a photo, edited and deleted', async ({ sessionOf }) => {
   const anna = await createPerson('Anna')
 

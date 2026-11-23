@@ -1,9 +1,10 @@
 import { IconX } from '@tabler/icons-react'
 import { useNavigate } from '@tanstack/react-router'
-import { useState, type FormEvent } from 'react'
+import { useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { ScreenHeader } from '@/shell/components/ScreenHeader'
 import { Button } from '@/ui/components/Button'
+import { Form } from '@/ui/components/Form'
 import { IconButton } from '@/ui/components/IconButton'
 import { PriorityInput } from '@/ui/components/PriorityInput'
 import { RadioCards } from '@/ui/components/RadioCards'
@@ -39,15 +40,14 @@ export const ItemForm = ({ item }: Props) => {
 
   const close = () => void navigate({ to: '/wishlist' })
 
-  const submit = (event: FormEvent) => {
-    event.preventDefault()
+  const submit = () => {
     setSubmitted(true)
 
     if (Object.keys(errorsOf(draft)).length === 0) save.mutate(draft)
   }
 
   return (
-    <form className={classes.root} onSubmit={submit}>
+    <Form className={classes.root} onSubmit={submit}>
       <ScreenHeader
         title={item === undefined ? t('wishlist.form.newTitle') : t('wishlist.form.editTitle')}
         action={
@@ -117,6 +117,6 @@ export const ItemForm = ({ item }: Props) => {
       ) : null}
       {item?.isPurchased ? <MarkAvailableButton item={item} /> : null}
       {item === undefined ? null : <DeleteItemButton item={item} />}
-    </form>
+    </Form>
   )
 }

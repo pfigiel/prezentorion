@@ -1,6 +1,6 @@
 import { useMutation, useQueryClient, useSuspenseQuery } from '@tanstack/react-query'
 import { useNavigate } from '@tanstack/react-router'
-import { useState, type FormEvent } from 'react'
+import { useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { accountQuery } from '@/account/api/account-query'
 import {
@@ -16,6 +16,7 @@ import { pairKeyOf } from '@/admin/utils/pair-key-of'
 import { completePairsOf, pairRowOf } from '@/admin/utils/pair-row-of'
 import type { Mode } from '@/draws/api/draws'
 import { Button } from '@/ui/components/Button'
+import { Form } from '@/ui/components/Form'
 import { Modal } from '@/ui/components/Modal'
 import { RadioCards } from '@/ui/components/RadioCards'
 import { Stepper } from '@/ui/components/Stepper'
@@ -153,9 +154,7 @@ export const DrawForm = ({ draw }: Props) => {
     )
   }
 
-  const submit = (event: FormEvent) => {
-    event.preventDefault()
-
+  const submit = () => {
     if (step < lastStep) {
       goTo(step + 1)
 
@@ -172,7 +171,7 @@ export const DrawForm = ({ draw }: Props) => {
   }
 
   return (
-    <form className={classes.root} onSubmit={submit}>
+    <Form className={classes.root} onSubmit={submit}>
       <Stepper
         steps={steps.map((stage) => t(`admin.form.steps.${stage}`))}
         active={step}
@@ -269,6 +268,6 @@ export const DrawForm = ({ draw }: Props) => {
           </Button>
         </Modal.Actions>
       </Modal>
-    </form>
+    </Form>
   )
 }
