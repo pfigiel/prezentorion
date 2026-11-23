@@ -14,13 +14,14 @@ const person = 'id, email, profile:profiles(name, picture_url)'
 
 const argsOf = (
   id: string | null,
-  { name, eventDate, budget, emails }: z.infer<typeof drawSchema>,
+  { name, eventDate, budget, emails, excludedPairs }: z.infer<typeof drawSchema>,
 ) => ({
   id,
   name,
   event_date: eventDate,
   budget,
   emails,
+  excluded_pairs: excludedPairs,
 })
 
 export const admin = new Hono<UserEnv>()
@@ -58,7 +59,13 @@ export const admin = new Hono<UserEnv>()
   .get('/draws/:drawId', drawParams, async (context) => {
     const { data, error } = await databaseOf(context)
       .from('draws')
-      .select(`id, name, event_date, budget, drawn_at, participants(${person}, revealed_at)`)
+      .select(
+        `id, name, event_date, budget, drawn_at, participants(${person}, revealed_at),
+        excluded_pairs(
+          first:participants!excluded_pairs_first_id_fkey(email),
+          second:participants!excluded_pairs_second_id_fkey(email)
+        )`,
+      )
       .eq('id', context.req.valid('param').drawId)
       .maybeSingle()
 
@@ -76,6 +83,7 @@ export const admin = new Hono<UserEnv>()
         ...personOf(participant),
         hasRevealed: participant.revealed_at !== null,
       })),
+      excludedPairs: data.excluded_pairs.map(({ first, second }) => [first.email, second.email]),
     })
   })
   .put('/draws/:drawId', drawParams, jsonBody(drawSchema), async (context) => {

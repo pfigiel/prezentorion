@@ -95,6 +95,7 @@ export const tokens = {
     },
   },
   select: { dropdown: { height: '17rem' } },
+  stepper: { icon: { size: '2rem' } },
   /** The tile a giver taps to reveal whom they drew, and the card it shrinks into. */
   reveal: { tile: { height: '28rem' }, mark: { size: '6rem' } },
   logo: { size: { md: '1.5rem', lg: '9.25rem' } },

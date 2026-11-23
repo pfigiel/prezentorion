@@ -20,13 +20,18 @@ export type AdminDraw = {
   status: Status
   drawnAt: string | null
   participants: (Person & { hasRevealed: boolean })[]
+  excludedPairs: ExcludedPair[]
 }
+
+/** Two participants' addresses; neither of them draws the other. */
+export type ExcludedPair = [string, string]
 
 export type DrawFields = {
   name: string
   eventDate: string
   budget: number | null
   emails: string[]
+  excludedPairs: ExcludedPair[]
 }
 
 export type Assignment = {

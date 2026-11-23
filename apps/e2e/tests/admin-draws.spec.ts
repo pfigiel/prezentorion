@@ -12,6 +12,8 @@ const panelOf = async (page: Page, drawId: string) => {
 const rowOf = (page: Page, name: string) =>
   page.getByRole('main').getByRole('listitem').filter({ hasText: name })
 
+const stepOf = (page: Page, name: string) => page.getByRole('button', { name })
+
 test('a new draw is checked, saved as a draft and cannot run alone', async ({ sessionOf }) => {
   const admin = await createPerson('Admin', { admin: true })
   const name = drawNameOf('Nowe')
@@ -22,10 +24,15 @@ test('a new draw is checked, saved as a draft and cannot run alone', async ({ se
   await page.getByLabel('Nazwa').fill(name)
   await page.getByLabel('Data imprezy').fill('2026-12-20')
   await page.getByLabel('Budżet (zł)').fill('100,50')
-  await page.getByRole('button', { name: 'Zapisz' }).click()
+  await page.getByRole('button', { name: 'Dalej' }).click()
   await expect(page.getByText('Wpisz kwotę w pełnych złotych.')).toBeVisible()
+  await expect(page.getByLabel('Dodaj uczestnika')).toBeHidden()
 
   await page.getByLabel('Budżet (zł)').fill('100')
+  await page.getByRole('button', { name: 'Dalej' }).click()
+  await expect(page.getByLabel('Dodaj uczestnika')).toBeVisible()
+  await page.getByRole('button', { name: 'Dalej' }).click()
+  await expect(page.getByText('Opcjonalnie: wskaż pary')).toBeVisible()
   await page.getByRole('button', { name: 'Zapisz' }).click()
 
   await expect(page.getByRole('heading', { name })).toBeVisible()
@@ -43,6 +50,7 @@ test('participants are found, invited by address, and drawn', async ({ sessionOf
 
   const page = await sessionOf(admin)
   await page.goto(`/admin/draws/${draw.id}/edit`)
+  await stepOf(page, 'Uczestnicy').click()
   const search = page.getByLabel('Dodaj uczestnika')
   await search.fill(anna.email)
   await expect(page.getByRole('option', { name: anna.name })).toBeVisible()
@@ -52,6 +60,7 @@ test('participants are found, invited by address, and drawn', async ({ sessionOf
   await search.press('Enter')
   await search.press('Escape')
   await expect(rowOf(page, invited)).toContainText('Oczekuje na pierwsze logowanie')
+  await page.getByRole('button', { name: 'Dalej' }).click()
   await page.getByRole('button', { name: 'Zapisz' }).click()
 
   await expect(rowOf(page, anna.name)).toBeVisible()
@@ -94,15 +103,18 @@ test('editing details keeps the draw, changing who takes part draws it again', a
   const page = await sessionOf(admin)
   await page.goto(`/admin/draws/${draw.id}/edit`)
   await page.getByLabel('Nazwa').fill(drawNameOf('Wigilia rodzinna'))
+  await stepOf(page, 'Wykluczenia').click()
   await page.getByRole('button', { name: 'Zapisz' }).click()
   await expect(page.getByRole('link', { name: 'Edytuj' })).toBeVisible()
   expect(await assignmentsOf(admin, draw)).toEqual(before)
 
   await page.getByRole('link', { name: 'Edytuj' }).click()
+  await stepOf(page, 'Uczestnicy').click()
   await page.getByRole('button', { name: `Usuń ${bartek.name}` }).click()
   await page.getByLabel('Dodaj uczestnika').fill(celina.email)
   await page.getByLabel('Dodaj uczestnika').press('Enter')
   await page.getByLabel('Dodaj uczestnika').press('Escape')
+  await page.getByRole('button', { name: 'Dalej' }).click()
   await page.getByRole('button', { name: 'Zapisz' }).click()
 
   const dialog = page.getByRole('dialog', { name: 'Losowanie od nowa' })
@@ -123,8 +135,9 @@ test('a drawn draw cannot be left with fewer than two participants', async ({ se
 
   const page = await sessionOf(admin)
   await page.goto(`/admin/draws/${draw.id}/edit`)
+  await stepOf(page, 'Uczestnicy').click()
   await page.getByRole('button', { name: `Usuń ${anna.name}` }).click()
-  await page.getByRole('button', { name: 'Zapisz' }).click()
+  await page.getByRole('button', { name: 'Dalej' }).click()
 
   await expect(
     page.getByText('Wylosowane losowanie potrzebuje co najmniej dwóch uczestników.'),

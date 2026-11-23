@@ -29,6 +29,12 @@ type AssignmentRow = {
   draw_id: string
 }
 
+type ExcludedPairRow = {
+  first_id: string
+  second_id: string
+  draw_id: string
+}
+
 type WishItemRow = {
   id: string
   owner_id: string
@@ -70,6 +76,16 @@ export type Database = {
         Update: never
         Relationships: []
       }
+      excluded_pairs: {
+        Row: ExcludedPairRow
+        Insert: never
+        Update: never
+        Relationships: [
+          Relationship<'excluded_pairs_first_id_fkey', 'first_id', 'participants'>,
+          Relationship<'excluded_pairs_second_id_fkey', 'second_id', 'participants'>,
+          Relationship<'excluded_pairs_draw_id_fkey', 'draw_id', 'draws'>,
+        ]
+      }
       participants: {
         Row: ParticipantRow
         Insert: never
@@ -107,6 +123,7 @@ export type Database = {
           event_date: string
           budget: number | null
           emails: string[]
+          excluded_pairs: [string, string][]
         }
         Returns: string
       }

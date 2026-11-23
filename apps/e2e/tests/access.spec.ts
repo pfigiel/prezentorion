@@ -18,7 +18,13 @@ test('someone who is not the admin is turned away from every admin action', asyn
   const admin = await createPerson('Admin', { admin: true })
   const anna = await createPerson('Anna')
   const draw = await createDraw(admin, [admin, anna])
-  const fields = { name: 'x', eventDate: '2026-12-24', budget: null, emails: [] }
+  const fields = {
+    name: 'x',
+    eventDate: '2026-12-24',
+    budget: null,
+    emails: [],
+    excludedPairs: [],
+  }
 
   expect((await callAs(anna, 'GET', '/admin/draws')).status).toBe(403)
   expect((await callAs(anna, 'GET', '/admin/users')).status).toBe(403)

@@ -1,0 +1,67 @@
+.root {
+  --stepper-icon-size: var(--pz-stepper-icon-size);
+  --stepper-outline-thickness: 1px;
+  --stepper-outline-color: var(--pz-border-strong-color);
+  --stepper-color: var(--pz-accent-color-default);
+  --stepper-icon-color: var(--pz-accent-contrast-color);
+  --stepper-fz: var(--pz-text-font-size-sm);
+}
+
+.steps {
+  align-items: flex-start;
+}
+
+.step {
+  flex-direction: column;
+  gap: var(--pz-spacing-xs);
+  align-items: center;
+  min-width: 0;
+}
+
+.icon {
+  @mixin transition;
+
+  background-color: transparent;
+  color: var(--pz-text-color-dimmed);
+  transition-property: background-color, border-color, color;
+
+  &[data-progress] {
+    color: var(--pz-accent-color-default);
+  }
+
+  &[data-completed] {
+    border-color: var(--pz-accent-color-default);
+    background-color: var(--pz-accent-color-default);
+  }
+}
+
+.completedIcon {
+  color: var(--pz-accent-contrast-color);
+}
+
+.body {
+  align-items: center;
+  margin: 0;
+}
+
+.label {
+  @mixin transition;
+
+  color: var(--pz-text-color-dimmed);
+  font-weight: var(--pz-font-weight-semibold);
+  white-space: nowrap;
+  transition-property: color;
+
+  [data-progress] & {
+    color: var(--pz-text-color-default);
+  }
+}
+
+.separator {
+  @mixin transition;
+
+  height: 1px;
+  margin-top: calc(var(--pz-stepper-icon-size) / 2);
+  margin-inline: var(--pz-spacing-sm);
+  transition-property: background-color;
+}

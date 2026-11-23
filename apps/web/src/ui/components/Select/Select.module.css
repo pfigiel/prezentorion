@@ -1,0 +1,64 @@
+.input {
+  @mixin transition;
+
+  height: var(--pz-control-height-md);
+  padding-inline-start: var(--pz-spacing-md);
+  overflow: hidden;
+  border-color: var(--pz-border-color);
+  border-radius: var(--pz-radius-md);
+  background-color: var(--pz-control-background-color);
+  color: var(--pz-text-color-default);
+  font-size: var(--pz-text-font-size-md);
+  text-overflow: ellipsis;
+  transition-property: border-color;
+
+  &::placeholder {
+    color: var(--pz-text-color-placeholder);
+  }
+
+  &:focus {
+    border-color: var(--pz-accent-color-default);
+  }
+
+  &[data-error] {
+    border-color: var(--pz-danger-border-color);
+  }
+}
+
+.section {
+  color: var(--pz-text-color-dimmed);
+}
+
+.error {
+  margin-top: var(--pz-spacing-xs);
+  color: var(--pz-danger-color);
+  font-size: var(--pz-text-font-size-sm);
+}
+
+.dropdown {
+  @mixin surface raised;
+
+  border-color: var(--pz-border-color);
+  border-radius: var(--pz-radius-md);
+}
+
+.empty {
+  padding: var(--pz-spacing-sm) var(--pz-spacing-md);
+  color: var(--pz-text-color-dimmed);
+  font-size: var(--pz-text-font-size-sm);
+}
+
+.option {
+  @mixin transition;
+
+  padding: var(--pz-spacing-sm) var(--pz-spacing-md);
+  color: var(--pz-text-color-default);
+  font-size: var(--pz-text-font-size-md);
+  transition-property: background-color;
+
+  &[data-combobox-selected],
+  &[data-checked],
+  &:hover {
+    background-color: var(--pz-control-hover-background-color);
+  }
+}

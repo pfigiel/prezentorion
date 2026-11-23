@@ -19,6 +19,11 @@
   },
   "form": {
     "newTitle": "Nowe losowanie",
+    "steps": {
+      "details": "Szczegóły",
+      "participants": "Uczestnicy",
+      "excludedPairs": "Wykluczenia"
+    },
     "editTitle": "Edytuj losowanie",
     "name": "Nazwa",
     "namePlaceholder": "np. Rodzina 2026",
@@ -33,13 +38,28 @@
     "remove": "Usuń {{name}}",
     "you": "{{name}} (Ty)",
     "pending": "Oczekuje na pierwsze logowanie",
+    "excludedPairsHint": "Opcjonalnie: wskaż pary, które nie mogą wylosować siebie nawzajem – np. małżonków.",
+    "pairNumber": "Para {{number}}",
+    "pairPerson": "Para {{number}} – {{side}}",
+    "sides": {
+      "first": "pierwsza osoba",
+      "second": "druga osoba"
+    },
+    "pickPerson": "Wybierz osobę",
+    "nobodyToPick": "Nie ma kogo wybrać.",
+    "addPair": "Dodaj parę",
+    "removePair": "Usuń parę {{number}}",
+    "incompletePair": "Wybierz drugą osobę albo usuń parę.",
+    "impossibleDraw": "Przy tych parach nie da się nikogo wylosować – ktoś zostałby bez osoby do obdarowania. Usuń którąś z par.",
+    "back": "Wstecz",
+    "next": "Dalej",
     "save": "Zapisz",
     "required": "To pole jest wymagane.",
     "invalidBudget": "Wpisz kwotę w pełnych złotych.",
     "tooFewToRedraw": "Wylosowane losowanie potrzebuje co najmniej dwóch uczestników.",
     "saveFailed": "Nie udało się zapisać losowania. Spróbuj ponownie.",
     "redrawTitle": "Losowanie od nowa",
-    "redrawWarning": "Zmiana uczestników wymaga ponownego losowania. Wszyscy odkryją wynik od nowa, a oznaczenia zakupów zostaną wyczyszczone.",
+    "redrawWarning": "Zmiana uczestników lub wykluczonych par wymaga ponownego losowania. Wszyscy odkryją wynik od nowa, a oznaczenia zakupów zostaną wyczyszczone.",
     "cancel": "Anuluj",
     "saveAndRedraw": "Zapisz i losuj ponownie"
   },

@@ -5,6 +5,8 @@ type DrawOptions = {
   label?: string
   eventDate?: string
   budget?: number | null
+  /** Pairs of participants who must not draw each other. */
+  excludedPairs?: [Person, Person][]
   /** Run the draw straight away. */
   drawn?: boolean
 }
@@ -19,6 +21,7 @@ export const createDraw = async (
     label = 'Wigilia',
     eventDate = warsawDateOf(30),
     budget = 150,
+    excludedPairs = [],
     drawn = false,
   }: DrawOptions = {},
 ): Promise<Draw> => {
@@ -31,6 +34,7 @@ export const createDraw = async (
     eventDate,
     budget,
     emails,
+    excludedPairs: excludedPairs.map((pair) => pair.map(({ email }) => email)),
   })
 
   if (drawn) await apiAs(admin, 'POST', `/admin/draws/${id}/run`)
