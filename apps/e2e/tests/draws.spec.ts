@@ -21,7 +21,7 @@ test('a draw not yet run shows its details and who takes part', async ({ session
 test('revealing shows the recipient and their wish list', async ({ sessionOf }) => {
   const admin = await createPerson('Admin', { admin: true })
   const anna = await createPerson('Anna')
-  await addItem(admin, 'Zegarek', { url: 'https://example.com/zegarek', price: 300, priority: 3 })
+  await addItem(admin, 'Zegarek', { url: 'https://example.com/zegarek', price: 120, priority: 3 })
   const draw = await createDraw(admin, [admin, anna], { drawn: true })
 
   const page = await sessionOf(anna)
@@ -31,7 +31,7 @@ test('revealing shows the recipient and their wish list', async ({ sessionOf }) 
   await expect(page.getByText('Kupujesz prezent dla')).toBeVisible()
   await expect(page.getByText(admin.name, { exact: true })).toBeVisible()
   const watch = page.getByRole('article').filter({ hasText: 'Zegarek' })
-  await expect(watch).toContainText('ok. 300 zł')
+  await expect(watch).toContainText('ok. 120 zł')
   await expect(watch.getByRole('link', { name: 'otwórz link' })).toHaveAttribute(
     'href',
     'https://example.com/zegarek',
@@ -43,6 +43,24 @@ test('revealing shows the recipient and their wish list', async ({ sessionOf }) 
   ).toBeVisible()
   await page.goto(`/draws/${draw.id}`)
   await expect(page.getByRole('button', { name: /Dotknij, aby odkryć/ })).toBeHidden()
+})
+
+test('a giver sees only what fits the budget', async ({ sessionOf }) => {
+  const admin = await createPerson('Admin', { admin: true })
+  const anna = await createPerson('Anna')
+  await addItem(admin, 'Rower', { price: 151 })
+  await addItem(admin, 'Zegarek', { price: 150 })
+  await addItem(admin, 'Skarpetki')
+  const draw = await createDraw(admin, [admin, anna], { budget: 150, drawn: true })
+  await reveal(anna, draw)
+
+  const page = await sessionOf(anna)
+  await page.goto(`/draws/${draw.id}`)
+
+  await expect(page.getByText('Lista prezentów · 2')).toBeVisible()
+  await expect(page.getByRole('article').filter({ hasText: 'Zegarek' })).toBeVisible()
+  await expect(page.getByRole('article').filter({ hasText: 'Skarpetki' })).toBeVisible()
+  await expect(page.getByRole('article').filter({ hasText: 'Rower' })).toBeHidden()
 })
 
 test('a recipient who has not signed in yet is shown by address', async ({ sessionOf }) => {
