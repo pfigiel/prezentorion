@@ -54,5 +54,10 @@ jobs:
       # Run from the registry at a pinned version: as a dependency the CLI brings advisories into
       # the audit that nothing we ship contains.
       - run: pnpm dlx vercel@65.16.0 pull --yes --environment=production
+      # The token uploads source maps to Sentry; the build deletes them before anything is served.
       - run: pnpm dlx vercel@65.16.0 build --prod
+        env:
+          SENTRY_AUTH_TOKEN: ${{ secrets.SENTRY_AUTH_TOKEN }}
+          SENTRY_ORG: pawe-figiel
+          SENTRY_PROJECT: prezentorion-frontend
       - run: pnpm dlx vercel@65.16.0 deploy --prebuilt --prod

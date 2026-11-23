@@ -39,6 +39,10 @@ export const signOut = async () => {
   if (error) throw error
 }
 
+export const onUserChanged = (callback: (userId: string | null) => void) => {
+  supabase.auth.onAuthStateChange((_event, session) => callback(session?.user.id ?? null))
+}
+
 export const onSignedOut = (callback: () => void) => {
   supabase.auth.onAuthStateChange((event) => {
     if (event === 'SIGNED_OUT') callback()

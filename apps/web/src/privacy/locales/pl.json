@@ -26,7 +26,7 @@
       },
       "storage": {
         "title": "Gdzie są przechowywane",
-        "body": "Dane przechowują dostawcy infrastruktury aplikacji: Supabase (baza danych, logowanie i zdjęcia) oraz Vercel (udostępnianie aplikacji). Aplikacja nie używa śledzących plików cookie – w przeglądarce zapisuje tylko Twoją sesję logowania."
+        "body": "Dane przechowują dostawcy infrastruktury aplikacji: Supabase (baza danych, logowanie i zdjęcia) oraz Vercel (udostępnianie aplikacji). Gdy w aplikacji wystąpi błąd, jego opis trafia do Sentry razem z identyfikatorem Twojego konta i zapisem ostatnich chwil na ekranie, w którym cała treść i wszystko, co wpisujesz, są zamaskowane – tylko po to, żebyśmy mogli błąd naprawić. Aplikacja nie używa śledzących plików cookie – w przeglądarce zapisuje tylko Twoją sesję logowania."
       },
       "deletion": {
         "title": "Usunięcie danych",

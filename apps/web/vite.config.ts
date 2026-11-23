@@ -1,10 +1,14 @@
 import { fileURLToPath } from 'node:url'
+import { sentryVitePlugin } from '@sentry/vite-plugin'
 import { tanstackRouter } from '@tanstack/router-plugin/vite'
 import react from '@vitejs/plugin-react'
 import { defineConfig } from 'vite'
 import { VitePWA } from 'vite-plugin-pwa'
 
 const night = '#0b1a33'
+
+// Only the deploy job has a Sentry token; every other build ships without source maps.
+const uploadsSourceMaps = Boolean(process.env.SENTRY_AUTH_TOKEN)
 
 export default defineConfig({
   // tanstackRouter generates src/routing/routeTree.gen.ts from src/routes and has to see
@@ -39,7 +43,15 @@ export default defineConfig({
         globIgnores: ['og-image.png', 'splash/**'],
       },
     }),
+    sentryVitePlugin({
+      disable: !uploadsSourceMaps,
+      telemetry: false,
+      sourcemaps: { filesToDeleteAfterUpload: ['dist/**/*.map'] },
+    }),
   ],
+  build: {
+    sourcemap: uploadsSourceMaps ? 'hidden' : false,
+  },
   resolve: {
     alias: {
       '@': fileURLToPath(new URL('src', import.meta.url)),
