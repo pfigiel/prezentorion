@@ -12,6 +12,7 @@ export const WishlistItem = ({ item }: Props) => {
 
   return (
     <ItemCard item={item} editable>
+      {item.repeatable ? <Badge tone="neutral">{t('wishlist.list.repeatable')}</Badge> : null}
       {item.isPurchased ? <Badge>{t('wishlist.list.purchased')}</Badge> : null}
     </ItemCard>
   )

@@ -3,13 +3,13 @@ import { useMutation, useQueryClient, useSuspenseQuery } from '@tanstack/react-q
 import { useState, type FormEvent } from 'react'
 import { useTranslation } from 'react-i18next'
 import { accountQuery } from '@/account/api/account-query'
+import { Hint } from '@/hints/components/Hint'
 import { addManager, managersQuery, removeManager } from '@/managers/api/managers'
 import { ScreenHeader } from '@/shell/components/ScreenHeader'
 import { Avatar } from '@/ui/components/Avatar'
 import { Button } from '@/ui/components/Button'
 import { Card } from '@/ui/components/Card'
 import { IconButton } from '@/ui/components/IconButton'
-import { Note } from '@/ui/components/Note'
 import { SectionLabel } from '@/ui/components/SectionLabel'
 import { TextInput } from '@/ui/components/TextInput'
 import classes from './ManagersScreen.module.css'
@@ -69,7 +69,7 @@ export const ManagersScreen = () => {
   return (
     <>
       <ScreenHeader title={t('managers.settings.title')} back={{ to: '/wishlist' }} />
-      <Note>{t('managers.settings.note')}</Note>
+      <Hint name="managers">{t('managers.settings.note')}</Hint>
       <form noValidate className={classes.form} onSubmit={submit}>
         <TextInput
           label={t('managers.settings.email')}

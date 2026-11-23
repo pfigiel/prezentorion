@@ -82,10 +82,11 @@ export const managers = new Hono<UserEnv>()
     return context.json({
       owner: { id: owner.id, name: owner.name, pictureUrl: owner.picture_url },
       draws: draws.data.map(({ event_date, ...draw }) => ({ ...draw, eventDate: event_date })),
-      items: items.data.map(({ photo_path, purchased_by, ...item }) => ({
+      items: items.data.map(({ photo_path, purchased_by, other_buyers, ...item }) => ({
         ...item,
         photoPath: photo_path,
         purchasedBy: purchased_by,
+        otherBuyers: other_buyers,
       })),
     })
   })

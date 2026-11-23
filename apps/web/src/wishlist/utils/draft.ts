@@ -11,6 +11,7 @@ export type Draft = {
   note: string
   priority: number
   photo: Photo
+  repeatable: boolean
 }
 
 export type DraftErrors = {
@@ -31,6 +32,7 @@ export const draftOf = (item: Item | undefined): Draft => ({
     item?.photoPath === null || item?.photoPath === undefined
       ? { kind: 'none' }
       : { kind: 'stored', path: item.photoPath },
+  repeatable: item?.repeatable ?? false,
 })
 
 /** A link typed without its scheme, as people paste them from the address bar, gets https. */
@@ -74,4 +76,5 @@ export const fieldsOf = (draft: Draft, photoPath: string | null): ItemFields => 
   note: textOf(draft.note),
   priority: draft.priority,
   photoPath,
+  repeatable: draft.repeatable,
 })

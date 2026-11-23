@@ -22,6 +22,7 @@ test('someone who is not the admin is turned away from every admin action', asyn
     name: 'x',
     eventDate: '2026-12-24',
     budget: null,
+    mode: 'secret',
     emails: [],
     excludedPairs: [],
   }

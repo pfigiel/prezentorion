@@ -1,0 +1,6 @@
+.meta {
+  display: flex;
+  gap: var(--pz-spacing-sm);
+  align-items: center;
+  justify-content: space-between;
+}

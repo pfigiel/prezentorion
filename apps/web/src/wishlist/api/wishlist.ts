@@ -8,6 +8,8 @@ export type ItemFields = {
   note: string | null
   priority: number
   photoPath: string | null
+  /** Several people may buy it: someone else buying it leaves it on offer. */
+  repeatable: boolean
 }
 
 /** Bought shows only from the event day of the draw it was bought under, never before. */

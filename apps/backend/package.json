@@ -5,6 +5,9 @@
   "type": "module",
   "scripts": {
     "dev": "tsx watch --env-file=.env.development src/main.ts",
+    "dev:local": "tsx watch --env-file=.env.stack src/main.ts",
+    "stack:start": "node scripts/start-stack.ts",
+    "stack:seed": "node scripts/seed-stack.ts",
     "build": "esbuild src/app.ts --bundle --format=esm --platform=neutral --minify --outfile=supabase/functions/api/app.js",
     "config:push": "supabase config push",
     "db:push": "supabase db push",

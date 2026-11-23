@@ -37,8 +37,9 @@ reaches and no route holds a key that bypasses it.
 What row level security cannot express on its own runs in `security definer` functions, each
 checking its caller first:
 
-- `save_draw` and `run_draw` — the admin's edits; changing who takes part in a drawn draw draws it
-  again, and every draw wipes the reveals and purchases the last one left.
+- `save_draw` and `run_draw` — the admin's edits; changing who takes part in a drawn secret draw
+  draws it again, and every draw wipes the reveals and purchases the last one left. An open draw
+  draws nobody: running it only starts it, and its mode is fixed from then on.
 - `delete_draw` — the admin removes a draw in any state, with its participants, assignments and
   purchases; wish lists stay, since they belong to people rather than draws.
 - `reveal_recipient` — a giver sees their assignment only after revealing it, and the reveal is kept
@@ -46,18 +47,29 @@ checking its caller first:
 - `recipient_wishlist`, `set_purchased`, `my_wishlist`, `mark_available` — purchases are never read
   directly: a giver sees who bought what on their recipient's list, while the list's owner sees an
   item as bought only from the event day of the draw it was bought under.
+- `participant_wishlist`, `set_open_purchase` — the same for an open draw, where once it has started
+  every participant is a giver to every other.
+- A repeatable item takes a purchase from each buyer rather than one in all: it stays on offer
+  however many have bought it, the lists count its other buyers, and what was bought for an event
+  already past no longer counts against it.
 - `admin_users`, `set_user_password` — there is no e-mail reset; the admin sets a temporary
   password.
 
 The schema lives in `supabase/migrations`, and `src/database/schema.ts` mirrors it for the types a
 query returns: a migration that changes a table or a function changes that file with it. Wish list
 photos sit in the private `wish-photos` bucket, under a folder named after their owner's id; the web
-app uploads and reads them directly, and a giver reads the folder of whoever they revealed.
+app uploads and reads them directly, and a giver reads the folder of whoever they revealed, or of
+anyone in an open draw they take part in once it has started.
 
 `GET /api/health` calls `ping()` as anon. A scheduled workflow calls it every few days, so the free
 project sees activity between seasons and is not paused.
 
 ## Supabase
+
+`pnpm dev` runs the API against the hosted project, reading `.env.development`; `pnpm dev:local`
+runs it against the local stack, reading `.env.stack`. `scripts/start-stack.ts` starts that stack
+and migrates it, for `pnpm dev:local` and `pnpm e2e` alike, and `scripts/seed-stack.ts` gives it the
+accounts `pnpm dev:local` signs in with, each with a wish list to browse.
 
 The Supabase CLI is a dev dependency; run it with `pnpm exec supabase` from this folder.
 

@@ -4,7 +4,7 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "e2e": "playwright install chromium && node support/prepare-stack.ts && playwright test",
+    "e2e": "playwright install chromium && pnpm --filter @prezentorion/backend stack:start && playwright test",
     "lint": "eslint .",
     "type:check": "tsc --noEmit"
   },

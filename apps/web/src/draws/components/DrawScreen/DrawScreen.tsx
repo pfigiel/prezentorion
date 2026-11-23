@@ -3,6 +3,7 @@ import { useEffect, useState } from 'react'
 import { drawQuery } from '@/draws/api/draws'
 import { prefersReducedMotion } from '@/draws/utils/prefers-reduced-motion'
 import { ScreenHeader } from '@/shell/components/ScreenHeader'
+import { OpenDraw } from '../OpenDraw'
 import { RevealedDraw } from '../RevealedDraw'
 import { RevealTile } from '../RevealTile'
 import { StatusBadge } from '../StatusBadge'
@@ -37,6 +38,7 @@ export const DrawScreen = ({ drawId }: Props) => {
 
   const content = () => {
     if (draw.status === 'waiting') return <WaitingDraw draw={draw} />
+    if (draw.mode === 'open') return <OpenDraw draw={draw} />
 
     if (draw.recipient === null || stage === 'showing') {
       return <RevealTile draw={draw} recipient={draw.recipient} onRevealed={startReveal} />
@@ -54,7 +56,7 @@ export const DrawScreen = ({ drawId }: Props) => {
         back={{ to: '/' }}
         action={
           draw.status === 'finished' && draw.recipient !== null ? (
-            <StatusBadge status={draw.status} />
+            <StatusBadge mode={draw.mode} status={draw.status} />
           ) : undefined
         }
       />

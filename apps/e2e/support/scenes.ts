@@ -5,9 +5,10 @@ type DrawOptions = {
   label?: string
   eventDate?: string
   budget?: number | null
+  mode?: 'secret' | 'open'
   /** Pairs of participants who must not draw each other. */
   excludedPairs?: [Person, Person][]
-  /** Run the draw straight away. */
+  /** Run the draw straight away, or for an open draw, start it. */
   drawn?: boolean
 }
 
@@ -21,6 +22,7 @@ export const createDraw = async (
     label = 'Wigilia',
     eventDate = warsawDateOf(30),
     budget = 150,
+    mode = 'secret',
     excludedPairs = [],
     drawn = false,
   }: DrawOptions = {},
@@ -33,6 +35,7 @@ export const createDraw = async (
     name,
     eventDate,
     budget,
+    mode,
     emails,
     excludedPairs: excludedPairs.map((pair) => pair.map(({ email }) => email)),
   })
@@ -45,12 +48,17 @@ export const createDraw = async (
 export const reveal = (giver: Person, draw: Draw) =>
   apiAs(giver, 'POST', `/draws/${draw.id}/reveal`)
 
-type ItemOptions = { url?: string | null; price?: number | null; priority?: number }
+type ItemOptions = {
+  url?: string | null
+  price?: number | null
+  priority?: number
+  repeatable?: boolean
+}
 
 export const addItem = async (
   owner: Person,
   name: string,
-  { url = null, price = null, priority = 2 }: ItemOptions = {},
+  { url = null, price = null, priority = 2, repeatable = false }: ItemOptions = {},
 ) => {
   const { id } = await apiAs<{ id: string }>(owner, 'POST', '/wishlist', {
     name,
@@ -59,6 +67,7 @@ export const addItem = async (
     note: null,
     priority,
     photoPath: null,
+    repeatable,
   })
 
   return id
@@ -66,6 +75,22 @@ export const addItem = async (
 
 export const buy = (giver: Person, draw: Draw, itemId: string) =>
   apiAs(giver, 'PUT', `/draws/${draw.id}/purchases/${itemId}`, { purchased: true })
+
+type Participant = { id: string; email: string }
+
+/** A participant's id in a draw, which the paths of an open draw name them by. */
+export const participantOf = async (viewer: Person, draw: Draw, person: Person) => {
+  const { participants } = await apiAs<{ participants: Participant[] }>(
+    viewer,
+    'GET',
+    `/draws/${draw.id}`,
+  )
+  const participant = participants.find(({ email }) => email === person.email)
+
+  if (participant === undefined) throw new Error(`${person.email} takes no part in ${draw.name}`)
+
+  return participant.id
+}
 
 type Assignment = { giver: { email: string }; recipient: { email: string } }
 

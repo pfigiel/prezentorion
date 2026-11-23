@@ -18,7 +18,7 @@
     }
   },
   "lists": {
-    "title": "Listy pod Twoją opieką",
+    "title": "Zarządzane listy",
     "caption": "Zarządzasz listą"
   },
   "list": {
@@ -31,7 +31,12 @@
   "item": {
     "purchased": "Kupione",
     "purchasedByMe": "Kupione przeze mnie",
-    "purchasedByOther": "Kupione przez inną osobę"
+    "purchasedByOther": "Kupione przez inną osobę",
+    "repeatable": "Może to kupić kilka osób",
+    "otherBuyers_one": "Kupione już przez {{count}} inną osobę",
+    "otherBuyers_few": "Kupione już przez {{count}} inne osoby",
+    "otherBuyers_many": "Kupione już przez {{count}} innych osób",
+    "otherBuyers_other": "Kupione już przez {{count}} innych osób"
   },
   "purchase": {
     "title": "Oznaczyć jako kupione?",

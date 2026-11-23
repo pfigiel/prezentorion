@@ -5,9 +5,16 @@
     "wishlist": "Moja lista prezentów"
   },
   "status": {
-    "waiting": "Czeka na losowanie",
-    "drawn": "Wylosowane",
-    "finished": "Zakończone"
+    "secret": {
+      "waiting": "Czeka na losowanie",
+      "drawn": "Wylosowane",
+      "finished": "Zakończone"
+    },
+    "open": {
+      "waiting": "Czeka na start",
+      "drawn": "Trwa",
+      "finished": "Zakończone"
+    }
   },
   "meta": {
     "eventDate": "Data imprezy",
@@ -18,6 +25,7 @@
     "details": "Szczegóły",
     "reveal": "Odkryj wylosowaną osobę",
     "buyingFor": "Kupujesz prezent dla",
+    "browse": "Zobacz listy prezentów",
     "open": "Otwórz"
   },
   "empty": {
@@ -26,19 +34,26 @@
   },
   "wishlistSummary": {
     "count": "Pozycje na liście: {{count}}",
-    "hint": "Widzi ją osoba, która Cię wylosowała",
+    "hint": "Widzą ją osoby, które kupują Ci prezent",
     "edit": "Edytuj ›",
     "emptyTitle": "Twoja lista jest pusta",
-    "emptyBody": "Dodaj pomysły na prezenty – zobaczy je osoba, która Cię wylosuje.",
+    "emptyBody": "Dodaj pomysły na prezenty – zobaczą je osoby, które będą Ci kupować prezent.",
     "add": "Dodaj pierwszą pozycję"
   },
   "draw": {
     "status": "Status",
-    "waitingNote": "Gdy administrator uruchomi losowanie, tutaj odkryjesz osobę, której kupujesz prezent.",
+    "waitingNote": {
+      "secret": "Gdy administrator uruchomi losowanie, tutaj odkryjesz osobę, której kupujesz prezent.",
+      "open": "Gdy administrator rozpocznie losowanie, zobaczysz tu listy prezentów wszystkich uczestników."
+    },
     "participants": "Uczestnicy · {{count}}",
     "you": "Ty",
     "notFound": "Nie znaleziono tego losowania albo nie bierzesz w nim udziału.",
     "backHome": "Wróć do losowań"
+  },
+  "open": {
+    "note": "W tym losowaniu każdy może obdarować każdego. Wybierz osobę, żeby zobaczyć jej listę i oznaczyć, co kupujesz.",
+    "budget": "Budżet na prezent: {{budget}}"
   },
   "reveal": {
     "tap": "Dotknij, aby odkryć",
@@ -56,6 +71,11 @@
   "item": {
     "purchased": "Kupione",
     "purchasedByMe": "Kupione przeze mnie",
-    "purchasedByOther": "Kupione przez inną osobę"
+    "purchasedByOther": "Kupione przez inną osobę",
+    "repeatable": "Może to kupić kilka osób",
+    "otherBuyers_one": "Kupione już przez {{count}} inną osobę",
+    "otherBuyers_few": "Kupione już przez {{count}} inne osoby",
+    "otherBuyers_many": "Kupione już przez {{count}} innych osób",
+    "otherBuyers_other": "Kupione już przez {{count}} innych osób"
   }
 }

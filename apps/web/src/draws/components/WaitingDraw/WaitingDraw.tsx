@@ -22,7 +22,7 @@ export const WaitingDraw = ({ draw }: Props) => {
           <div className={classes.row}>
             <dt>{t('draws.draw.status')}</dt>
             <dd>
-              <StatusBadge status={draw.status} />
+              <StatusBadge mode={draw.mode} status={draw.status} />
             </dd>
           </div>
           <div className={classes.row}>
@@ -37,7 +37,7 @@ export const WaitingDraw = ({ draw }: Props) => {
           )}
         </dl>
       </Card>
-      <Note>{t('draws.draw.waitingNote')}</Note>
+      <Note>{t(`draws.draw.waitingNote.${draw.mode}`)}</Note>
       <SectionLabel>
         {t('draws.draw.participants', { count: draw.participants.length })}
       </SectionLabel>

@@ -4,10 +4,10 @@ import { useNavigate } from '@tanstack/react-router'
 import { useTranslation } from 'react-i18next'
 import { assignmentsQuery } from '@/admin/api/admin'
 import { displayNameOf } from '@/admin/utils/display-name-of'
+import { Hint } from '@/hints/components/Hint'
 import { ScreenHeader } from '@/shell/components/ScreenHeader'
 import { Button } from '@/ui/components/Button'
 import { Card } from '@/ui/components/Card'
-import { Note } from '@/ui/components/Note'
 import classes from './AssignmentsScreen.module.css'
 
 type Props = {
@@ -25,7 +25,7 @@ export const AssignmentsScreen = ({ drawId }: Props) => {
         title={t('admin.assignments.title')}
         back={{ to: '/admin/draws/$drawId', params: { drawId } }}
       />
-      <Note>{t('admin.assignments.note')}</Note>
+      <Hint name="assignments">{t('admin.assignments.note')}</Hint>
       <Card quiet className={classes.list}>
         <ul className={classes.rows}>
           {assignments.map(({ giver, recipient }) => (

@@ -5,7 +5,7 @@ import { DrawScreen } from '@/draws/components/DrawScreen'
 
 const DrawRoute = () => <DrawScreen drawId={Route.useParams().drawId} />
 
-export const Route = createFileRoute('/_authenticated/draws/$drawId')({
+export const Route = createFileRoute('/_authenticated/draws/$drawId/')({
   loader: async ({ context, params }) => {
     const draw = await context.queryClient.ensureQueryData(drawQuery(params.drawId))
 

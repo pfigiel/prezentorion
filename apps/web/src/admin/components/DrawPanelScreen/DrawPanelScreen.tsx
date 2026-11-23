@@ -78,6 +78,7 @@ export const DrawPanelScreen = ({ drawId }: Props) => {
   })
 
   const isDrawn = draw.status !== 'waiting'
+  const tracksReveals = isDrawn && draw.mode === 'secret'
   const revealedCount = draw.participants.filter(({ hasRevealed }) => hasRevealed).length
   const dateAndBudget = [
     dateLabelOf(draw.eventDate),
@@ -105,13 +106,17 @@ export const DrawPanelScreen = ({ drawId }: Props) => {
       <Card>
         <div className={classes.fact}>
           <span className={classes.factLabel}>{t('admin.panel.status')}</span>
-          <StatusBadge status={draw.status} drawnAt={draw.drawnAt} />
+          <StatusBadge mode={draw.mode} status={draw.status} drawnAt={draw.drawnAt} />
+        </div>
+        <div className={classes.fact}>
+          <span className={classes.factLabel}>{t('admin.panel.mode')}</span>
+          <span>{t(`admin.modes.${draw.mode}.label`)}</span>
         </div>
         <div className={classes.fact}>
           <span className={classes.factLabel}>{t('admin.panel.dateAndBudget')}</span>
           <span>{dateAndBudget}</span>
         </div>
-        {isDrawn ? (
+        {tracksReveals ? (
           <>
             <div className={classes.fact}>
               <span className={classes.factLabel}>{t('admin.panel.revealedResults')}</span>
@@ -141,7 +146,7 @@ export const DrawPanelScreen = ({ drawId }: Props) => {
                     ? t('admin.form.you', { name: displayNameOf(participant) })
                     : displayNameOf(participant)}
                 </span>
-                {!isDrawn ? null : participant.hasRevealed ? (
+                {!tracksReveals ? null : participant.hasRevealed ? (
                   <span className={classes.revealed}>
                     <IconCircleCheck stroke={1.8} aria-hidden />
                     {t('admin.panel.revealed')}
@@ -168,22 +173,26 @@ export const DrawPanelScreen = ({ drawId }: Props) => {
                 {t('admin.panel.finish')}
               </Button>
             ) : null}
-            <Button
-              variant="secondary"
-              size="md"
-              icon={<IconRefresh stroke={1.8} aria-hidden />}
-              onClick={redraw.open}
-            >
-              {t('admin.panel.redraw')}
-            </Button>
-            <Button
-              variant="secondary"
-              size="md"
-              icon={<IconEye stroke={1.8} aria-hidden />}
-              onClick={spoiler.open}
-            >
-              {t('admin.panel.showAssignments')}
-            </Button>
+            {draw.mode === 'secret' ? (
+              <>
+                <Button
+                  variant="secondary"
+                  size="md"
+                  icon={<IconRefresh stroke={1.8} aria-hidden />}
+                  onClick={redraw.open}
+                >
+                  {t('admin.panel.redraw')}
+                </Button>
+                <Button
+                  variant="secondary"
+                  size="md"
+                  icon={<IconEye stroke={1.8} aria-hidden />}
+                  onClick={spoiler.open}
+                >
+                  {t('admin.panel.showAssignments')}
+                </Button>
+              </>
+            ) : null}
           </>
         ) : (
           <>
@@ -198,7 +207,7 @@ export const DrawPanelScreen = ({ drawId }: Props) => {
               loading={run.isPending}
               onClick={() => run.mutate()}
             >
-              {t('admin.panel.run')}
+              {t(`admin.panel.run.${draw.mode}`)}
             </Button>
           </>
         )}

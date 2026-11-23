@@ -17,7 +17,7 @@ export const AdminDrawCard = ({ draw }: Props) => {
     dateLabelOf(draw.eventDate),
     draw.budget === null ? null : moneyLabelOf(draw.budget),
     t('admin.draws.participants', { count: draw.participantCount }),
-    draw.status === 'waiting'
+    draw.status === 'waiting' || draw.mode === 'open'
       ? null
       : t('admin.draws.revealed', { revealed: draw.revealedCount, total: draw.participantCount }),
   ].filter((detail) => detail !== null)
@@ -27,7 +27,7 @@ export const AdminDrawCard = ({ draw }: Props) => {
       <Card quiet={draw.status === 'finished'} className={classes.card}>
         <span className={classes.heading}>
           <span className={classes.name}>{draw.name}</span>
-          <StatusBadge status={draw.status} />
+          <StatusBadge mode={draw.mode} status={draw.status} />
         </span>
         <span className={classes.details}>{details.join(' · ')}</span>
       </Card>

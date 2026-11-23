@@ -16,4 +16,6 @@ export const itemSchema = z.object({
   note: optionalText(1000),
   priority: z.number().int().min(1).max(3),
   photoPath: z.string().max(300).nullable(),
+  // An app installed before repeatable items existed leaves it out; such an item is bought once.
+  repeatable: z.boolean().default(false),
 })

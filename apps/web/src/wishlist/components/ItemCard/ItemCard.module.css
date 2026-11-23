@@ -13,6 +13,19 @@
   }
 }
 
+.media,
+.name,
+.details {
+  @mixin transition;
+
+  transition-property: opacity, filter;
+
+  .taken & {
+    opacity: 0.45;
+    filter: grayscale(1);
+  }
+}
+
 .media {
   position: relative;
   display: flex;

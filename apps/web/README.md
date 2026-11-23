@@ -35,7 +35,8 @@ under `src/routes/_authenticated` needs a session and sends a visitor without on
 
 `.env.development` and `.env.production` name the Supabase project and the API. Both are committed:
 the publishable key is meant to be public. `pnpm dev` signs in against the hosted project, so there
-is no local Auth to run.
+is no local Auth to run. `pnpm dev:local` runs Vite in the `stack` mode instead, whose `.env.stack`
+names the local Supabase stack.
 
 ## PWA
 

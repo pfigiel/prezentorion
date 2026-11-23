@@ -53,3 +53,14 @@ export const restAs = async (person: Person, path: string, init: RequestInit = {
       ...init.headers,
     },
   })
+
+/** Storage directly as this person, as the web app reaches wish list photos. */
+export const storageAs = async (person: Person, path: string, init: RequestInit = {}) =>
+  fetch(`${stack.supabaseUrl}/storage/v1/object/${path}`, {
+    ...init,
+    headers: {
+      apikey: stack.publishableKey,
+      Authorization: `Bearer ${await tokenOf(person)}`,
+      ...init.headers,
+    },
+  })

@@ -6,6 +6,7 @@ import { ScreenHeader } from '@/shell/components/ScreenHeader'
 import { Button } from '@/ui/components/Button'
 import { IconButton } from '@/ui/components/IconButton'
 import { PriorityInput } from '@/ui/components/PriorityInput'
+import { RadioCards } from '@/ui/components/RadioCards'
 import { Textarea } from '@/ui/components/Textarea'
 import { TextInput } from '@/ui/components/TextInput'
 import type { Item } from '@/wishlist/api/wishlist'
@@ -20,6 +21,8 @@ type Props = {
   /** The item being edited; none for a new one. */
   item?: Item
 }
+
+const kinds = ['unique', 'repeatable'] as const
 
 export const ItemForm = ({ item }: Props) => {
   const { t } = useTranslation()
@@ -87,6 +90,16 @@ export const ItemForm = ({ item }: Props) => {
         value={draft.priority}
         levelLabelOf={(level) => t('wishlist.form.priorityLevel', { level })}
         onChange={change('priority')}
+      />
+      <RadioCards
+        label={t('wishlist.form.kind.label')}
+        value={draft.repeatable ? 'repeatable' : 'unique'}
+        options={kinds.map((kind) => ({
+          value: kind,
+          label: t(`wishlist.form.kind.${kind}.label`),
+          description: t(`wishlist.form.kind.${kind}.description`),
+        }))}
+        onChange={(kind) => change('repeatable')(kind === 'repeatable')}
       />
       <PhotoField photo={draft.photo} onChange={change('photo')} />
       <div className={classes.actions}>

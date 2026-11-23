@@ -3,7 +3,6 @@ import { useSuspenseQuery } from '@tanstack/react-query'
 import { useTranslation } from 'react-i18next'
 import { accountQuery } from '@/account/api/account-query'
 import { drawsQuery } from '@/draws/api/draws'
-import { ManagedLists } from '@/managers/components/ManagedLists'
 import { Card } from '@/ui/components/Card'
 import { Heading } from '@/ui/components/Heading'
 import { SectionLabel } from '@/ui/components/SectionLabel'
@@ -33,7 +32,6 @@ export const StartScreen = () => {
       )}
       <SectionLabel>{t('draws.start.wishlist')}</SectionLabel>
       <WishlistSummary />
-      <ManagedLists />
     </>
   )
 }

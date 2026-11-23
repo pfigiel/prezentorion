@@ -1,7 +1,8 @@
 # Prezentorion
 
 A Secret Santa app for family and friends: an administrator runs the draws, everyone reveals whom
-they buy for and keeps a gift wish list. An installable, mobile-first PWA.
+they buy for and keeps a gift wish list. A draw can also be open, drawing nobody: once it starts,
+everyone browses everyone else's list. An installable, mobile-first PWA.
 
 One pnpm workspace run through turbo:
 
@@ -30,7 +31,20 @@ Coding standards are in [AGENTS.md](AGENTS.md), which every coding agent loads a
 1. `nvm use`
 2. `pnpm install` — also installs the git hooks below.
 3. `pnpm dev` — serves the app at http://localhost:5173 and the API at http://localhost:3000
-   (`GET /api/health`).
+   (`GET /api/health`), both on the **hosted** project, with its real people and draws.
+
+### Trying a change before it goes live
+
+`pnpm dev:local` serves the same app and API on the same ports, but against a local Supabase stack
+in Docker — the one `pnpm e2e` runs on — so nothing touches the hosted project. It starts the stack
+if needed, applies the migrations not yet applied to it, and creates four accounts to sign in with
+by e-mail and password `password123`: `admin@local.test`, the admin, and `anna@`, `bartek@` and
+`celina@local.test`. Each starts with a few items on their wish list, added only while the list is
+empty, so your own edits survive the next run. The admin also manages Anna's list. Google sign-in
+does not work locally.
+
+The stack keeps its data between runs; `pnpm exec supabase db reset` in `apps/backend` empties it,
+and `pnpm dev:local` then creates the accounts again. `pnpm exec supabase stop` there stops it.
 
 ## Commands
 
@@ -39,6 +53,7 @@ Every task runs through turbo, so it covers each package that defines it.
 | Command           | What it does                                   |
 | ----------------- | ---------------------------------------------- |
 | `pnpm dev`        | Runs each package's dev server                 |
+| `pnpm dev:local`  | The same, against the local Supabase stack     |
 | `pnpm build`      | Builds every package                           |
 | `pnpm preview`    | Builds, then serves the build                  |
 | `pnpm e2e`        | End-to-end tests, against the local stack      |

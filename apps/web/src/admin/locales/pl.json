@@ -6,10 +6,28 @@
     "users": "Użytkownicy"
   },
   "status": {
-    "waiting": "Szkic",
-    "drawn": "Wylosowane",
-    "drawnOn": "Wylosowane {{date}}",
-    "finished": "Zakończone"
+    "secret": {
+      "waiting": "Szkic",
+      "drawn": "Wylosowane",
+      "drawnOn": "Wylosowane {{date}}",
+      "finished": "Zakończone"
+    },
+    "open": {
+      "waiting": "Szkic",
+      "drawn": "Rozpoczęte",
+      "drawnOn": "Rozpoczęte {{date}}",
+      "finished": "Zakończone"
+    }
+  },
+  "modes": {
+    "secret": {
+      "label": "Każdy losuje jedną osobę",
+      "description": "Każdy uczestnik w tajemnicy losuje jedną osobę i kupuje prezent tylko dla niej."
+    },
+    "open": {
+      "label": "Każdy obdarowuje każdego",
+      "description": "Nikt nikogo nie losuje. Po rozpoczęciu każdy widzi listy prezentów wszystkich uczestników i może kupić prezent dowolnej osobie."
+    }
   },
   "draws": {
     "new": "Nowe losowanie",
@@ -29,6 +47,8 @@
     "namePlaceholder": "np. Rodzina 2026",
     "eventDate": "Data imprezy",
     "budget": "Budżet (zł)",
+    "mode": "Tryb",
+    "modeLocked": "Trybu nie można zmienić po rozpoczęciu losowania.",
     "participants": "Uczestnicy · {{count}}",
     "addParticipant": "Dodaj uczestnika",
     "searchPlaceholder": "Szukaj po imieniu lub e-mailu",
@@ -56,7 +76,10 @@
     "save": "Zapisz",
     "required": "To pole jest wymagane.",
     "invalidBudget": "Wpisz kwotę w pełnych złotych.",
-    "tooFewToRedraw": "Wylosowane losowanie potrzebuje co najmniej dwóch uczestników.",
+    "tooFewWhenDrawn": {
+      "secret": "Wylosowane losowanie potrzebuje co najmniej dwóch uczestników.",
+      "open": "Rozpoczęte losowanie potrzebuje co najmniej dwóch uczestników."
+    },
     "saveFailed": "Nie udało się zapisać losowania. Spróbuj ponownie.",
     "redrawTitle": "Losowanie od nowa",
     "redrawWarning": "Zmiana uczestników lub wykluczonych par wymaga ponownego losowania. Wszyscy odkryją wynik od nowa, a oznaczenia zakupów zostaną wyczyszczone.",
@@ -66,12 +89,16 @@
   "panel": {
     "edit": "Edytuj",
     "status": "Status",
+    "mode": "Tryb",
     "dateAndBudget": "Data imprezy · budżet",
     "revealedResults": "Odkryte wyniki",
     "participants": "Uczestnicy · {{count}}",
     "revealed": "Odkryte",
     "notRevealed": "Nieodkryte",
-    "run": "Uruchom losowanie",
+    "run": {
+      "secret": "Uruchom losowanie",
+      "open": "Rozpocznij losowanie"
+    },
     "tooFew": "Do losowania potrzeba co najmniej dwóch uczestników.",
     "delete": "Usuń losowanie",
     "deleteTitle": "Usunąć losowanie?",

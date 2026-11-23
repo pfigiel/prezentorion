@@ -10,6 +10,10 @@
       "cache": false,
       "persistent": true
     },
+    "dev:local": {
+      "cache": false,
+      "persistent": true
+    },
     // Starts its own servers against the local Supabase stack, and its result depends on that stack.
     "e2e": {
       "cache": false

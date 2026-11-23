@@ -32,6 +32,20 @@ export const ManagedItem = ({ list, item }: Props) => {
     ? purchase.variables.purchased
     : item.purchasedBy === 'me'
 
+  const isTaken = item.purchasedBy === 'other' && !item.repeatable
+
+  const repeatableNote = () => {
+    if (!item.repeatable) return null
+
+    return (
+      <p className={classes.purchasedByOther}>
+        {item.otherBuyers === 0
+          ? t('managers.item.repeatable')
+          : t('managers.item.otherBuyers', { count: item.otherBuyers })}
+      </p>
+    )
+  }
+
   const toggle = (purchased: boolean) => {
     if (purchased) {
       purchase.reset()
@@ -42,15 +56,20 @@ export const ManagedItem = ({ list, item }: Props) => {
   }
 
   return (
-    <ItemCard item={item}>
-      {item.purchasedBy === 'other' ? (
+    <ItemCard item={item} taken={isTaken}>
+      {isTaken ? (
         <p className={classes.purchasedByOther}>{t('managers.item.purchasedByOther')}</p>
       ) : (
-        <Switch
-          label={isPurchasedByMe ? t('managers.item.purchasedByMe') : t('managers.item.purchased')}
-          checked={isPurchasedByMe}
-          onChange={toggle}
-        />
+        <>
+          {repeatableNote()}
+          <Switch
+            label={
+              isPurchasedByMe ? t('managers.item.purchasedByMe') : t('managers.item.purchased')
+            }
+            checked={isPurchasedByMe}
+            onChange={toggle}
+          />
+        </>
       )}
       <PurchaseModal
         opened={purchaseOpened}

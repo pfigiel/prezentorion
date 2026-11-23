@@ -3,6 +3,9 @@ import { fetchApi } from '@/auth/api/fetch-api'
 
 export type Status = 'waiting' | 'drawn' | 'finished'
 
+/** Secret: each participant draws one other to buy for. Open: anyone buys for anyone else. */
+export type Mode = 'secret' | 'open'
+
 /** Someone known only by their address until they first sign in, when name and picture appear. */
 export type Person = {
   id: string
@@ -16,6 +19,7 @@ export type DrawSummary = {
   name: string
   eventDate: string
   budget: number | null
+  mode: Mode
   status: Status
   participantCount: number
   recipient: Person | null
@@ -26,6 +30,7 @@ export type Draw = {
   name: string
   eventDate: string
   budget: number | null
+  mode: Mode
   status: Status
   participants: (Person & { isMe: boolean })[]
   recipient: Person | null
@@ -39,7 +44,10 @@ export type RecipientItem = {
   note: string | null
   priority: number
   photoPath: string | null
+  repeatable: boolean
   purchasedBy: 'me' | 'other' | null
+  /** How many people other than the viewer have bought it. */
+  otherBuyers: number
 }
 
 export const drawsQuery = queryOptions({
@@ -59,8 +67,26 @@ export const recipientWishlistQuery = (drawId: string) =>
     queryFn: () => fetchApi<RecipientItem[]>(`/draws/${drawId}/wishlist`),
   })
 
+export const participantWishlistQuery = (drawId: string, participantId: string) =>
+  queryOptions({
+    queryKey: ['draws', drawId, 'participants', participantId, 'wishlist'],
+    queryFn: () =>
+      fetchApi<RecipientItem[]>(`/draws/${drawId}/participants/${participantId}/wishlist`),
+  })
+
 export const revealRecipient = (drawId: string) =>
   fetchApi(`/draws/${drawId}/reveal`, { method: 'POST' })
 
 export const setPurchased = (drawId: string, itemId: string, purchased: boolean) =>
   fetchApi(`/draws/${drawId}/purchases/${itemId}`, { method: 'PUT', body: { purchased } })
+
+export const setOpenPurchase = (
+  drawId: string,
+  participantId: string,
+  itemId: string,
+  purchased: boolean,
+) =>
+  fetchApi(`/draws/${drawId}/participants/${participantId}/purchases/${itemId}`, {
+    method: 'PUT',
+    body: { purchased },
+  })

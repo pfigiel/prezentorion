@@ -1,6 +1,7 @@
 {
   "menu": {
     "label": "Menu użytkownika",
+    "restoreHints": "Przywróć ukryte wskazówki",
     "signOut": "Wyloguj"
   }
 }

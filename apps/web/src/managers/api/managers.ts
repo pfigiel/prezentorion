@@ -28,7 +28,10 @@ export type ManagedItem = {
   note: string | null
   priority: number
   photoPath: string | null
+  repeatable: boolean
   purchasedBy: 'me' | 'other' | null
+  /** How many people other than the viewer have bought it. */
+  otherBuyers: number
 }
 
 export type ManagedList = {

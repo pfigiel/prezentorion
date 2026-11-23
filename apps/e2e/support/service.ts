@@ -76,7 +76,7 @@ export const setEventDate = async (drawId: string, eventDate: string) => {
   if (error) throw error
 }
 
-/** Removes what earlier runs left: their accounts, admin entries and draws. */
+/** Removes what the suite creates: its accounts, admin entries and draws. */
 export const removeLeftovers = async () => {
   const { data: draws, error } = await service().from('draws').select('id, name')
 

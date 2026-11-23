@@ -6,11 +6,14 @@ export type ProfileRow = {
   created_at: string
 }
 
+type DrawMode = 'secret' | 'open'
+
 export type DrawRow = {
   id: string
   name: string
   event_date: string
   budget: number | null
+  mode: DrawMode
   drawn_at: string | null
   created_at: string
 }
@@ -44,6 +47,7 @@ type WishItemRow = {
   note: string | null
   priority: number
   photo_path: string | null
+  repeatable: boolean
   created_at: string
 }
 
@@ -56,8 +60,15 @@ type ListManagerRow = {
 
 type WishItemFields = Pick<
   WishItemRow,
-  'name' | 'url' | 'price' | 'note' | 'priority' | 'photo_path'
+  'name' | 'url' | 'price' | 'note' | 'priority' | 'photo_path' | 'repeatable'
 >
+
+/** An item as a giver or a manager sees it: whether they bought it, and how many others did. */
+type GiftRow = WishItemFields & {
+  id: string
+  purchased_by: 'me' | 'other' | null
+  other_buyers: number
+}
 
 type Relationship<Name extends string, Column extends string, Target extends string> = {
   foreignKeyName: Name
@@ -137,6 +148,7 @@ export type Database = {
           budget: number | null
           emails: string[]
           excluded_pairs: [string, string][]
+          mode: DrawMode
         }
         Returns: string
       }
@@ -151,10 +163,18 @@ export type Database = {
       mark_available: { Args: { item_id: string }; Returns: undefined }
       recipient_wishlist: {
         Args: { draw_id: string }
-        Returns: (WishItemFields & { id: string; purchased_by: 'me' | 'other' | null })[]
+        Returns: GiftRow[]
       }
       set_purchased: {
         Args: { draw_id: string; item_id: string; purchased: boolean }
+        Returns: undefined
+      }
+      participant_wishlist: {
+        Args: { draw_id: string; participant_id: string }
+        Returns: GiftRow[]
+      }
+      set_open_purchase: {
+        Args: { draw_id: string; participant_id: string; item_id: string; purchased: boolean }
         Returns: undefined
       }
       managed_lists: {
@@ -167,7 +187,7 @@ export type Database = {
       }
       managed_wishlist: {
         Args: { owner_id: string }
-        Returns: (WishItemFields & { id: string; purchased_by: 'me' | 'other' | null })[]
+        Returns: GiftRow[]
       }
       set_managed_purchase: {
         Args: { item_id: string; draw_id: string | null; purchased: boolean }

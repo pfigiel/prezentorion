@@ -46,7 +46,7 @@ export const RevealTile = ({ draw, recipient, onRevealed }: Props) => {
           budget={draw.budget}
           participantCount={draw.participants.length}
         />
-        <StatusBadge status={draw.status} />
+        <StatusBadge mode={draw.mode} status={draw.status} />
       </div>
       {recipient === null ? (
         <button

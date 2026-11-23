@@ -1,12 +1,13 @@
 import { queryOptions } from '@tanstack/react-query'
 import { fetchApi } from '@/auth/api/fetch-api'
-import type { Person, Status } from '@/draws/api/draws'
+import type { Mode, Person, Status } from '@/draws/api/draws'
 
 export type AdminDrawSummary = {
   id: string
   name: string
   eventDate: string
   budget: number | null
+  mode: Mode
   status: Status
   participantCount: number
   revealedCount: number
@@ -17,6 +18,7 @@ export type AdminDraw = {
   name: string
   eventDate: string
   budget: number | null
+  mode: Mode
   status: Status
   drawnAt: string | null
   participants: (Person & { hasRevealed: boolean })[]
@@ -30,6 +32,7 @@ export type DrawFields = {
   name: string
   eventDate: string
   budget: number | null
+  mode: Mode
   emails: string[]
   excludedPairs: ExcludedPair[]
 }

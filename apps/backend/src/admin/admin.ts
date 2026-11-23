@@ -14,7 +14,7 @@ const person = 'id, email, profile:profiles(name, picture_url)'
 
 const argsOf = (
   id: string | null,
-  { name, eventDate, budget, emails, excludedPairs }: z.infer<typeof drawSchema>,
+  { name, eventDate, budget, mode, emails, excludedPairs }: z.infer<typeof drawSchema>,
 ) => ({
   id,
   name,
@@ -22,6 +22,7 @@ const argsOf = (
   budget,
   emails,
   excluded_pairs: excludedPairs,
+  mode,
 })
 
 export const admin = new Hono<UserEnv>()
@@ -29,7 +30,7 @@ export const admin = new Hono<UserEnv>()
   .get('/draws', async (context) => {
     const { data, error } = await databaseOf(context)
       .from('draws')
-      .select('id, name, event_date, budget, drawn_at, participants(revealed_at)')
+      .select('id, name, event_date, budget, mode, drawn_at, participants(revealed_at)')
       .order('event_date', { ascending: false })
 
     if (error) throw httpErrorOf(error)
@@ -40,6 +41,7 @@ export const admin = new Hono<UserEnv>()
         name: draw.name,
         eventDate: draw.event_date,
         budget: draw.budget,
+        mode: draw.mode,
         status: statusOf(draw),
         participantCount: participants.length,
         revealedCount: participants.filter(({ revealed_at }) => revealed_at !== null).length,
@@ -60,7 +62,7 @@ export const admin = new Hono<UserEnv>()
     const { data, error } = await databaseOf(context)
       .from('draws')
       .select(
-        `id, name, event_date, budget, drawn_at, participants(${person}, revealed_at),
+        `id, name, event_date, budget, mode, drawn_at, participants(${person}, revealed_at),
         excluded_pairs(
           first:participants!excluded_pairs_first_id_fkey(email),
           second:participants!excluded_pairs_second_id_fkey(email)
@@ -77,6 +79,7 @@ export const admin = new Hono<UserEnv>()
       name: data.name,
       eventDate: data.event_date,
       budget: data.budget,
+      mode: data.mode,
       status: statusOf(data),
       drawnAt: data.drawn_at,
       participants: data.participants.map((participant) => ({

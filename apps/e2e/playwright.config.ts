@@ -13,6 +13,7 @@ export default defineConfig({
   forbidOnly: process.env.CI !== undefined,
   retries: process.env.CI === undefined ? 0 : 1,
   globalSetup: './support/global-setup.ts',
+  globalTeardown: './support/global-teardown.ts',
   expect: { timeout: 10_000 },
   use: { ...phone, trace: 'retain-on-failure' },
   webServer: [

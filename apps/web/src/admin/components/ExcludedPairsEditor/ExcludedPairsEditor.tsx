@@ -5,9 +5,9 @@ import { displayNameOf } from '@/admin/utils/display-name-of'
 import { pairKeyOf } from '@/admin/utils/pair-key-of'
 import { completePairsOf, pairRowOf, type PairRow } from '@/admin/utils/pair-row-of'
 import { participantOf } from '@/admin/utils/participant-of'
+import { Hint } from '@/hints/components/Hint'
 import { Button } from '@/ui/components/Button'
 import { IconButton } from '@/ui/components/IconButton'
-import { Note } from '@/ui/components/Note'
 import { Select } from '@/ui/components/Select'
 import classes from './ExcludedPairsEditor.module.css'
 
@@ -60,7 +60,7 @@ export const ExcludedPairsEditor = ({ rows, emails, users, incompleteError, onCh
 
   return (
     <>
-      <Note>{t('admin.form.excludedPairsHint')}</Note>
+      <Hint name="excludedPairs">{t('admin.form.excludedPairsHint')}</Hint>
       {rows.length === 0 ? null : (
         <div className={classes.rows}>
           {rows.map((row, index) => {

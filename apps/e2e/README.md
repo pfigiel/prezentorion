@@ -6,8 +6,9 @@ against a local Supabase stack, never the hosted project.
 ## Running
 
 With Docker running, `pnpm e2e` from the repository root. It installs Chromium if it is missing, and
-then starts the stack if it is not running and applies any pending migrations to it. The stack is
-left running for the next run; `pnpm exec supabase stop` in `apps/backend` stops it.
+then starts the stack if it is not running and applies any pending migrations to it, with the
+backend's `stack:start`. The stack is left running for the next run, and `pnpm dev:local` runs on it
+too; `pnpm exec supabase stop` in `apps/backend` stops it.
 
 Playwright starts the API on port 3100 and the app on 5273 itself, pointed at the stack, so the
 suite runs beside `pnpm dev` on 3000 and 5173. It never reuses a server already on its ports. To
@@ -27,5 +28,7 @@ watch tests run, `pnpm --filter @prezentorion/e2e exec playwright test --ui`.
   event has passed.
 
 Everything a test creates is unique to it, so tests run in parallel. Its accounts end in `@e2e.test`
-and its draw names in a marker, and the next run's global setup deletes them; a failed run leaves
-its data in place to look at.
+and its draw names in a marker, and the global teardown deletes them once the run ends, so the local
+stack `pnpm dev:local` shares stays clear of them. A failed test is examined through its trace, kept
+in `test-results`. A run cut short leaves its data behind, and the next run's global setup removes
+it first.

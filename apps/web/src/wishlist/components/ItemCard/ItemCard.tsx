@@ -1,4 +1,5 @@
 import { Link } from '@tanstack/react-router'
+import clsx from 'clsx'
 import { Fragment, type ReactNode } from 'react'
 import { useTranslation } from 'react-i18next'
 import { moneyLabelOf } from '@/formatting/labels'
@@ -12,6 +13,8 @@ type Props = {
   item: ItemFields & { id: string }
   /** Makes the whole card a link to the item's edit form. */
   editable?: boolean
+  /** Bought by someone else already: faded back, leaving what sits under the details readable. */
+  taken?: boolean
   /** Sits under the details. */
   children?: ReactNode
 }
@@ -22,7 +25,7 @@ type Detail = {
   content: ReactNode
 }
 
-export const ItemCard = ({ item, editable = false, children }: Props) => {
+export const ItemCard = ({ item, editable = false, taken = false, children }: Props) => {
   const { t } = useTranslation()
 
   const allDetails: Detail[] = [
@@ -45,7 +48,7 @@ export const ItemCard = ({ item, editable = false, children }: Props) => {
   const details = allDetails.filter((detail) => detail.content !== null)
 
   return (
-    <article data-surface className={classes.root}>
+    <article data-surface className={clsx(classes.root, taken && classes.taken)}>
       <div className={classes.media}>
         <ItemThumb photoPath={item.photoPath} className={classes.thumb} />
         <span className={classes.priority}>

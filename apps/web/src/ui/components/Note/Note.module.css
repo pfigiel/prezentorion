@@ -17,3 +17,14 @@
   height: var(--pz-icon-size-md);
   color: var(--pz-text-color-dimmed);
 }
+
+.text {
+  flex: 1;
+}
+
+/* Pulled into the note's padding, so the button's hit area does not push the text down. */
+.close {
+  flex: none;
+  margin: calc(var(--pz-spacing-md) * -1) calc(var(--pz-spacing-sm) * -1)
+    calc(var(--pz-spacing-md) * -1) 0;
+}

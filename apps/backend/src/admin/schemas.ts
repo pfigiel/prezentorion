@@ -7,6 +7,7 @@ export const drawSchema = z
     name: z.string().trim().min(1).max(80),
     eventDate: z.iso.date(),
     budget: z.number().int().min(0).nullable(),
+    mode: z.enum(['secret', 'open']),
     emails: z.array(emailSchema).max(100),
     excludedPairs: z.array(z.tuple([emailSchema, emailSchema])).max(1000),
   })
@@ -17,5 +18,9 @@ export const drawSchema = z
       ),
     { path: ['excludedPairs'], message: 'Each pair is two different participants' },
   )
+  .refine(({ mode, excludedPairs }) => mode === 'secret' || excludedPairs.length === 0, {
+    path: ['excludedPairs'],
+    message: 'Nobody draws anybody in an open draw',
+  })
 
 export const passwordSchema = z.object({ password: z.string().min(8).max(72) })

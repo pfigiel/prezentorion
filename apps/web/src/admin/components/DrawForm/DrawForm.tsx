@@ -14,8 +14,10 @@ import { minimumParticipants } from '@/admin/constants/draws'
 import { canDraw } from '@/admin/utils/can-draw'
 import { pairKeyOf } from '@/admin/utils/pair-key-of'
 import { completePairsOf, pairRowOf } from '@/admin/utils/pair-row-of'
+import type { Mode } from '@/draws/api/draws'
 import { Button } from '@/ui/components/Button'
 import { Modal } from '@/ui/components/Modal'
+import { RadioCards } from '@/ui/components/RadioCards'
 import { Stepper } from '@/ui/components/Stepper'
 import { TextInput } from '@/ui/components/TextInput'
 import { useDisclosure } from '@/ui/hooks/use-disclosure'
@@ -30,8 +32,9 @@ type Props = {
 
 const wholeAmount = /^\d+$/
 
-const steps = ['details', 'participants', 'excludedPairs'] as const
-const lastStep = steps.length - 1
+const secretSteps = ['details', 'participants', 'excludedPairs'] as const
+const openSteps = ['details', 'participants'] as const
+const modes = ['secret', 'open'] as const
 
 const sameSet = (a: string[], b: string[]) =>
   a.length === b.length && a.every((value) => b.includes(value))
@@ -45,7 +48,8 @@ export const DrawForm = ({ draw }: Props) => {
   const initialEmails = draw?.participants.map(({ email }) => email) ?? []
   const initialPairs = draw?.excludedPairs ?? []
   const [step, setStep] = useState(0)
-  const [reached, setReached] = useState(draw === undefined ? 0 : lastStep)
+  const [reached, setReached] = useState(draw === undefined ? 0 : secretSteps.length - 1)
+  const [mode, setMode] = useState<Mode>(draw?.mode ?? 'secret')
   const [name, setName] = useState(draw?.name ?? '')
   const [eventDate, setEventDate] = useState(draw?.eventDate ?? '')
   const [budget, setBudget] = useState(draw?.budget?.toString() ?? '')
@@ -74,11 +78,13 @@ export const DrawForm = ({ draw }: Props) => {
     onError: redraw.close,
   })
 
-  const excludedPairs = completePairsOf(pairRows)
+  const steps = mode === 'secret' ? secretSteps : openSteps
+  const lastStep = steps.length - 1
+  const excludedPairs = mode === 'secret' ? completePairsOf(pairRows) : []
   const isDrawn = draw !== undefined && draw.status !== 'waiting'
   const trimmedBudget = budget.trim()
-  const errors = [
-    {
+  const errorsOf = {
+    details: {
       name: name.trim() === '' ? t('admin.form.required') : undefined,
       eventDate: eventDate === '' ? t('admin.form.required') : undefined,
       budget:
@@ -86,11 +92,13 @@ export const DrawForm = ({ draw }: Props) => {
           ? undefined
           : t('admin.form.invalidBudget'),
     },
-    {
+    participants: {
       participants:
-        isDrawn && emails.length < minimumParticipants ? t('admin.form.tooFewToRedraw') : undefined,
+        isDrawn && emails.length < minimumParticipants
+          ? t(`admin.form.tooFewWhenDrawn.${mode}`)
+          : undefined,
     },
-    {
+    excludedPairs: {
       incompletePair: pairRows.some(({ first, second }) => (first === null) !== (second === null))
         ? t('admin.form.incompletePair')
         : undefined,
@@ -99,17 +107,19 @@ export const DrawForm = ({ draw }: Props) => {
           ? t('admin.form.impossibleDraw')
           : undefined,
     },
-  ] as const
-  const [detailsErrors, participantsErrors, excludedPairsErrors] = errors
+  }
+  const errors = steps.map((stage) => errorsOf[stage])
   const fields: DrawFields = {
     name: name.trim(),
     eventDate,
     budget: trimmedBudget === '' ? null : Number(trimmedBudget),
+    mode,
     emails,
     excludedPairs,
   }
   const needsRedraw =
     isDrawn &&
+    mode === 'secret' &&
     (!sameSet(emails, initialEmails) ||
       !sameSet(excludedPairs.map(pairKeyOf), initialPairs.map(pairKeyOf)))
 
@@ -166,7 +176,7 @@ export const DrawForm = ({ draw }: Props) => {
       <Stepper
         steps={steps.map((stage) => t(`admin.form.steps.${stage}`))}
         active={step}
-        reached={reached}
+        reached={Math.min(reached, lastStep)}
         onSelect={goTo}
       />
       {steps[step] === 'details' ? (
@@ -176,7 +186,7 @@ export const DrawForm = ({ draw }: Props) => {
             placeholder={t('admin.form.namePlaceholder')}
             required
             value={name}
-            error={showErrors ? detailsErrors.name : undefined}
+            error={showErrors ? errorsOf.details.name : undefined}
             onChange={setName}
           />
           <div className={classes.pair}>
@@ -185,17 +195,29 @@ export const DrawForm = ({ draw }: Props) => {
               type="date"
               required
               value={eventDate}
-              error={showErrors ? detailsErrors.eventDate : undefined}
+              error={showErrors ? errorsOf.details.eventDate : undefined}
               onChange={setEventDate}
             />
             <TextInput
               label={t('admin.form.budget')}
               inputMode="numeric"
               value={budget}
-              error={showErrors ? detailsErrors.budget : undefined}
+              error={showErrors ? errorsOf.details.budget : undefined}
               onChange={setBudget}
             />
           </div>
+          <RadioCards
+            label={t('admin.form.mode')}
+            value={mode}
+            options={modes.map((option) => ({
+              value: option,
+              label: t(`admin.modes.${option}.label`),
+              description: t(`admin.modes.${option}.description`),
+            }))}
+            disabled={isDrawn}
+            hint={isDrawn ? t('admin.form.modeLocked') : undefined}
+            onChange={setMode}
+          />
         </>
       ) : null}
       {steps[step] === 'participants' ? (
@@ -206,8 +228,8 @@ export const DrawForm = ({ draw }: Props) => {
             ownEmail={account.email}
             onChange={changeEmails}
           />
-          {showErrors && participantsErrors.participants !== undefined ? (
-            <p className={classes.error}>{participantsErrors.participants}</p>
+          {showErrors && errorsOf.participants.participants !== undefined ? (
+            <p className={classes.error}>{errorsOf.participants.participants}</p>
           ) : null}
         </>
       ) : null}
@@ -217,11 +239,11 @@ export const DrawForm = ({ draw }: Props) => {
             rows={pairRows}
             emails={emails}
             users={users}
-            incompleteError={showErrors ? excludedPairsErrors.incompletePair : undefined}
+            incompleteError={showErrors ? errorsOf.excludedPairs.incompletePair : undefined}
             onChange={setPairRows}
           />
-          {excludedPairsErrors.excludedPairs === undefined ? null : (
-            <p className={classes.error}>{excludedPairsErrors.excludedPairs}</p>
+          {errorsOf.excludedPairs.excludedPairs === undefined ? null : (
+            <p className={classes.error}>{errorsOf.excludedPairs.excludedPairs}</p>
           )}
         </>
       ) : null}

@@ -1,26 +1,36 @@
-import { useSuspenseQuery } from '@tanstack/react-query'
+import type { QueryKey } from '@tanstack/react-query'
 import { useTranslation } from 'react-i18next'
-import { recipientWishlistQuery, type Person } from '@/draws/api/draws'
+import type { RecipientItem as Item, Person } from '@/draws/api/draws'
 import { Note } from '@/ui/components/Note'
 import { SectionLabel } from '@/ui/components/SectionLabel'
+import { isOnOffer } from '@/wishlist/utils/is-on-offer'
 import { RecipientItem } from '../RecipientItem'
 import classes from './RecipientWishlist.module.css'
 
 type Props = {
-  drawId: string
   recipient: Person
+  items: Item[]
+  /** Where the items came from, refetched once a purchase is saved. */
+  listKey: QueryKey
+  savePurchased: (itemId: string, purchased: boolean) => Promise<void>
 }
 
-export const RecipientWishlist = ({ drawId, recipient }: Props) => {
+export const RecipientWishlist = ({ recipient, items, listKey, savePurchased }: Props) => {
   const { t } = useTranslation()
-  const { data: items } = useSuspenseQuery(recipientWishlistQuery(drawId))
-  const availableCount = items.filter(({ purchasedBy }) => purchasedBy === null).length
+  const availableCount = items.filter(isOnOffer).length
 
   const content = () => {
     if (recipient.name === null) return <Note>{t('draws.recipient.pending')}</Note>
     if (items.length === 0) return <p className={classes.empty}>{t('draws.recipient.emptyList')}</p>
 
-    return items.map((item) => <RecipientItem key={item.id} drawId={drawId} item={item} />)
+    return items.map((item) => (
+      <RecipientItem
+        key={item.id}
+        item={item}
+        listKey={listKey}
+        savePurchased={(purchased) => savePurchased(item.id, purchased)}
+      />
+    ))
   }
 
   return (

@@ -2,12 +2,14 @@ import { IconGift, IconPlus, IconUsers } from '@tabler/icons-react'
 import { useSuspenseQuery } from '@tanstack/react-query'
 import { Link, useNavigate } from '@tanstack/react-router'
 import { useTranslation } from 'react-i18next'
+import { Hint } from '@/hints/components/Hint'
+import { ManagedLists } from '@/managers/components/ManagedLists'
 import { ScreenHeader } from '@/shell/components/ScreenHeader'
 import { Button } from '@/ui/components/Button'
 import { ButtonLink } from '@/ui/components/ButtonLink'
 import { Card } from '@/ui/components/Card'
 import { Heading } from '@/ui/components/Heading'
-import { Note } from '@/ui/components/Note'
+import { SectionLabel } from '@/ui/components/SectionLabel'
 import { wishlistQuery } from '@/wishlist/api/wishlist'
 import { WishlistItem } from '../WishlistItem'
 import classes from './WishlistScreen.module.css'
@@ -31,7 +33,7 @@ export const WishlistScreen = () => {
           </Button>
         }
       />
-      <Note>{t('wishlist.list.note')}</Note>
+      <Hint name="wishlist">{t('wishlist.list.note')}</Hint>
       {items.length === 0 ? (
         <Card quiet className={classes.empty}>
           <span className={classes.emptyIcon}>
@@ -54,6 +56,8 @@ export const WishlistScreen = () => {
           ))}
         </ul>
       )}
+      <SectionLabel>{t('managers.lists.title')}</SectionLabel>
+      <ManagedLists />
       <ButtonLink
         variant="secondary"
         icon={<IconUsers stroke={1.8} />}

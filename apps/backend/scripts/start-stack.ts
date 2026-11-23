@@ -1,8 +1,8 @@
-// Run before `playwright test` rather than as its global setup: Playwright starts the web servers
-// first, and the API's health check needs the database up.
+// Starts the local Supabase stack if it is not running, and applies any migration it lacks: what
+// `pnpm e2e` and `pnpm dev:local` run on.
 import { execFileSync, type StdioOptions } from 'node:child_process'
 
-const backendDir = new URL('../../backend', import.meta.url).pathname
+const backendDir = new URL('..', import.meta.url).pathname
 
 // Only what the app reaches: the database, Auth, PostgREST, Storage and the gateway.
 const unusedServices = [

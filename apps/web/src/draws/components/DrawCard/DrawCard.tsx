@@ -1,4 +1,4 @@
-import { IconChevronRight } from '@tabler/icons-react'
+import { IconChevronRight, IconGift } from '@tabler/icons-react'
 import { Link } from '@tanstack/react-router'
 import { useTranslation } from 'react-i18next'
 import type { DrawSummary } from '@/draws/api/draws'
@@ -44,6 +44,17 @@ export const DrawCard = ({ draw }: Props) => {
       )
     }
 
+    if (draw.mode === 'open') {
+      return (
+        <ButtonLink
+          icon={<IconGift stroke={1.8} />}
+          renderLink={(props) => <Link {...props} to="/draws/$drawId" params={params} />}
+        >
+          {t('draws.card.browse')}
+        </ButtonLink>
+      )
+    }
+
     return (
       <ButtonLink
         icon={<StarIcon className={classes.star} />}
@@ -60,7 +71,7 @@ export const DrawCard = ({ draw }: Props) => {
         <Heading order={3} size="sm">
           {draw.name}
         </Heading>
-        <StatusBadge status={draw.status} />
+        <StatusBadge mode={draw.mode} status={draw.status} />
       </div>
       <DrawMeta
         eventDate={draw.eventDate}

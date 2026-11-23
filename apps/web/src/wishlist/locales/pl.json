@@ -2,11 +2,12 @@
   "list": {
     "title": "Moja lista",
     "add": "Dodaj",
-    "note": "Twoją listę widzi osoba, która Cię wylosowała, oraz osoby, którym powierzysz zarządzanie nią. Nie zobaczysz, co jest kupione, aż do dnia imprezy.",
+    "note": "Twoją listę widzą osoby, które kupują Ci prezent w losowaniu, oraz osoby, którym powierzysz zarządzanie nią. Nie zobaczysz, co jest kupione, aż do dnia imprezy.",
     "purchased": "Kupione",
+    "repeatable": "Powtarzalny",
     "empty": {
       "title": "Twoja lista jest pusta",
-      "body": "Dodaj pomysły na prezenty – zobaczy je osoba, która Cię wylosuje.",
+      "body": "Dodaj pomysły na prezenty – zobaczą je osoby, które będą Ci kupować prezent.",
       "add": "Dodaj pierwszą pozycję"
     }
   },
@@ -33,6 +34,17 @@
     "priority": "Priorytet",
     "priorityLevel": "Priorytet {{level}} z 3",
     "photo": "Zdjęcie (opcjonalnie)",
+    "kind": {
+      "label": "Typ prezentu",
+      "unique": {
+        "label": "Unikalny",
+        "description": "Kupi go tylko jedna osoba – gdy ktoś go kupi, nikt inny nie będzie mógł już tego zrobić."
+      },
+      "repeatable": {
+        "label": "Powtarzalny",
+        "description": "Np. skarpetki albo karta podarunkowa. Może go kupić kilka osób – każdy widzi, ile osób już go kupiło."
+      }
+    },
     "addPhoto": "Dodaj zdjęcie",
     "replacePhoto": "Zmień zdjęcie",
     "removePhoto": "Usuń zdjęcie",

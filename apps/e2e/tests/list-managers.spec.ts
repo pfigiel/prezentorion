@@ -34,6 +34,7 @@ test('an owner gives their list to a manager by address and takes it back', asyn
   await expect(page.getByText('Ta osoba już zarządza Twoją listą.')).toBeVisible()
 
   const managerPage = await sessionOf(manager)
+  await managerPage.goto('/wishlist')
   await managerPage.getByRole('link', { name: new RegExp(owner.name) }).click()
   await expect(managerPage.getByRole('heading', { name: owner.name })).toBeVisible()
 
@@ -60,6 +61,7 @@ test('a manager files a purchase under the owner’s draw, and givers see it tak
   await buy(anna, draw, socksId)
 
   const page = await sessionOf(manager)
+  await page.goto('/wishlist')
   await page.getByRole('link', { name: new RegExp(owner.name) }).click()
   await expect(page.getByText('Lista prezentów · 1')).toBeVisible()
   const socks = page.getByRole('article').filter({ hasText: 'Skarpetki' })
@@ -151,4 +153,27 @@ test('nobody but a manager reaches the list', async ({ sessionOf }) => {
       drawId: null,
     }),
   ).rejects.toThrow(/403/)
+})
+
+test('a manager finds the lists they manage under their own list', async ({ sessionOf }) => {
+  const owner = await createPerson('Ola')
+  const manager = await createPerson('Marek')
+  await addManager(owner, manager)
+
+  const page = await sessionOf(manager)
+  await expect(page.getByText('Zarządzasz listą')).toBeHidden()
+  await page.goto('/wishlist')
+  const settings = page.getByRole('link', { name: 'Kto zarządza moją listą' })
+  const list = page.getByRole('link', { name: new RegExp(`Zarządzasz listą.*${owner.name}`) })
+  await expect(list).toBeVisible()
+  const [labelBox, listBox, settingsBox] = await Promise.all(
+    [page.getByText('Zarządzane listy'), list, settings].map((element) => element.boundingBox()),
+  )
+  expect(listBox?.y).toBeGreaterThan(labelBox?.y ?? Infinity)
+  expect(settingsBox?.y).toBeGreaterThan(listBox?.y ?? Infinity)
+
+  await list.click()
+  await expect(page.getByRole('heading', { name: owner.name })).toBeVisible()
+  await page.getByRole('link', { name: 'Wstecz' }).click()
+  await expect(page).toHaveURL(/\/wishlist$/)
 })

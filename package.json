@@ -11,6 +11,7 @@
   },
   "scripts": {
     "dev": "turbo run dev",
+    "dev:local": "pnpm --filter @prezentorion/backend stack:start && pnpm --filter @prezentorion/backend stack:seed && turbo run dev:local",
     "build": "turbo run build",
     "preview": "turbo run preview",
     "e2e": "turbo run e2e",
