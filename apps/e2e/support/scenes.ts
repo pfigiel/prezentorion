@@ -71,3 +71,7 @@ type Assignment = { giver: { email: string }; recipient: { email: string } }
 
 export const assignmentsOf = (admin: Person, draw: Draw) =>
   apiAs<Assignment[]>(admin, 'GET', `/admin/draws/${draw.id}/assignments`)
+
+/** Gives a manager the owner's list, as the owner does on their list's settings. */
+export const addManager = (owner: Person, manager: Person) =>
+  apiAs(owner, 'POST', '/managers', { email: manager.email })

@@ -17,7 +17,9 @@ import { Route as AuthenticatedAdminRouteImport } from './../routes/_authenticat
 import { Route as AuthenticatedAdminIndexRouteImport } from './../routes/_authenticated/admin/index'
 import { Route as AuthenticatedAdminUsersRouteImport } from './../routes/_authenticated/admin/users'
 import { Route as AuthenticatedDrawsDrawIdRouteImport } from './../routes/_authenticated/draws.$drawId'
+import { Route as AuthenticatedManagedListsOwnerIdRouteImport } from './../routes/_authenticated/managed-lists.$ownerId'
 import { Route as AuthenticatedWishlistIndexRouteImport } from './../routes/_authenticated/wishlist.index'
+import { Route as AuthenticatedWishlistManagersRouteImport } from './../routes/_authenticated/wishlist.managers'
 import { Route as AuthenticatedWishlistNewRouteImport } from './../routes/_authenticated/wishlist.new'
 import { Route as AuthenticatedAdminDrawsNewRouteImport } from './../routes/_authenticated/admin/draws.new'
 import { Route as AuthenticatedWishlistItemIdEditRouteImport } from './../routes/_authenticated/wishlist.$itemId.edit'
@@ -65,10 +67,22 @@ const AuthenticatedDrawsDrawIdRoute =
     path: '/draws/$drawId',
     getParentRoute: () => AuthenticatedRoute,
   } as any)
+const AuthenticatedManagedListsOwnerIdRoute =
+  AuthenticatedManagedListsOwnerIdRouteImport.update({
+    id: '/managed-lists/$ownerId',
+    path: '/managed-lists/$ownerId',
+    getParentRoute: () => AuthenticatedRoute,
+  } as any)
 const AuthenticatedWishlistIndexRoute =
   AuthenticatedWishlistIndexRouteImport.update({
     id: '/wishlist/',
     path: '/wishlist/',
+    getParentRoute: () => AuthenticatedRoute,
+  } as any)
+const AuthenticatedWishlistManagersRoute =
+  AuthenticatedWishlistManagersRouteImport.update({
+    id: '/wishlist/managers',
+    path: '/wishlist/managers',
     getParentRoute: () => AuthenticatedRoute,
   } as any)
 const AuthenticatedWishlistNewRoute =
@@ -115,6 +129,8 @@ export interface FileRoutesByFullPath {
   '/admin': typeof AuthenticatedAdminRouteWithChildren
   '/admin/users': typeof AuthenticatedAdminUsersRoute
   '/draws/$drawId': typeof AuthenticatedDrawsDrawIdRoute
+  '/managed-lists/$ownerId': typeof AuthenticatedManagedListsOwnerIdRoute
+  '/wishlist/managers': typeof AuthenticatedWishlistManagersRoute
   '/wishlist/new': typeof AuthenticatedWishlistNewRoute
   '/admin/': typeof AuthenticatedAdminIndexRoute
   '/wishlist/': typeof AuthenticatedWishlistIndexRoute
@@ -130,6 +146,8 @@ export interface FileRoutesByTo {
   '/': typeof AuthenticatedIndexRoute
   '/admin/users': typeof AuthenticatedAdminUsersRoute
   '/draws/$drawId': typeof AuthenticatedDrawsDrawIdRoute
+  '/managed-lists/$ownerId': typeof AuthenticatedManagedListsOwnerIdRoute
+  '/wishlist/managers': typeof AuthenticatedWishlistManagersRoute
   '/wishlist/new': typeof AuthenticatedWishlistNewRoute
   '/admin': typeof AuthenticatedAdminIndexRoute
   '/wishlist': typeof AuthenticatedWishlistIndexRoute
@@ -148,6 +166,8 @@ export interface FileRoutesById {
   '/_authenticated/': typeof AuthenticatedIndexRoute
   '/_authenticated/admin/users': typeof AuthenticatedAdminUsersRoute
   '/_authenticated/draws/$drawId': typeof AuthenticatedDrawsDrawIdRoute
+  '/_authenticated/managed-lists/$ownerId': typeof AuthenticatedManagedListsOwnerIdRoute
+  '/_authenticated/wishlist/managers': typeof AuthenticatedWishlistManagersRoute
   '/_authenticated/wishlist/new': typeof AuthenticatedWishlistNewRoute
   '/_authenticated/admin/': typeof AuthenticatedAdminIndexRoute
   '/_authenticated/wishlist/': typeof AuthenticatedWishlistIndexRoute
@@ -166,6 +186,8 @@ export interface FileRouteTypes {
     | '/admin'
     | '/admin/users'
     | '/draws/$drawId'
+    | '/managed-lists/$ownerId'
+    | '/wishlist/managers'
     | '/wishlist/new'
     | '/admin/'
     | '/wishlist/'
@@ -181,6 +203,8 @@ export interface FileRouteTypes {
     | '/'
     | '/admin/users'
     | '/draws/$drawId'
+    | '/managed-lists/$ownerId'
+    | '/wishlist/managers'
     | '/wishlist/new'
     | '/admin'
     | '/wishlist'
@@ -198,6 +222,8 @@ export interface FileRouteTypes {
     | '/_authenticated/'
     | '/_authenticated/admin/users'
     | '/_authenticated/draws/$drawId'
+    | '/_authenticated/managed-lists/$ownerId'
+    | '/_authenticated/wishlist/managers'
     | '/_authenticated/wishlist/new'
     | '/_authenticated/admin/'
     | '/_authenticated/wishlist/'
@@ -272,11 +298,25 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AuthenticatedDrawsDrawIdRouteImport
       parentRoute: typeof AuthenticatedRoute
     }
+    '/_authenticated/managed-lists/$ownerId': {
+      id: '/_authenticated/managed-lists/$ownerId'
+      path: '/managed-lists/$ownerId'
+      fullPath: '/managed-lists/$ownerId'
+      preLoaderRoute: typeof AuthenticatedManagedListsOwnerIdRouteImport
+      parentRoute: typeof AuthenticatedRoute
+    }
     '/_authenticated/wishlist/': {
       id: '/_authenticated/wishlist/'
       path: '/wishlist'
       fullPath: '/wishlist/'
       preLoaderRoute: typeof AuthenticatedWishlistIndexRouteImport
+      parentRoute: typeof AuthenticatedRoute
+    }
+    '/_authenticated/wishlist/managers': {
+      id: '/_authenticated/wishlist/managers'
+      path: '/wishlist/managers'
+      fullPath: '/wishlist/managers'
+      preLoaderRoute: typeof AuthenticatedWishlistManagersRouteImport
       parentRoute: typeof AuthenticatedRoute
     }
     '/_authenticated/wishlist/new': {
@@ -352,6 +392,8 @@ interface AuthenticatedRouteChildren {
   AuthenticatedAdminRoute: typeof AuthenticatedAdminRouteWithChildren
   AuthenticatedIndexRoute: typeof AuthenticatedIndexRoute
   AuthenticatedDrawsDrawIdRoute: typeof AuthenticatedDrawsDrawIdRoute
+  AuthenticatedManagedListsOwnerIdRoute: typeof AuthenticatedManagedListsOwnerIdRoute
+  AuthenticatedWishlistManagersRoute: typeof AuthenticatedWishlistManagersRoute
   AuthenticatedWishlistNewRoute: typeof AuthenticatedWishlistNewRoute
   AuthenticatedWishlistIndexRoute: typeof AuthenticatedWishlistIndexRoute
   AuthenticatedWishlistItemIdEditRoute: typeof AuthenticatedWishlistItemIdEditRoute
@@ -361,6 +403,8 @@ const AuthenticatedRouteChildren: AuthenticatedRouteChildren = {
   AuthenticatedAdminRoute: AuthenticatedAdminRouteWithChildren,
   AuthenticatedIndexRoute: AuthenticatedIndexRoute,
   AuthenticatedDrawsDrawIdRoute: AuthenticatedDrawsDrawIdRoute,
+  AuthenticatedManagedListsOwnerIdRoute: AuthenticatedManagedListsOwnerIdRoute,
+  AuthenticatedWishlistManagersRoute: AuthenticatedWishlistManagersRoute,
   AuthenticatedWishlistNewRoute: AuthenticatedWishlistNewRoute,
   AuthenticatedWishlistIndexRoute: AuthenticatedWishlistIndexRoute,
   AuthenticatedWishlistItemIdEditRoute: AuthenticatedWishlistItemIdEditRoute,

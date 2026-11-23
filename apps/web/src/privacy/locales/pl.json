@@ -1,7 +1,7 @@
 {
   "policy": {
     "title": "Polityka prywatności",
-    "updated": "Ostatnia aktualizacja: 20 listopada 2026",
+    "updated": "Ostatnia aktualizacja: 23 listopada 2026",
     "back": "Wróć",
     "sections": {
       "controller": {
@@ -18,11 +18,11 @@
       },
       "purpose": {
         "title": "Po co ich używamy",
-        "body": "Wyłącznie do działania aplikacji: logowania, przeprowadzania losowań i pokazywania Twojej listy prezentów osobie, która Cię wylosowała. Nie wysyłamy reklam ani newsletterów."
+        "body": "Wyłącznie do działania aplikacji: logowania, przeprowadzania losowań i pokazywania Twojej listy prezentów osobie, która Cię wylosowała, i osobom zarządzającym Twoją listą. Nie wysyłamy reklam ani newsletterów."
       },
       "visibility": {
         "title": "Kto widzi Twoje dane",
-        "body": "Uczestnicy Twoich losowań widzą Twoje imię i zdjęcie. Twoją listę prezentów widzi tylko osoba, która Cię wylosowała. Administrator widzi listę użytkowników i może podejrzeć wyniki losowań. Nie sprzedajemy ani nie udostępniamy Twoich danych nikomu innemu."
+        "body": "Uczestnicy Twoich losowań widzą Twoje imię i zdjęcie. Twoją listę prezentów widzi osoba, która Cię wylosowała, oraz osoby, którym powierzysz zarządzanie nią. Administrator widzi listę użytkowników i może podejrzeć wyniki losowań. Nie sprzedajemy ani nie udostępniamy Twoich danych nikomu innemu."
       },
       "storage": {
         "title": "Gdzie są przechowywane",

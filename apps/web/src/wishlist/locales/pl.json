@@ -2,7 +2,7 @@
   "list": {
     "title": "Moja lista",
     "add": "Dodaj",
-    "note": "Twoją listę widzi tylko osoba, która Cię wylosowała. Nie zobaczysz, co jest kupione, aż do dnia imprezy.",
+    "note": "Twoją listę widzi osoba, która Cię wylosowała, oraz osoby, którym powierzysz zarządzanie nią. Nie zobaczysz, co jest kupione, aż do dnia imprezy.",
     "purchased": "Kupione",
     "empty": {
       "title": "Twoja lista jest pusta",

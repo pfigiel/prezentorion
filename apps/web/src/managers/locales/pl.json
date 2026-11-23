@@ -1,0 +1,47 @@
+{
+  "settings": {
+    "open": "Kto zarządza moją listą",
+    "title": "Zarządzanie listą",
+    "note": "Osoba zarządzająca widzi Twoją listę tak jak ktoś, kto Cię wylosował, i może oznaczać kupione prezenty – np. gdy ktoś kupuje dla Ciebie poza aplikacją. Ty nadal nie zobaczysz, co jest kupione, aż do dnia po imprezie.",
+    "email": "E-mail osoby zarządzającej",
+    "emailPlaceholder": "jan@example.com",
+    "hint": "Jeśli ta osoba nie ma jeszcze konta, zobaczy Twoją listę po pierwszym logowaniu na ten adres.",
+    "add": "Dodaj",
+    "list": "Osoby zarządzające · {{count}}",
+    "empty": "Nikt jeszcze nie zarządza Twoją listą.",
+    "remove": "Usuń {{email}}",
+    "errors": {
+      "email": "Wpisz poprawny adres e-mail.",
+      "own": "To Twój własny adres.",
+      "duplicate": "Ta osoba już zarządza Twoją listą.",
+      "save": "Nie udało się zapisać. Spróbuj ponownie."
+    }
+  },
+  "lists": {
+    "title": "Listy pod Twoją opieką",
+    "caption": "Zarządzasz listą"
+  },
+  "list": {
+    "note": "Widzisz tę listę tak jak osoba, która wylosowała jej właściciela. Oznaczaj, co zostało kupione, żeby nikt nie kupił tego samego.",
+    "count": "Lista prezentów · {{count}}",
+    "empty": "Ta lista jest jeszcze pusta.",
+    "notFound": "Nie znaleziono tej listy albo nie masz już do niej dostępu.",
+    "backHome": "Wróć na start"
+  },
+  "item": {
+    "purchased": "Kupione",
+    "purchasedByMe": "Kupione przeze mnie",
+    "purchasedByOther": "Kupione przez inną osobę"
+  },
+  "purchase": {
+    "title": "Oznaczyć jako kupione?",
+    "draw": "Losowanie",
+    "pickDraw": "Przy którym losowaniu to kupione? {{name}} zobaczy to dopiero dzień po imprezie.",
+    "noDraw": "{{name}} nie bierze teraz udziału w żadnym losowaniu, więc od razu zobaczy, że to kupione.",
+    "drawOption": "{{name}} · {{date}}",
+    "nothingFound": "Nie ma takiego losowania.",
+    "cancel": "Anuluj",
+    "confirm": "Oznacz jako kupione",
+    "failed": "Nie udało się zapisać. Spróbuj ponownie."
+  }
+}

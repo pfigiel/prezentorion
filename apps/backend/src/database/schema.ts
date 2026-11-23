@@ -47,6 +47,13 @@ type WishItemRow = {
   created_at: string
 }
 
+type ListManagerRow = {
+  id: string
+  owner_id: string
+  email: string
+  created_at: string
+}
+
 type WishItemFields = Pick<
   WishItemRow,
   'name' | 'url' | 'price' | 'note' | 'priority' | 'photo_path'
@@ -105,6 +112,12 @@ export type Database = {
           Relationship<'assignments_draw_id_fkey', 'draw_id', 'draws'>,
         ]
       }
+      list_managers: {
+        Row: ListManagerRow
+        Insert: Pick<ListManagerRow, 'email'>
+        Update: never
+        Relationships: [Relationship<'list_managers_owner_id_fkey', 'owner_id', 'profiles'>]
+      }
       wish_items: {
         Row: WishItemRow
         Insert: WishItemFields
@@ -142,6 +155,22 @@ export type Database = {
       }
       set_purchased: {
         Args: { draw_id: string; item_id: string; purchased: boolean }
+        Returns: undefined
+      }
+      managed_lists: {
+        Args: never
+        Returns: { id: string; name: string; picture_url: string | null }[]
+      }
+      managed_draws: {
+        Args: { owner_id: string }
+        Returns: { id: string; name: string; event_date: string }[]
+      }
+      managed_wishlist: {
+        Args: { owner_id: string }
+        Returns: (WishItemFields & { id: string; purchased_by: 'me' | 'other' | null })[]
+      }
+      set_managed_purchase: {
+        Args: { item_id: string; draw_id: string | null; purchased: boolean }
         Returns: undefined
       }
       admin_users: {

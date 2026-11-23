@@ -1,9 +1,10 @@
-import { IconGift, IconPlus } from '@tabler/icons-react'
+import { IconGift, IconPlus, IconUsers } from '@tabler/icons-react'
 import { useSuspenseQuery } from '@tanstack/react-query'
-import { useNavigate } from '@tanstack/react-router'
+import { Link, useNavigate } from '@tanstack/react-router'
 import { useTranslation } from 'react-i18next'
 import { ScreenHeader } from '@/shell/components/ScreenHeader'
 import { Button } from '@/ui/components/Button'
+import { ButtonLink } from '@/ui/components/ButtonLink'
 import { Card } from '@/ui/components/Card'
 import { Heading } from '@/ui/components/Heading'
 import { Note } from '@/ui/components/Note'
@@ -53,6 +54,13 @@ export const WishlistScreen = () => {
           ))}
         </ul>
       )}
+      <ButtonLink
+        variant="secondary"
+        icon={<IconUsers stroke={1.8} />}
+        renderLink={(props) => <Link {...props} to="/wishlist/managers" />}
+      >
+        {t('managers.settings.open')}
+      </ButtonLink>
     </>
   )
 }

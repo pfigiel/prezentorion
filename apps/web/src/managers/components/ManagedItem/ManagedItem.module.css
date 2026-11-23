@@ -1,0 +1,5 @@
+.purchasedByOther {
+  margin: 0;
+  color: var(--pz-text-color-dimmed);
+  font-size: var(--pz-text-font-size-sm);
+}
