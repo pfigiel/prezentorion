@@ -43,7 +43,7 @@ export const RecipientItem = ({ item, listKey, savePurchased }: Props) => {
         <>
           {repeatableNote()}
           <Switch
-            label={isPurchasedByMe ? t('draws.item.purchasedByMe') : t('draws.item.purchased')}
+            label={isPurchasedByMe ? t('draws.item.purchasedByMe') : t('draws.item.markPurchased')}
             checked={isPurchasedByMe}
             onChange={(purchased) => purchase.mutate(purchased)}
           />

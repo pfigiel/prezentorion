@@ -90,6 +90,7 @@ test('a giver marks what they bought, and it stays marked', async ({ sessionOf }
   await expect(page.getByText('Lista prezentów · 2')).toBeVisible()
 
   const watch = page.getByRole('article').filter({ hasText: 'Zegarek' })
+  await expect(watch.getByRole('switch', { name: 'Oznacz jako kupione' })).not.toBeChecked()
   await watch.getByRole('switch').click()
   await expect(watch.getByText('Kupione przeze mnie')).toBeVisible()
   await expect(page.getByText('Lista prezentów · 1')).toBeVisible()

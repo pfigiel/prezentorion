@@ -69,7 +69,7 @@
     "pending": "Ta osoba jeszcze się nie zalogowała, więc jej lista jest na razie pusta."
   },
   "item": {
-    "purchased": "Kupione",
+    "markPurchased": "Oznacz jako kupione",
     "purchasedByMe": "Kupione przeze mnie",
     "purchasedByOther": "Kupione przez inną osobę",
     "repeatable": "Może to kupić kilka osób",

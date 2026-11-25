@@ -68,6 +68,7 @@ test('a manager files a purchase under the owner’s draw, and givers see it tak
   await expect(socks.getByText('Kupione przez inną osobę')).toBeVisible()
 
   const watch = page.getByRole('article').filter({ hasText: 'Zegarek' })
+  await expect(watch.getByRole('switch', { name: 'Oznacz jako kupione' })).not.toBeChecked()
   await watch.getByRole('switch').click()
   const dialog = page.getByRole('dialog', { name: 'Oznaczyć jako kupione?' })
   await expect(dialog.getByLabel('Losowanie')).toHaveValue(new RegExp(draw.name))

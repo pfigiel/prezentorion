@@ -29,7 +29,7 @@
     "backHome": "Wróć na start"
   },
   "item": {
-    "purchased": "Kupione",
+    "markPurchased": "Oznacz jako kupione",
     "purchasedByMe": "Kupione przeze mnie",
     "purchasedByOther": "Kupione przez inną osobę",
     "repeatable": "Może to kupić kilka osób",

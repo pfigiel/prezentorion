@@ -64,7 +64,7 @@ export const ManagedItem = ({ list, item }: Props) => {
           {repeatableNote()}
           <Switch
             label={
-              isPurchasedByMe ? t('managers.item.purchasedByMe') : t('managers.item.purchased')
+              isPurchasedByMe ? t('managers.item.purchasedByMe') : t('managers.item.markPurchased')
             }
             checked={isPurchasedByMe}
             onChange={toggle}
