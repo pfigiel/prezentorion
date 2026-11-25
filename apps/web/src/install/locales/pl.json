@@ -1,0 +1,20 @@
+{
+  "prompt": {
+    "title": "Zainstaluj Prezentorion",
+    "decline": "Nie, dziękuję",
+    "done": "Rozumiem",
+    "android": {
+      "body": "Dodaj aplikację do ekranu początkowego, a otworzysz ją jednym stuknięciem, na pełnym ekranie.",
+      "install": "Zainstaluj"
+    },
+    "ios": {
+      "body": "Na iPhonie dodasz aplikację do ekranu początkowego w trzech krokach:",
+      "share": "Stuknij Udostępnij na pasku przeglądarki. Jeśli go nie widać, poszukaj go w menu przeglądarki.",
+      "add": "Wybierz „Do ekranu początkowego”.",
+      "confirm": "Stuknij „Dodaj”."
+    },
+    "inApp": {
+      "body": "Ta przeglądarka nie zainstaluje Prezentoriona. Otwórz tę stronę w Safari, a pokażemy Ci, jak to zrobić."
+    }
+  }
+}

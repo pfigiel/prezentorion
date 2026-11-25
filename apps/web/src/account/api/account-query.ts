@@ -7,6 +7,8 @@ export type Account = {
   name: string
   pictureUrl: string | null
   isAdmin: boolean
+  /** Installed or declined, in any browser this person signed in to. */
+  installPromptSettled: boolean
 }
 
 export const accountQuery = queryOptions({

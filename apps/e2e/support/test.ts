@@ -1,4 +1,11 @@
-import { test as base, devices, expect, type BrowserContext, type Page } from '@playwright/test'
+import {
+  test as base,
+  devices,
+  expect,
+  type BrowserContext,
+  type BrowserContextOptions,
+  type Page,
+} from '@playwright/test'
 import type { Person } from './service'
 import { appUrl } from './stack'
 
@@ -14,16 +21,16 @@ export const signIn = async (page: Page, person: Person) => {
 }
 
 type Fixtures = {
-  /** A signed-in page of this person's own, in a browser context nobody else shares. */
-  sessionOf: (person: Person) => Promise<Page>
+  /** A signed-in page of this person's own, in a browser context nobody else shares; a phone unless told. */
+  sessionOf: (person: Person, device?: BrowserContextOptions) => Promise<Page>
 }
 
 export const test = base.extend<Fixtures>({
   sessionOf: async ({ browser }, use) => {
     const contexts: BrowserContext[] = []
 
-    await use(async (person) => {
-      const context = await browser.newContext(phone)
+    await use(async (person, device = phone) => {
+      const context = await browser.newContext({ ...device, baseURL: appUrl })
       contexts.push(context)
       const page = await context.newPage()
       await signIn(page, person)

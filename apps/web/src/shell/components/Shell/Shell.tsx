@@ -1,5 +1,6 @@
 import type { ReactNode } from 'react'
 import { AccountMenu } from '@/account/components/AccountMenu'
+import { InstallPrompt } from '@/install/components/InstallPrompt'
 import { Logo } from '@/ui/components/Logo'
 import { PageColumn } from '@/ui/components/PageColumn'
 import { useScrolled } from '../../hooks/use-scrolled'
@@ -21,6 +22,7 @@ export const Shell = ({ children }: Props) => {
       </header>
       <main className={classes.main}>{children}</main>
       <BottomNav />
+      <InstallPrompt />
     </PageColumn>
   )
 }

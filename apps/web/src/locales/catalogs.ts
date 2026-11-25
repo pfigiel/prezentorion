@@ -3,6 +3,7 @@ import adminPl from '@/admin/locales/pl.json'
 import authPl from '@/auth/locales/pl.json'
 import drawsPl from '@/draws/locales/pl.json'
 import hintsPl from '@/hints/locales/pl.json'
+import installPl from '@/install/locales/pl.json'
 import managersPl from '@/managers/locales/pl.json'
 import privacyPl from '@/privacy/locales/pl.json'
 import shellPl from '@/shell/locales/pl.json'
@@ -16,6 +17,7 @@ const pl = {
   auth: authPl,
   draws: drawsPl,
   hints: hintsPl,
+  install: installPl,
   managers: managersPl,
   privacy: privacyPl,
   shell: shellPl,

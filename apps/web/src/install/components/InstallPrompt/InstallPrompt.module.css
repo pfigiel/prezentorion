@@ -1,0 +1,7 @@
+.steps {
+  display: flex;
+  flex-direction: column;
+  gap: var(--pz-spacing-sm);
+  margin: 0;
+  padding-inline-start: var(--pz-spacing-lg);
+}

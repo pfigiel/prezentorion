@@ -3,6 +3,7 @@ export type ProfileRow = {
   email: string
   name: string
   picture_url: string | null
+  install_prompt_settled: boolean
   created_at: string
 }
 
@@ -140,6 +141,7 @@ export type Database = {
     Functions: {
       is_admin: { Args: never; Returns: boolean }
       ping: { Args: never; Returns: boolean }
+      settle_install_prompt: { Args: never; Returns: undefined }
       save_draw: {
         Args: {
           id: string | null

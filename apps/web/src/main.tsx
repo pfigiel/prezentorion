@@ -3,11 +3,13 @@ import { MutationCache, QueryCache, QueryClient } from '@tanstack/react-query'
 import { StrictMode } from 'react'
 import { createRoot } from 'react-dom/client'
 import { onSignedOut, onUserChanged } from '@/auth/api/session'
+import { listenForInstallPrompt } from '@/install/hooks/install-dialog'
 import { identifyUser, reportError, reportReactError, startMonitoring } from '@/monitoring'
 import { createAppRouter } from '@/routing/router'
 import { App } from './App'
 
 startMonitoring()
+listenForInstallPrompt()
 
 const container = document.getElementById('root')
 if (!container) throw new Error('Missing #root element')
