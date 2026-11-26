@@ -6,6 +6,7 @@ import { onSignedOut, onUserChanged } from '@/auth/api/session'
 import { listenForInstallPrompt } from '@/install/hooks/install-dialog'
 import { identifyUser, reportError, reportReactError, startMonitoring } from '@/monitoring'
 import { createAppRouter } from '@/routing/router'
+import { dismissSplash } from '@/shell/utils/dismiss-splash'
 import { App } from './App'
 
 startMonitoring()
@@ -20,6 +21,7 @@ const queryClient = new QueryClient({
   mutationCache: new MutationCache({ onError: reportError }),
 })
 const router = createAppRouter(queryClient)
+dismissSplash(router)
 
 const forgetUser = () => {
   queryClient.clear()

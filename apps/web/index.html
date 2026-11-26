@@ -74,15 +74,113 @@
       href="/splash/apple-splash-750x1334.png"
       media="(device-width: 375px) and (device-height: 667px) and (-webkit-device-pixel-ratio: 2) and (orientation: portrait)"
     />
-    <!-- Literal, because the --pz-* tokens only exist once the JS has mounted: this keeps the hand-off from the iOS splash dark. -->
+    <!-- Literal, because the --pz-* tokens only exist once the JS has mounted: this keeps the hand-off from the iOS splash dark,
+         and the splash below drawn the way iOS draws its own until the first screen has loaded. -->
     <style>
       html {
         background-color: #0b1a33;
+      }
+
+      #splash {
+        position: fixed;
+        z-index: 1000;
+        inset: 0;
+        display: grid;
+        place-items: center;
+        background: radial-gradient(circle at center, #262c39 0, #0b1a33 22rem);
+        transition: opacity 200ms ease;
+      }
+
+      #splash[data-dismissed] {
+        opacity: 0;
+        pointer-events: none;
+      }
+
+      #splash svg {
+        width: 8rem;
+        height: 8rem;
+      }
+
+      #splash .twinkle {
+        transform-box: fill-box;
+        transform-origin: center;
+        animation: twinkle 1.6s ease-in-out infinite;
+      }
+
+      @keyframes twinkle {
+        50% {
+          opacity: 0.55;
+          transform: scale(0.6) rotate(45deg);
+        }
+      }
+
+      @media (prefers-reduced-motion: reduce) {
+        #splash {
+          transition: none;
+        }
+
+        #splash .twinkle {
+          animation: none;
+        }
       }
     </style>
     <title>Prezentorion</title>
   </head>
   <body>
+    <div id="splash" role="progressbar" aria-label="Wczytywanie">
+      <svg viewBox="0 0 240 240" aria-hidden="true">
+        <defs>
+          <linearGradient id="splash-sky" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0" stop-color="#0b1a33" />
+            <stop offset="0.62" stop-color="#14365a" />
+            <stop offset="1" stop-color="#2c5f82" />
+          </linearGradient>
+          <filter id="splash-glow" x="-50%" y="-50%" width="200%" height="200%">
+            <feGaussianBlur stdDeviation="3" result="blur" />
+            <feMerge>
+              <feMergeNode in="blur" />
+              <feMergeNode in="SourceGraphic" />
+            </feMerge>
+          </filter>
+        </defs>
+        <rect width="240" height="240" rx="54" fill="url(#splash-sky)" />
+        <g transform="translate(0 -13)">
+          <g
+            fill="none"
+            stroke="#ffffff"
+            stroke-width="2.5"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            opacity="0.55"
+          >
+            <path d="M64 96 L176 96 L176 118 L64 118 Z" />
+            <path d="M76 118 L76 196 L164 196 L164 118" />
+            <path d="M120 96 L120 196" />
+            <ellipse cx="98" cy="82" rx="20" ry="12" transform="rotate(25 98 82)" />
+            <ellipse cx="142" cy="82" rx="20" ry="12" transform="rotate(-25 142 82)" />
+          </g>
+          <g fill="#ffffff" filter="url(#splash-glow)">
+            <circle cx="64" cy="96" r="5" />
+            <circle cx="176" cy="96" r="4" />
+            <circle cx="176" cy="118" r="3.5" />
+            <circle cx="64" cy="118" r="3.5" />
+            <circle cx="76" cy="196" r="4.5" />
+            <circle cx="164" cy="196" r="5.5" />
+            <circle cx="120" cy="196" r="3.5" />
+            <circle cx="80" cy="73.5" r="4" />
+            <circle cx="160" cy="73.5" r="4" />
+          </g>
+          <g transform="translate(120 96)">
+            <path
+              class="twinkle"
+              filter="url(#splash-glow)"
+              d="M0 -16 C2.3 -2.8 2.8 -2.3 16 0 C2.8 2.3 2.3 2.8 0 16 C-2.3 2.8 -2.8 2.3 -16 0 C-2.8 -2.3 -2.3 -2.8 0 -16 Z"
+              fill="#ffd36b"
+            />
+          </g>
+        </g>
+      </svg>
+    </div>
     <div id="root"></div>
     <script type="module" src="/src/main.tsx"></script>
   </body>

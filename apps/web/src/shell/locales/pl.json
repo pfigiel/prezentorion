@@ -11,5 +11,8 @@
   "notFound": {
     "message": "Nie ma takiej strony.",
     "backHome": "Wróć na start"
+  },
+  "pending": {
+    "label": "Wczytywanie"
   }
 }

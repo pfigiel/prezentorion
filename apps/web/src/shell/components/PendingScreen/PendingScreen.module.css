@@ -1,0 +1,5 @@
+.root {
+  display: grid;
+  flex: 1;
+  place-items: center;
+}
