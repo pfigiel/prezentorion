@@ -11,8 +11,9 @@ import { RadioCards } from '@/ui/components/RadioCards'
 import { Textarea } from '@/ui/components/Textarea'
 import { TextInput } from '@/ui/components/TextInput'
 import type { Item } from '@/wishlist/api/wishlist'
+import { maxLengths } from '@/wishlist/constants/items'
 import { useSaveItem } from '@/wishlist/hooks/use-save-item'
-import { draftOf, errorsOf, type Draft } from '@/wishlist/utils/draft'
+import { draftOf, errorsOf, isValid, type Draft } from '@/wishlist/utils/draft'
 import { DeleteItemButton } from '../DeleteItemButton'
 import { MarkAvailableButton } from '../MarkAvailableButton'
 import { PhotoField } from '../PhotoField'
@@ -43,7 +44,7 @@ export const ItemForm = ({ item }: Props) => {
   const submit = () => {
     setSubmitted(true)
 
-    if (Object.keys(errorsOf(draft)).length === 0) save.mutate(draft)
+    if (isValid(errorsOf(draft))) save.mutate(draft)
   }
 
   return (
@@ -61,14 +62,22 @@ export const ItemForm = ({ item }: Props) => {
         placeholder={t('wishlist.form.namePlaceholder')}
         required
         value={draft.name}
-        error={errors.name === undefined ? undefined : t('wishlist.form.errors.name')}
+        error={
+          errors.name === undefined
+            ? undefined
+            : t(`wishlist.form.errors.name.${errors.name}`, { max: maxLengths.name })
+        }
         onChange={change('name')}
       />
       <TextInput
         label={t('wishlist.form.url')}
         placeholder={t('wishlist.form.urlPlaceholder')}
         value={draft.url}
-        error={errors.url === undefined ? undefined : t('wishlist.form.errors.url')}
+        error={
+          errors.url === undefined
+            ? undefined
+            : t(`wishlist.form.errors.url.${errors.url}`, { max: maxLengths.url })
+        }
         onChange={change('url')}
       />
       <TextInput
@@ -76,13 +85,20 @@ export const ItemForm = ({ item }: Props) => {
         inputMode="numeric"
         placeholder={t('wishlist.form.pricePlaceholder')}
         value={draft.price}
-        error={errors.price === undefined ? undefined : t('wishlist.form.errors.price')}
+        error={
+          errors.price === undefined ? undefined : t(`wishlist.form.errors.price.${errors.price}`)
+        }
         onChange={change('price')}
       />
       <Textarea
         label={t('wishlist.form.note')}
         placeholder={t('wishlist.form.notePlaceholder')}
         value={draft.note}
+        error={
+          errors.note === undefined
+            ? undefined
+            : t(`wishlist.form.errors.note.${errors.note}`, { max: maxLengths.note })
+        }
         onChange={change('note')}
       />
       <PriorityInput
@@ -110,11 +126,6 @@ export const ItemForm = ({ item }: Props) => {
           {t('wishlist.form.save')}
         </Button>
       </div>
-      {save.isError ? (
-        <p role="alert" className={classes.error}>
-          {t('wishlist.form.errors.save')}
-        </p>
-      ) : null}
       {item?.isPurchased ? <MarkAvailableButton item={item} /> : null}
       {item === undefined ? null : <DeleteItemButton item={item} />}
     </Form>

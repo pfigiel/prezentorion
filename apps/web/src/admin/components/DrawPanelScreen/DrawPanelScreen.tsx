@@ -159,7 +159,6 @@ export const DrawPanelScreen = ({ drawId }: Props) => {
           </ul>
         </Card>
       )}
-      {run.isError ? <p className={classes.error}>{t('admin.panel.failed')}</p> : null}
       <div className={classes.actions}>
         {isDrawn ? (
           <>
@@ -237,7 +236,6 @@ export const DrawPanelScreen = ({ drawId }: Props) => {
         onClose={finishDialog.close}
       >
         {t('admin.panel.finishWarning')}
-        {finish.isError ? <p className={classes.error}>{t('admin.panel.failed')}</p> : null}
         <Modal.Actions>
           <Button variant="secondary" size="md" onClick={finishDialog.close}>
             {t('admin.panel.cancel')}
@@ -253,7 +251,6 @@ export const DrawPanelScreen = ({ drawId }: Props) => {
         onClose={deleteDialog.close}
       >
         {t('admin.panel.deleteWarning', { name: draw.name })}
-        {remove.isError ? <p className={classes.error}>{t('admin.panel.failed')}</p> : null}
         <Modal.Actions>
           <Button variant="secondary" size="md" onClick={deleteDialog.close}>
             {t('admin.panel.cancel')}

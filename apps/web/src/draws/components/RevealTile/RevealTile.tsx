@@ -61,9 +61,6 @@ export const RevealTile = ({ draw, recipient, onRevealed }: Props) => {
           </span>
           <span className={classes.tap}>{t('draws.reveal.tap')}</span>
           <span className={classes.privacy}>{t('draws.reveal.privacy')}</span>
-          {reveal.isError ? (
-            <span className={classes.error}>{t('draws.reveal.failed')}</span>
-          ) : null}
         </button>
       ) : (
         <div className={classes.tile} aria-live="polite">

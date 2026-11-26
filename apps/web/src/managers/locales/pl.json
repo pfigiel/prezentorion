@@ -13,8 +13,7 @@
     "errors": {
       "email": "Wpisz poprawny adres e-mail.",
       "own": "To Twój własny adres.",
-      "duplicate": "Ta osoba już zarządza Twoją listą.",
-      "save": "Nie udało się zapisać. Spróbuj ponownie."
+      "duplicate": "Ta osoba już zarządza Twoją listą."
     }
   },
   "lists": {
@@ -46,7 +45,6 @@
     "drawOption": "{{name}} · {{date}}",
     "nothingFound": "Nie ma takiego losowania.",
     "cancel": "Anuluj",
-    "confirm": "Oznacz jako kupione",
-    "failed": "Nie udało się zapisać. Spróbuj ponownie."
+    "confirm": "Oznacz jako kupione"
   }
 }

@@ -8,7 +8,7 @@ test('a signed-out visitor is sent to sign in', async ({ page }) => {
   await expect(page).toHaveURL(/\/login$/)
 })
 
-test('a wrong password is refused', async ({ page }) => {
+test('a wrong password is refused in the form, with no toast repeating it', async ({ page }) => {
   const anna = await createPerson('Anna')
 
   await page.goto('/login')
@@ -17,6 +17,7 @@ test('a wrong password is refused', async ({ page }) => {
   await page.getByRole('button', { name: 'Zaloguj się' }).click()
 
   await expect(page.getByText('Nieprawidłowy e-mail lub hasło.')).toBeVisible()
+  await expect(page.getByRole('alert')).toHaveCount(0)
 })
 
 test('signing in lands on the start screen, and sign-in is skipped after that', async ({

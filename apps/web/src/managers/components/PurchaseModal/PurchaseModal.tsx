@@ -5,18 +5,16 @@ import type { ManagedList } from '@/managers/api/managers'
 import { Button } from '@/ui/components/Button'
 import { Modal } from '@/ui/components/Modal'
 import { Select } from '@/ui/components/Select'
-import classes from './PurchaseModal.module.css'
 
 type Props = {
   opened: boolean
   list: ManagedList
   saving: boolean
-  failed: boolean
   onClose: () => void
   onConfirm: (drawId: string | null) => void
 }
 
-export const PurchaseModal = ({ opened, list, saving, failed, onClose, onConfirm }: Props) => {
+export const PurchaseModal = ({ opened, list, saving, onClose, onConfirm }: Props) => {
   const { t } = useTranslation()
   const [pickedDrawId, setDrawId] = useState<string | null>(null)
   const drawId = list.draws.some(({ id }) => id === pickedDrawId)
@@ -48,7 +46,6 @@ export const PurchaseModal = ({ opened, list, saving, failed, onClose, onConfirm
           />
         </>
       )}
-      {failed ? <p className={classes.failed}>{t('managers.purchase.failed')}</p> : null}
       <Modal.Actions>
         <Button variant="secondary" size="md" onClick={onClose}>
           {t('managers.purchase.cancel')}

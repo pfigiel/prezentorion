@@ -23,4 +23,14 @@
   &:focus {
     border-color: var(--pz-accent-color-default);
   }
+
+  &[data-error] {
+    border-color: var(--pz-danger-color);
+  }
+}
+
+.error {
+  margin-top: var(--pz-spacing-xs);
+  color: var(--pz-danger-color);
+  font-size: var(--pz-text-font-size-sm);
 }

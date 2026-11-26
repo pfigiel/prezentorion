@@ -30,6 +30,25 @@ test('the form explains what is wrong before anything is saved', async ({ sessio
   await expect(page).toHaveURL(/\/wishlist\/new$/)
 })
 
+test('a name, link or note longer than the list keeps is explained before saving', async ({
+  sessionOf,
+}) => {
+  const anna = await createPerson('Anna')
+
+  const page = await sessionOf(anna)
+  await page.goto('/wishlist/new')
+  await page.getByLabel('Nazwa').fill('a'.repeat(121))
+  await page.getByLabel('Link').fill(`https://example.com/${'a'.repeat(1981)}`)
+  await page.getByLabel('Notatka').fill('a'.repeat(1001))
+  await page.getByRole('button', { name: 'Zapisz' }).click()
+
+  await expect(page.getByText('Nazwa może mieć najwyżej 120 znaków.')).toBeVisible()
+  await expect(page.getByText('Link może mieć najwyżej 2000 znaków.')).toBeVisible()
+  await expect(page.getByText('Notatka może mieć najwyżej 1000 znaków.')).toBeVisible()
+  await expect(page.getByLabel('Notatka')).toHaveAttribute('aria-invalid', 'true')
+  await expect(page).toHaveURL(/\/wishlist\/new$/)
+})
+
 test('a field left invalid is outlined and scrolled into view', async ({ sessionOf }) => {
   const anna = await createPerson('Anna')
 

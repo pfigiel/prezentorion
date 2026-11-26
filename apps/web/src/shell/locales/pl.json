@@ -14,5 +14,9 @@
   },
   "pending": {
     "label": "Wczytywanie"
+  },
+  "failure": {
+    "message": "Coś poszło nie tak. Spróbuj ponownie.",
+    "dismiss": "Zamknij"
   }
 }

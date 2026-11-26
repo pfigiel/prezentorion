@@ -80,12 +80,6 @@
   font-size: var(--pz-text-font-size-sm);
 }
 
-.error {
-  margin: 0;
-  color: var(--pz-danger-color);
-  font-size: var(--pz-text-font-size-sm);
-}
-
 .actions {
   display: flex;
   flex-direction: column;

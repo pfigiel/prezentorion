@@ -53,12 +53,22 @@
     "notFound": "Tej pozycji nie ma już na Twojej liście.",
     "backToList": "Wróć do listy",
     "errors": {
-      "name": "Podaj nazwę.",
-      "url": "To nie wygląda na link.",
-      "price": "Podaj kwotę w pełnych złotych.",
+      "name": {
+        "missing": "Podaj nazwę.",
+        "tooLong": "Nazwa może mieć najwyżej {{max}} znaków."
+      },
+      "url": {
+        "invalid": "To nie wygląda na link.",
+        "tooLong": "Link może mieć najwyżej {{max}} znaków."
+      },
+      "price": {
+        "invalid": "Podaj kwotę w pełnych złotych."
+      },
+      "note": {
+        "tooLong": "Notatka może mieć najwyżej {{max}} znaków."
+      },
       "photoType": "Zdjęcie musi być w formacie JPG, PNG lub WebP.",
-      "photoSize": "Zdjęcie może mieć najwyżej 5 MB.",
-      "save": "Nie udało się zapisać. Spróbuj ponownie."
+      "photoSize": "Zdjęcie może mieć najwyżej 5 MB."
     },
     "markAvailable": "Oznacz jako wciąż dostępne",
     "delete": "Usuń pozycję",

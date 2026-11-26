@@ -80,7 +80,6 @@
       "secret": "Wylosowane losowanie potrzebuje co najmniej dwóch uczestników.",
       "open": "Rozpoczęte losowanie potrzebuje co najmniej dwóch uczestników."
     },
-    "saveFailed": "Nie udało się zapisać losowania. Spróbuj ponownie.",
     "redrawTitle": "Losowanie od nowa",
     "redrawWarning": "Zmiana uczestników lub wykluczonych par wymaga ponownego losowania. Wszyscy odkryją wynik od nowa, a oznaczenia zakupów zostaną wyczyszczone.",
     "cancel": "Anuluj",
@@ -115,8 +114,7 @@
     "spoilerTitle": "Pokazać przydziały?",
     "spoilerWarning": "Na pewno? To zepsuje niespodziankę.",
     "show": "Pokaż",
-    "cancel": "Anuluj",
-    "failed": "Coś poszło nie tak. Spróbuj ponownie."
+    "cancel": "Anuluj"
   },
   "assignments": {
     "title": "Przydziały",
@@ -139,7 +137,6 @@
     "passwordLabel": "Hasło tymczasowe",
     "passwordHint": "Co najmniej 8 znaków. Przekażesz je tej osobie poza aplikacją.",
     "tooShort": "Hasło musi mieć co najmniej 8 znaków.",
-    "passwordFailed": "Nie udało się zmienić hasła. Spróbuj ponownie.",
     "passwordSaved": "Hasło zmienione. Przekaż je tej osobie – zaloguje się nim od razu.",
     "cancel": "Anuluj",
     "save": "Zapisz",

@@ -1,5 +1,6 @@
 import { MantineProvider } from '@mantine/core'
 import type { ReactNode } from 'react'
+import { Toasts } from '@/ui/components/Toasts'
 import { cssVariablesResolver } from './css-variables'
 import './fonts'
 import { theme } from './theme'
@@ -15,6 +16,7 @@ export const UiProvider = ({ children }: Props) => (
     cssVariablesResolver={cssVariablesResolver}
     forceColorScheme="dark"
   >
+    <Toasts />
     {children}
   </MantineProvider>
 )

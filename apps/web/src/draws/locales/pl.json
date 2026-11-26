@@ -57,8 +57,7 @@
   },
   "reveal": {
     "tap": "Dotknij, aby odkryć",
-    "privacy": "Upewnij się, że nikt nie patrzy",
-    "failed": "Nie udało się odkryć. Spróbuj ponownie."
+    "privacy": "Upewnij się, że nikt nie patrzy"
   },
   "recipient": {
     "buyingFor": "Kupujesz prezent dla",

@@ -246,7 +246,6 @@ export const DrawForm = ({ draw }: Props) => {
           )}
         </>
       ) : null}
-      {save.isError ? <p className={classes.error}>{t('admin.form.saveFailed')}</p> : null}
       <div className={classes.actions}>
         {step === 0 ? null : (
           <Button variant="secondary" onClick={() => goTo(step - 1)}>

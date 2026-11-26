@@ -1,0 +1,36 @@
+.root {
+  --notifications-container-width: calc(var(--pz-shell-width) - var(--pz-spacing-lg) * 2);
+
+  width: calc(100% - var(--pz-spacing-lg) * 2);
+
+  &[data-position='top-center'] {
+    top: calc(env(safe-area-inset-top) + var(--pz-spacing-md));
+  }
+}
+
+.toast {
+  @mixin surface raised;
+
+  gap: var(--pz-spacing-sm);
+  padding: var(--pz-spacing-md);
+  border: 1px solid var(--pz-danger-border-color);
+  border-radius: var(--pz-radius-md);
+}
+
+.icon {
+  width: var(--pz-icon-size-md);
+  height: var(--pz-icon-size-md);
+  margin-inline-end: 0;
+  background-color: transparent;
+  color: var(--pz-danger-color);
+}
+
+.message {
+  @mixin text sm;
+
+  color: var(--pz-text-color-default);
+}
+
+.close {
+  color: var(--pz-text-color-dimmed);
+}

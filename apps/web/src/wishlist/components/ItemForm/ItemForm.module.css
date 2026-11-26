@@ -11,10 +11,3 @@
   gap: var(--pz-spacing-md);
   margin-top: auto;
 }
-
-.error {
-  margin: 0;
-  color: var(--pz-danger-color);
-  font-size: var(--pz-text-font-size-sm);
-  text-align: center;
-}

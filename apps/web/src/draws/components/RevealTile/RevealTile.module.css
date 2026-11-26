@@ -71,11 +71,6 @@
   font-size: var(--pz-text-font-size-sm);
 }
 
-.error {
-  color: var(--pz-danger-color);
-  font-size: var(--pz-text-font-size-sm);
-}
-
 /* The reveal: a flash of starlight from the centre, then the person rising out of it. */
 .burst {
   position: absolute;

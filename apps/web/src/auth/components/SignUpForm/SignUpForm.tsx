@@ -18,6 +18,7 @@ export const SignUpForm = () => {
   const register = useMutation({
     mutationFn: () => signUp(name.trim(), email, password),
     onSuccess: () => navigate({ to: '/' }),
+    meta: { showsOwnError: true },
   })
 
   const submit = () => {

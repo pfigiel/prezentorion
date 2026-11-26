@@ -59,13 +59,6 @@ export const ManagersScreen = () => {
     add.reset()
   }
 
-  const error = () => {
-    if (problem !== null) return t(`managers.settings.errors.${problem}`)
-    if (add.isError) return t('managers.settings.errors.save')
-
-    return undefined
-  }
-
   return (
     <>
       <ScreenHeader title={t('managers.settings.title')} back={{ to: '/wishlist' }} />
@@ -77,7 +70,7 @@ export const ManagersScreen = () => {
           autoComplete="off"
           placeholder={t('managers.settings.emailPlaceholder')}
           value={email}
-          error={error()}
+          error={problem === null ? undefined : t(`managers.settings.errors.${problem}`)}
           onChange={changeEmail}
         />
         <p className={classes.hint}>{t('managers.settings.hint')}</p>

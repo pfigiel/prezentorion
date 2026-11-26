@@ -42,12 +42,7 @@ export const PasswordModal = ({ opened, user, onClose }: Props) => {
     }
   }
 
-  const error = () => {
-    if (change.isError) return t('admin.users.passwordFailed')
-    if (showError && password.length < minimumLength) return t('admin.users.tooShort')
-
-    return undefined
-  }
+  const tooShort = showError && password.length < minimumLength
 
   return (
     <Modal
@@ -69,7 +64,7 @@ export const PasswordModal = ({ opened, user, onClose }: Props) => {
             label={t('admin.users.passwordLabel')}
             autoComplete="off"
             value={password}
-            error={error()}
+            error={tooShort ? t('admin.users.tooShort') : undefined}
             onChange={setPassword}
           />
           <Modal.Actions>

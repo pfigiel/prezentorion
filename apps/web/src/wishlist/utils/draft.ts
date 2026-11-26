@@ -1,4 +1,5 @@
 import type { Item, ItemFields } from '@/wishlist/api/wishlist'
+import { maxLengths } from '@/wishlist/constants/items'
 
 /** The photo as the form holds it: none, the one already stored, or a file picked but not uploaded. */
 export type Photo =
@@ -15,9 +16,10 @@ export type Draft = {
 }
 
 export type DraftErrors = {
-  name?: 'name'
-  url?: 'url'
-  price?: 'price'
+  name?: 'missing' | 'tooLong'
+  url?: 'invalid' | 'tooLong'
+  price?: 'invalid'
+  note?: 'tooLong'
 }
 
 const defaultPriority = 2
@@ -62,11 +64,33 @@ const priceOf = (text: string) => {
 
 const textOf = (text: string) => (text.trim() === '' ? null : text.trim())
 
+const isTooLong = (text: string | null | undefined, max: number) => (text?.length ?? 0) > max
+
+const nameErrorOf = (name: string) => {
+  const text = textOf(name)
+
+  if (text === null) return 'missing'
+
+  return isTooLong(text, maxLengths.name) ? 'tooLong' : undefined
+}
+
+const urlErrorOf = (url: string) => {
+  const link = urlOf(url)
+
+  if (link === undefined) return 'invalid'
+
+  return isTooLong(link, maxLengths.url) ? 'tooLong' : undefined
+}
+
 export const errorsOf = (draft: Draft): DraftErrors => ({
-  ...(textOf(draft.name) === null ? { name: 'name' } : {}),
-  ...(urlOf(draft.url) === undefined ? { url: 'url' } : {}),
-  ...(priceOf(draft.price) === undefined ? { price: 'price' } : {}),
+  name: nameErrorOf(draft.name),
+  url: urlErrorOf(draft.url),
+  price: priceOf(draft.price) === undefined ? 'invalid' : undefined,
+  note: isTooLong(textOf(draft.note), maxLengths.note) ? 'tooLong' : undefined,
 })
+
+export const isValid = (errors: DraftErrors) =>
+  Object.values(errors).every((error) => error === undefined)
 
 /** Assumes `errorsOf` found nothing; `photoPath` is where the photo ended up after any upload. */
 export const fieldsOf = (draft: Draft, photoPath: string | null): ItemFields => ({

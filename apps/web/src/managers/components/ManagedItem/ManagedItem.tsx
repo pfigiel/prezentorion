@@ -75,7 +75,6 @@ export const ManagedItem = ({ list, item }: Props) => {
         opened={purchaseOpened}
         list={list}
         saving={purchase.isPending}
-        failed={purchase.isError}
         onClose={purchaseDialog.close}
         onConfirm={(drawId) => purchase.mutate({ purchased: true, drawId })}
       />

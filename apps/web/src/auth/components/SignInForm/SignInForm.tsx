@@ -17,6 +17,7 @@ export const SignInForm = () => {
   const signIn = useMutation({
     mutationFn: () => signInWithPassword(email, password),
     onSuccess: () => navigate({ to: '/' }),
+    meta: { showsOwnError: true },
   })
 
   const submit = () => {
